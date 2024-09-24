@@ -1041,7 +1041,272 @@
       "id": "AA-11"
     }
   ],
-  "SecControls": [],
+  "SecControls": [
+    {
+      "security_control": "Access control.",
+      "security_control_description": "Access control refers to security policies, processes, and mechanisms that restrict and manage access to data, information, applications, and physical locations based on assigned privileges. It establishes who can access specific resources, what actions they are allowed to perform, and under what conditions. Access control helps protect against unauthorized access, modification, or disclosure of confidential or sensitive information.",
+      "security_goal": "USB stack shall implement robust access control mechanisms to ensure that only authorized devices and users can initiate USB connections and data transfers.",
+      "id": "S-1",
+      "Threat_T": "Extraction of USB Stack",
+      "security_description_threat": "USB stack shall implement robust access control mechanisms to ensure that only authorized devices and users can initiate USB connections and data transfers.",
+      "Sid": [
+        "SN-R-1"
+      ],
+      "Threat": "Extraction of USB Stack",
+      "affected_security_goal": "Confidentiality of USB Stack",
+      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat_id": "Th-1",
+      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
+      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "Did": [
+        "DS-1"
+      ]
+    },
+    {
+      "security_control": "Encryption",
+      "security_control_description": "Encryption is the process of transforming data into a form that cannot be easily understood by unauthorized people. This is done by using a mathematical algorithm to scramble the data, making it difficult to decipher without the correct key or password. Encryption is used to protect sensitive data, such as financial information, medical records, and personal identification numbers, from unauthorized access.",
+      "security_goal": "USB stack shall employ strong encryption techniques to protect data integrity and confidentiality during USB data transfers.",
+      "id": "S-2",
+      "Threat_T": "Extraction of USB Stack",
+      "security_description_threat": "USB stack shall employ strong encryption techniques to protect data integrity and confidentiality during USB data transfers.",
+      "Sid": [
+        "SN-R-2"
+      ],
+      "Threat": "Extraction of USB Stack",
+      "affected_security_goal": "Confidentiality of USB Stack",
+      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat_id": "Th-1",
+      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
+      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "Did": [
+        "DS-1"
+      ]
+    },
+    {
+      "security_control": "Firmware Security",
+      "security_control_description": "Firmware Security involves protecting firmware from unauthorized modifications or access to maintain the integrity and availability of devices. It encompasses measures to prevent malicious firmware updates, detect firmware tampering, and verify firmware authenticity to ensure only legitimate firmware is loaded and executed on devices.",
+      "security_goal": "USB stack shall ensure the integrity and security of USB drivers and firmware.",
+      "id": "S-3",
+      "Threat_T": "Manipulation of USB Stack",
+      "security_description_threat": "USB stack shall ensure the integrity and security of USB drivers and firmware.",
+      "Sid": [
+        "SN-R-3"
+      ],
+      "Threat": "Manipulation of USB Stack",
+      "affected_security_goal": "Integrity of USB Stack",
+      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
+      "Threat_id": "Th-2",
+      "damage_scenario": "Misuse or manipulation affecting Bosch",
+      "consequence": "Negligible",
+      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
+      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
+      "Did": [
+        "DS-2"
+      ]
+    },
+    {
+      "security_control": "Continuous monitoring and logging of all USB activities: Audit trail.",
+      "security_control_description": "Continuous monitoring and logging of USB activities creates an audit trail that provides visibility into USB device usage and data transfer, facilitating the detection and investigation of potential security incidents. This audit trail includes information such as the type of USB device, the time and date of the activity, the user who initiated the activity, the data transferred, and the destination of the data. By continuously monitoring and logging USB activities, organizations can identify and respond to security threats in a timely manner, reducing the risk of data breaches and other security incidents.",
+      "security_goal": "USB stack shall facilitate continuous monitoring and logging of all USB activities.",
+      "id": "S-4",
+      "Threat_T": "Extraction of USB Stack",
+      "security_description_threat": "USB stack shall facilitate continuous monitoring and logging of all USB activities.",
+      "Sid": [
+        "SN-R-4"
+      ],
+      "Threat": "Extraction of USB Stack",
+      "affected_security_goal": "Confidentiality of USB Stack",
+      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat_id": "Th-1",
+      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
+      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "Did": [
+        "DS-1"
+      ]
+    },
+    {
+      "security_control": "Detection",
+      "security_control_description": "Detection is the identification of the occurrence of a security event. This includes identifying the source of the event, the affected resource(s), and the extent of the damage. Detection can be achieved through a variety of methods, including:\n\n* **Security logs:** Security logs provide a record of all events that have occurred on a system, including successful and failed login attempts, file modifications, and system errors.\n* **Intrusion detection systems (IDSs):** IDSs monitor network traffic for suspicious activity that may indicate an attack is taking place.\n* **Security information and event management (SIEM) systems:** SIEMs aggregate and correlate data from multiple sources, such as security logs and IDS alerts, to provide a comprehensive view of the security posture of an organization.",
+      "security_goal": "Network Intrusion Detection Systems (NIDS) shall be deployed at the network perimeter to detect known attacks in the network traffic.",
+      "id": "S-5",
+      "Threat_T": "Extraction of WiFi Interface",
+      "security_description_threat": "Network Intrusion Detection Systems (NIDS) shall be deployed at the network perimeter to detect known attacks in the network traffic.",
+      "Sid": [
+        "SN-R-5"
+      ],
+      "Threat": "Extraction of WiFi Interface",
+      "affected_security_goal": "Confidentiality of WiFi Interface",
+      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
+      "Threat_id": "Th-3",
+      "damage_scenario": "Disclosure of IP or Proprietary Data ",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
+      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
+      "Did": [
+        "DS-4"
+      ]
+    },
+    {
+      "security_control": "Anomaly Detection",
+      "security_control_description": "Anomaly Detection involves the use of techniques and algorithms to identify anomalous patterns or deviations from expected behavior within a system or network. These techniques analyze data and activity logs, searching for deviations or irregularities that may indicate potential threats or suspicious activities. By identifying these anomalies, security teams can proactively detect potential security breaches, investigate the cause of the anomaly, and take appropriate corrective actions to mitigate risks.",
+      "security_goal": "Employ advanced anomaly detection mechanisms to identify abnormal traffic patterns indicative of a potential DoS attack",
+      "id": "S-6",
+      "Threat_T": "Blocking WiFi Interface",
+      "security_description_threat": "Employ advanced anomaly detection mechanisms to identify abnormal traffic patterns indicative of a potential DoS attack",
+      "Sid": [
+        "SN-R-7"
+      ],
+      "Threat": "Blocking WiFi Interface",
+      "affected_security_goal": "Availability of WiFi Interface",
+      "damage_scenario_copy": "Degradation or loss of functionality ",
+      "Threat_id": "Th-5",
+      "damage_scenario": "Degradation or loss of functionality ",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
+      "security_control": "Integrity.",
+      "security_control_description": "Integrity ensures that information and systems remain complete and unaltered throughout their entire lifecycle. It involves protecting data from unauthorized modification, destruction, or disclosure. This security control includes measures such as data authenticity checks, digital signatures, access controls, and data backup and recovery plans.",
+      "security_goal": "Firmware shall be protected against manipulation",
+      "id": "S-7",
+      "Threat_T": "Manipulation of WiFi Interface",
+      "security_description_threat": "Firmware shall be protected against manipulation",
+      "Sid": [
+        "SN-R-8"
+      ],
+      "Threat": "Manipulation of WiFi Interface",
+      "affected_security_goal": "Integrity of WiFi Interface",
+      "damage_scenario_copy": "Degradation or loss of functionality ",
+      "Threat_id": "Th-4",
+      "damage_scenario": "Degradation or loss of functionality ",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
+      "security_control": "Network Segmentation",
+      "security_control_description": "Network Segmentation refers to the practice of dividing a computer network into smaller, isolated subnetworks called segments. This helps to improve security by limiting the spread of threats and data breaches within the network. By segmenting the network into smaller, more manageable sections, it reduces the attack surface and makes it more difficult for unauthorized users to access sensitive data or systems.",
+      "security_goal": "WiFi Access Point or Ethernet LAN Switch/Router shall be protected against known WiFi and Ethernet LAN attacks",
+      "id": "S-8",
+      "Threat_T": "Manipulation of WiFi Access Point",
+      "security_description_threat": "WiFi Access Point or Ethernet LAN Switch/Router shall be protected against known WiFi and Ethernet LAN attacks",
+      "Sid": [
+        "SN-R-10"
+      ],
+      "Threat": "Manipulation of WiFi Access Point",
+      "affected_security_goal": "Integrity of WiFi Access Point",
+      "damage_scenario_copy": "Degradation or loss of functionality ",
+      "Threat_id": "Th-9",
+      "damage_scenario": "Degradation or loss of functionality ",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
+      "security_control": "Network Intrusion Prevention System (NIPS)",
+      "security_control_description": "Network Intrusion Prevention Systems (NIPS) are security solutions that actively monitor network traffic for malicious activity and take action to block or prevent threats from entering the network. NIPS use a variety of techniques, such as signature-based detection, anomaly detection, and deep packet inspection, to identify and block malicious traffic. NIPS are important security controls for protecting networks from a wide range of threats, including viruses, malware, botnets, and denial-of-service attacks.",
+      "security_goal": "The system shall protect the WiFi access point from Denial-of-service attack",
+      "id": "S-9",
+      "Threat_T": "Blocking WiFi Access Point",
+      "security_description_threat": "The system shall protect the WiFi access point from Denial-of-service attack",
+      "Sid": [
+        "SN-R-11"
+      ],
+      "Threat": "Blocking WiFi Access Point",
+      "affected_security_goal": "Availability of WiFi Access Point",
+      "damage_scenario_copy": "Loss of customer trust",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "security_control": "Firewall",
+      "security_control_description": "A firewall is a network security device that monitors and controls incoming and outgoing network traffic based on predetermined security rules. It establishes a barrier between trusted and untrusted networks, protecting internal networks from external threats while allowing authorized traffic to flow through. Firewalls can operate in various modes, such as packet filtering, stateful inspection, and deep packet inspection, to enforce security policies and prevent unauthorized access to protected systems and resources.",
+      "security_goal": "Configure firewalls to filter incoming and outgoing traffic. Create rules that block or limit traffic from known malicious sources",
+      "id": "S-10",
+      "Threat_T": "Blocking WiFi Router",
+      "security_description_threat": "Configure firewalls to filter incoming and outgoing traffic. Create rules that block or limit traffic from known malicious sources",
+      "Sid": [
+        "SN-R-12"
+      ],
+      "Threat": "Blocking WiFi Router",
+      "affected_security_goal": "Availability of WiFi Router",
+      "damage_scenario_copy": "Loss of customer trust",
+      "Threat_id": "Th-11",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "security_control": "Intrusion Detection System (IDS)",
+      "security_control_description": "An Intrusion Detection System (IDS) is a security tool that monitors network traffic to identify and log unauthorized attempts to access the network or its devices. It can detect and alert on security breaches, such as malware infections, denial-of-service attacks, and unauthorized access attempts, by analyzing network traffic patterns and looking for malicious activities or behaviors that deviate from normal network traffic.",
+      "security_goal": "Real-time monitoring tools to detect and respond to unusual spikes in Wi-Fi module activity",
+      "id": "S-11",
+      "Threat_T": "Blocking WiFi Module",
+      "security_description_threat": "Real-time monitoring tools to detect and respond to unusual spikes in Wi-Fi module activity",
+      "Sid": [
+        "SN-R-13"
+      ],
+      "Threat": "Blocking WiFi module",
+      "affected_security_goal": "Availability of WiFi module",
+      "damage_scenario_copy": "Legal non-compliance",
+      "Threat_id": "Th-7",
+      "damage_scenario": "Legal non-compliance",
+      "consequence": "Serious",
+      "consequence_DS": "Compliance to legal requirements may be affected",
+      "consequence_reasoning": "Compliance to international and national legal requirements and standards such as GDPR is mandatory and this may lead to penalties",
+      "Did": [
+        "DS-5"
+      ]
+    },
+    {
+      "security_control": "Two-way Authentication",
+      "security_control_description": "Two-way authentication is a security mechanism that requires two authentication factors to verify the identity of a user. The first factor is typically something the user knows, such as a password or PIN, while the second factor is something the user has, such as a mobile phone or smart card.",
+      "security_goal": "Communication between the WiFi interface and its device employ two-way authentication mechanism to prevent spoofing on WiFi.",
+      "id": "S-12",
+      "Threat_T": "Extraction of WiFi module",
+      "security_description_threat": "Communication between the WiFi interface and its device employ two-way authentication mechanism to prevent spoofing on WiFi.",
+      "Sid": [
+        "SN-R-6"
+      ],
+      "Threat": "Extraction of WiFi module",
+      "affected_security_goal": "Confidentiality of WiFi module",
+      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
+      "Threat_id": "Th-6",
+      "damage_scenario": "Disclosure of IP or Proprietary Data ",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
+      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
+      "Did": [
+        "DS-4"
+      ]
+    }
+  ],
   "SecClaims": [],
   "version": 1
 }
