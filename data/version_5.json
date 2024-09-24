@@ -358,6 +358,12 @@
       "Objective": "Availability",
       "objective_description": "The serial port must be available to authorized users when needed.",
       "id": "A-17"
+    },
+    {
+      "id": "A-18",
+      "Asset_description": "testt asset",
+      "Objective": "Authorization",
+      "objective_description": "testtttt"
     }
   ],
   "ThreatDSs": [
@@ -582,6 +588,15 @@
         "DS-12"
       ],
       "Threat_i": "Blocking Serial port"
+    },
+    {
+      "id": "Th-18",
+      "Threat": "Unauthorized access to testt asset",
+      "affected_security_goal": "Authorization of testt asset",
+      "Did": [
+        "DS-7"
+      ],
+      "Threat_i": "Unauthorized access to testt asset"
     }
   ],
   "ThreatEvaluation_AP": [
@@ -594,7 +609,8 @@
       "Time": "1",
       "Sum": "4",
       "Threat": "Extraction of USB Stack",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Extraction of USB Stack"
     },
     {
       "id": "Th-2",
@@ -605,7 +621,8 @@
       "Time": "1",
       "Sum": "16",
       "Threat": "Manipulation of USB Stack",
-      "Attack_Potential": "Moderate"
+      "Attack_Potential": "Moderate",
+      "Threat_i": "Manipulation of USB Stack"
     },
     {
       "id": "Th-3",
@@ -616,7 +633,8 @@
       "Time": "1",
       "Sum": "8",
       "Threat": "Extraction of WiFi Interface",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Extraction of WiFi Interface"
     },
     {
       "id": "Th-4",
@@ -627,7 +645,8 @@
       "Time": "0",
       "Sum": "3",
       "Threat": "Manipulation of WiFi Interface",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Manipulation of WiFi Interface"
     },
     {
       "id": "Th-5",
@@ -638,7 +657,8 @@
       "Time": "0",
       "Sum": "0",
       "Threat": "Blocking WiFi Interface",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Blocking WiFi Interface"
     },
     {
       "id": "Th-6",
@@ -649,7 +669,8 @@
       "Time": "1",
       "Sum": "4",
       "Threat": "Extraction of WiFi module",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Extraction of WiFi module"
     },
     {
       "id": "Th-7",
@@ -660,7 +681,8 @@
       "Time": "0",
       "Sum": "3",
       "Threat": "Blocking WiFi module",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Blocking WiFi module"
     },
     {
       "id": "Th-8",
@@ -671,7 +693,8 @@
       "Time": "0",
       "Sum": "3",
       "Threat": "Extraction of WiFi Access Point",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Extraction of WiFi Access Point"
     },
     {
       "id": "Th-9",
@@ -682,7 +705,8 @@
       "Time": "0",
       "Sum": "3",
       "Threat": "Manipulation of WiFi Access Point",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Manipulation of WiFi Access Point"
     },
     {
       "id": "Th-10",
@@ -693,7 +717,8 @@
       "Time": "0",
       "Sum": "3",
       "Threat": "Blocking WiFi Access Point",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Blocking WiFi Access Point"
     },
     {
       "id": "Th-11",
@@ -704,7 +729,8 @@
       "Time": "0",
       "Sum": "0",
       "Threat": "Blocking WiFi Router",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Blocking WiFi Router"
     },
     {
       "id": "Th-12",
@@ -715,7 +741,8 @@
       "Time": "0",
       "Sum": "3",
       "Threat": "Extraction of FlexRay",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Extraction of FlexRay"
     },
     {
       "id": "Th-13",
@@ -726,7 +753,8 @@
       "Time": "1",
       "Sum": "4",
       "Threat": "Manipulation of FlexRay",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Manipulation of FlexRay"
     },
     {
       "id": "Th-14",
@@ -737,7 +765,8 @@
       "Time": "2",
       "Sum": "20",
       "Threat": "Blocking of FlexRay",
-      "Attack_Potential": "Enhanced Basic"
+      "Attack_Potential": "Enhanced Basic",
+      "Threat_i": "Blocking of FlexRay"
     },
     {
       "id": "Th-15",
@@ -748,7 +777,8 @@
       "Time": "1",
       "Sum": "14",
       "Threat": "Extraction of Serial port",
-      "Attack_Potential": "Moderate"
+      "Attack_Potential": "Moderate",
+      "Threat_i": "Extraction of Serial port"
     },
     {
       "id": "Th-16",
@@ -759,7 +789,8 @@
       "Time": "0",
       "Sum": "0",
       "Threat": "Manipulation of Serial port",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Manipulation of Serial port"
     },
     {
       "Threat": "Blocking Serial port",
@@ -773,7 +804,28 @@
       "Did": [
         "DS-12"
       ],
-      "Threat_i": "Blocking Serial port"
+      "Threat_i": "Blocking Serial port",
+      "Access": "0",
+      "Equipment": "0",
+      "Expertise": "3",
+      "Time": "1",
+      "Knowledge": "0",
+      "Sum": "4",
+      "Attack_Potential": "Beyond High"
+    },
+    {
+      "id": "Th-18",
+      "Threat": "Unauthorized access to testt asset",
+      "affected_security_goal": "Authorization of testt asset",
+      "Did": "",
+      "Threat_i": "Unauthorized access to testt asset",
+      "Access": "1",
+      "Equipment": 0,
+      "Expertise": 0,
+      "Time": 0,
+      "Knowledge": 0,
+      "Sum": "1",
+      "Attack_Potential": "Beyond High"
     }
   ],
   "threatDamageAssociations": [
@@ -895,6 +947,13 @@
       "damageScenarioId": "DS-12",
       "damageScenario": "Flood a device or network with traffic",
       "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-18",
+      "threat": "Unauthorized access to testt asset",
+      "damageScenarioId": "DS-7",
+      "damageScenario": "Laws, regulations and contracts are violated leading to penalties",
+      "cons": "Severe"
     }
   ],
   "updatedAssociations": [
@@ -1016,6 +1075,13 @@
       "damageScenarioId": "DS-12",
       "damageScenario": "Flood a device or network with traffic",
       "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-18",
+      "threat": "Unauthorized access to testt asset",
+      "damageScenarioId": "DS-7",
+      "damageScenario": "Laws, regulations and contracts are violated leading to penalties",
+      "cons": "Severe"
     }
   ],
   "RiskAssessment": [
@@ -1186,7 +1252,18 @@
       "consequence": "Moderate",
       "Threat": "Blocking Serial port",
       "risk": "Low",
-      "risk_of_d": "Invalid Attack Potential"
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
+    },
+    {
+      "id": "R-18",
+      "damage_scenario": "Laws, regulations and contracts are violated leading to penalties",
+      "D_id": "DS-7",
+      "consequence": "Severe",
+      "Threat": "Unauthorized access to testt asset",
+      "risk": "High",
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Medium"
     }
   ],
   "SecurityNeeds": [
@@ -1597,9 +1674,39 @@
       "Objective": "Availability",
       "objective_description": "The serial port must be available to authorized users when needed.",
       "id": "AA-17"
+    },
+    {
+      "id": "AA-18",
+      "Asset_description": "testt asset",
+      "Objective": "Authorization",
+      "objective_description": "testtttt",
+      "isNew": false,
+      "fromCSV": false
     }
   ],
   "SecControls": [
+    {
+      "security_control": "Access control.",
+      "security_control_description": "Access control refers to security policies, processes, and mechanisms that restrict and manage access to data, information, applications, and physical locations based on assigned privileges. It establishes who can access specific resources, what actions they are allowed to perform, and under what conditions. Access control helps protect against unauthorized access, modification, or disclosure of confidential or sensitive information.",
+      "security_goal": "USB stack shall implement robust access control mechanisms to ensure that only authorized devices and users can initiate USB connections and data transfers.",
+      "id": "S-1",
+      "Threat_T": "Extraction of USB Stack",
+      "security_description_threat": "USB stack shall implement robust access control mechanisms to ensure that only authorized devices and users can initiate USB connections and data transfers.",
+      "Sid": [
+        "SN-R-1"
+      ],
+      "Threat": "Extraction of USB Stack",
+      "affected_security_goal": "Confidentiality of USB Stack",
+      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat_id": "Th-1",
+      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
+      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "Did": [
+        "DS-1"
+      ]
+    },
     {
       "security_control": "Encryption",
       "security_control_description": "Encryption is the process of transforming data into a form that cannot be easily understood by unauthorized people. This is done by using a mathematical algorithm to scramble the data, making it difficult to decipher without the correct key or password. Encryption is used to protect sensitive data, such as financial information, medical records, and personal identification numbers, from unauthorized access.",
@@ -1623,6 +1730,292 @@
       ]
     },
     {
+      "security_control": "Firmware Security",
+      "security_control_description": "Firmware Security involves protecting firmware from unauthorized modifications or access to maintain the integrity and availability of devices. It encompasses measures to prevent malicious firmware updates, detect firmware tampering, and verify firmware authenticity to ensure only legitimate firmware is loaded and executed on devices.",
+      "security_goal": "USB stack shall ensure the integrity and security of USB drivers and firmware.",
+      "id": "S-3",
+      "Threat_T": "Manipulation of USB Stack",
+      "security_description_threat": "USB stack shall ensure the integrity and security of USB drivers and firmware.",
+      "Sid": [
+        "SN-R-3"
+      ],
+      "Threat": "Manipulation of USB Stack",
+      "affected_security_goal": "Integrity of USB Stack",
+      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
+      "Threat_id": "Th-2",
+      "damage_scenario": "Misuse or manipulation affecting Bosch",
+      "consequence": "Negligible",
+      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
+      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
+      "Did": [
+        "DS-2"
+      ]
+    },
+    {
+      "security_control": "Continuous monitoring and logging of all USB activities: Audit trail.",
+      "security_control_description": "Continuous monitoring and logging of USB activities creates an audit trail that provides visibility into USB device usage and data transfer, facilitating the detection and investigation of potential security incidents. This audit trail includes information such as the type of USB device, the time and date of the activity, the user who initiated the activity, the data transferred, and the destination of the data. By continuously monitoring and logging USB activities, organizations can identify and respond to security threats in a timely manner, reducing the risk of data breaches and other security incidents.",
+      "security_goal": "USB stack shall facilitate continuous monitoring and logging of all USB activities.",
+      "id": "S-4",
+      "Threat_T": "Extraction of USB Stack",
+      "security_description_threat": "USB stack shall facilitate continuous monitoring and logging of all USB activities.",
+      "Sid": [
+        "SN-R-4"
+      ],
+      "Threat": "Extraction of USB Stack",
+      "affected_security_goal": "Confidentiality of USB Stack",
+      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat_id": "Th-1",
+      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
+      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "Did": [
+        "DS-1"
+      ]
+    },
+    {
+      "security_control": "Detection",
+      "security_control_description": "Detection is the identification of the occurrence of a security event. This includes identifying the source of the event, the affected resource(s), and the extent of the damage. Detection can be achieved through a variety of methods, including:\n\n* **Security logs:** Security logs provide a record of all events that have occurred on a system, including successful and failed login attempts, file modifications, and system errors.\n* **Intrusion detection systems (IDSs):** IDSs monitor network traffic for suspicious activity that may indicate an attack is taking place.\n* **Security information and event management (SIEM) systems:** SIEMs aggregate and correlate data from multiple sources, such as security logs and IDS alerts, to provide a comprehensive view of the security posture of an organization.",
+      "security_goal": "Network Intrusion Detection Systems (NIDS) shall be deployed at the network perimeter to detect known attacks in the network traffic.",
+      "id": "S-5",
+      "Threat_T": "Extraction of WiFi Interface",
+      "security_description_threat": "Network Intrusion Detection Systems (NIDS) shall be deployed at the network perimeter to detect known attacks in the network traffic.",
+      "Sid": [
+        "SN-R-5"
+      ],
+      "Threat": "Extraction of WiFi Interface",
+      "affected_security_goal": "Confidentiality of WiFi Interface",
+      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
+      "Threat_id": "Th-3",
+      "damage_scenario": "Disclosure of IP or Proprietary Data ",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
+      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
+      "Did": [
+        "DS-4"
+      ]
+    },
+    {
+      "security_control": "Anomaly Detection",
+      "security_control_description": "Anomaly Detection involves the use of techniques and algorithms to identify anomalous patterns or deviations from expected behavior within a system or network. These techniques analyze data and activity logs, searching for deviations or irregularities that may indicate potential threats or suspicious activities. By identifying these anomalies, security teams can proactively detect potential security breaches, investigate the cause of the anomaly, and take appropriate corrective actions to mitigate risks.",
+      "security_goal": "Employ advanced anomaly detection mechanisms to identify abnormal traffic patterns indicative of a potential DoS attack",
+      "id": "S-6",
+      "Threat_T": "Blocking WiFi Interface",
+      "security_description_threat": "Employ advanced anomaly detection mechanisms to identify abnormal traffic patterns indicative of a potential DoS attack",
+      "Sid": [
+        "SN-R-7"
+      ],
+      "Threat": "Blocking WiFi Interface",
+      "affected_security_goal": "Availability of WiFi Interface",
+      "damage_scenario_copy": "Degradation or loss of functionality ",
+      "Threat_id": "Th-5",
+      "damage_scenario": "Degradation or loss of functionality ",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
+      "security_control": "Integrity.",
+      "security_control_description": "Integrity ensures that information and systems remain complete and unaltered throughout their entire lifecycle. It involves protecting data from unauthorized modification, destruction, or disclosure. This security control includes measures such as data authenticity checks, digital signatures, access controls, and data backup and recovery plans.",
+      "security_goal": "Firmware shall be protected against manipulation",
+      "id": "S-7",
+      "Threat_T": "Manipulation of WiFi Interface",
+      "security_description_threat": "Firmware shall be protected against manipulation",
+      "Sid": [
+        "SN-R-8"
+      ],
+      "Threat": "Manipulation of WiFi Interface",
+      "affected_security_goal": "Integrity of WiFi Interface",
+      "damage_scenario_copy": "Degradation or loss of functionality ",
+      "Threat_id": "Th-4",
+      "damage_scenario": "Degradation or loss of functionality ",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
+      "security_control": "Network Segmentation",
+      "security_control_description": "Network Segmentation refers to the practice of dividing a computer network into smaller, isolated subnetworks called segments. This helps to improve security by limiting the spread of threats and data breaches within the network. By segmenting the network into smaller, more manageable sections, it reduces the attack surface and makes it more difficult for unauthorized users to access sensitive data or systems.",
+      "security_goal": "WiFi Access Point or Ethernet LAN Switch/Router shall be protected against known WiFi and Ethernet LAN attacks",
+      "id": "S-8",
+      "Threat_T": "Manipulation of WiFi Access Point",
+      "security_description_threat": "WiFi Access Point or Ethernet LAN Switch/Router shall be protected against known WiFi and Ethernet LAN attacks",
+      "Sid": [
+        "SN-R-10"
+      ],
+      "Threat": "Manipulation of WiFi Access Point",
+      "affected_security_goal": "Integrity of WiFi Access Point",
+      "damage_scenario_copy": "Degradation or loss of functionality ",
+      "Threat_id": "Th-9",
+      "damage_scenario": "Degradation or loss of functionality ",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
+      "security_control": "Network Intrusion Prevention System (NIPS)",
+      "security_control_description": "Network Intrusion Prevention Systems (NIPS) are security solutions that actively monitor network traffic for malicious activity and take action to block or prevent threats from entering the network. NIPS use a variety of techniques, such as signature-based detection, anomaly detection, and deep packet inspection, to identify and block malicious traffic. NIPS are important security controls for protecting networks from a wide range of threats, including viruses, malware, botnets, and denial-of-service attacks.",
+      "security_goal": "The system shall protect the WiFi access point from Denial-of-service attack",
+      "id": "S-9",
+      "Threat_T": "Blocking WiFi Access Point",
+      "security_description_threat": "The system shall protect the WiFi access point from Denial-of-service attack",
+      "Sid": [
+        "SN-R-11"
+      ],
+      "Threat": "Blocking WiFi Access Point",
+      "affected_security_goal": "Availability of WiFi Access Point",
+      "damage_scenario_copy": "Loss of customer trust",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "security_control": "Firewall",
+      "security_control_description": "A firewall is a network security device that monitors and controls incoming and outgoing network traffic based on predetermined security rules. It establishes a barrier between trusted and untrusted networks, protecting internal networks from external threats while allowing authorized traffic to flow through. Firewalls can operate in various modes, such as packet filtering, stateful inspection, and deep packet inspection, to enforce security policies and prevent unauthorized access to protected systems and resources.",
+      "security_goal": "Configure firewalls to filter incoming and outgoing traffic. Create rules that block or limit traffic from known malicious sources",
+      "id": "S-10",
+      "Threat_T": "Blocking WiFi Router",
+      "security_description_threat": "Configure firewalls to filter incoming and outgoing traffic. Create rules that block or limit traffic from known malicious sources",
+      "Sid": [
+        "SN-R-12"
+      ],
+      "Threat": "Blocking WiFi Router",
+      "affected_security_goal": "Availability of WiFi Router",
+      "damage_scenario_copy": "Loss of customer trust",
+      "Threat_id": "Th-11",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "security_control": "Intrusion Detection System (IDS)",
+      "security_control_description": "An Intrusion Detection System (IDS) is a security tool that monitors network traffic to identify and log unauthorized attempts to access the network or its devices. It can detect and alert on security breaches, such as malware infections, denial-of-service attacks, and unauthorized access attempts, by analyzing network traffic patterns and looking for malicious activities or behaviors that deviate from normal network traffic.",
+      "security_goal": "Real-time monitoring tools to detect and respond to unusual spikes in Wi-Fi module activity",
+      "id": "S-11",
+      "Threat_T": "Blocking WiFi Module",
+      "security_description_threat": "Real-time monitoring tools to detect and respond to unusual spikes in Wi-Fi module activity",
+      "Sid": [
+        "SN-R-13"
+      ],
+      "Threat": "Blocking WiFi module",
+      "affected_security_goal": "Availability of WiFi module",
+      "damage_scenario_copy": "Legal non-compliance",
+      "Threat_id": "Th-7",
+      "damage_scenario": "Legal non-compliance",
+      "consequence": "Serious",
+      "consequence_DS": "Compliance to legal requirements may be affected",
+      "consequence_reasoning": "Compliance to international and national legal requirements and standards such as GDPR is mandatory and this may lead to penalties",
+      "Did": [
+        "DS-5"
+      ]
+    },
+    {
+      "security_control": "Two-way Authentication",
+      "security_control_description": "Two-way authentication is a security mechanism that requires two authentication factors to verify the identity of a user. The first factor is typically something the user knows, such as a password or PIN, while the second factor is something the user has, such as a mobile phone or smart card.",
+      "security_goal": "Communication between the WiFi interface and its device employ two-way authentication mechanism to prevent spoofing on WiFi.",
+      "id": "S-12",
+      "Threat_T": "Extraction of WiFi module",
+      "security_description_threat": "Communication between the WiFi interface and its device employ two-way authentication mechanism to prevent spoofing on WiFi.",
+      "Sid": [
+        "SN-R-6"
+      ],
+      "Threat": "Extraction of WiFi module",
+      "affected_security_goal": "Confidentiality of WiFi module",
+      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
+      "Threat_id": "Th-6",
+      "damage_scenario": "Disclosure of IP or Proprietary Data ",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
+      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
+      "Did": [
+        "DS-4"
+      ]
+    },
+    {
+      "security_control": "Message Authentication Code (MAC)",
+      "security_control_description": "Message Authentication Code (MAC) is a cryptographic checksum that ensures the integrity and authenticity of data. It is created using a secret key shared between the sender and receiver. The MAC is appended to the data, and the receiver can verify the integrity of the data by recalculating the MAC using the same secret key. If the calculated MAC matches the appended MAC, the data has not been tampered with. MACs are commonly used in secure communications protocols to protect against message forgery and tampering.",
+      "security_goal": "Authenticating FlexRay messages can help to prevent spoofing",
+      "id": "S-13",
+      "Threat_T": "Manipulation of FlexRay",
+      "security_description_threat": "Authenticating FlexRay messages can help to prevent spoofing",
+      "Sid": [
+        "SN-R-15"
+      ],
+      "Threat": "Manipulation of FlexRay",
+      "affected_security_goal": "Integrity of FlexRay",
+      "damage_scenario_copy": "Human safety could be severely affected leading to loss/losses of life",
+      "Threat_id": "Th-13",
+      "damage_scenario": "Human safety could be severely affected leading to loss/losses of life",
+      "consequence": "Severe",
+      "consequence_DS": "The attacker could send this message by _x000D_\nhacking into the FlexRay network, which is a high-speed communication network used in many modern vehicles.",
+      "consequence_reasoning": "This is a serious security risk, as it could be used to cause a vehicle to crash.",
+      "Did": [
+        "DS-8"
+      ]
+    },
+    {
+      "security_control": "Filtering",
+      "security_control_description": "Filtering controls network traffic by inspecting and selectively forwarding or discarding packets based on predetermined criteria, such as source and destination IP addresses, port numbers, and packet content. It helps protect systems and networks from unauthorized access, malicious attacks, and data exfiltration by blocking unwanted or potentially harmful traffic. Filtering can be implemented at various network points, including routers, firewalls, and intrusion detection and prevention systems (IDS/IPS). By restricting the flow of traffic, filtering enhances the overall security posture of the organization.",
+      "security_goal": "Filtering messages can help to prevent DoS attacks.",
+      "id": "S-14",
+      "Threat_T": "Blocking of FlexRay",
+      "security_description_threat": "Filtering messages can help to prevent DoS attacks.",
+      "Sid": [
+        "SN-R-16"
+      ],
+      "Threat": "Blocking of FlexRay",
+      "affected_security_goal": "Availability of FlexRay",
+      "damage_scenario_copy": "Customers or business partners are irritated and inconvenienced",
+      "Threat_id": "Th-14",
+      "damage_scenario": "Customers or business partners are irritated and inconvenienced",
+      "consequence": "Moderate",
+      "consequence_DS": "Attacker can overwhelm the network _x000D_\nand prevent legitimate messages from being sent",
+      "consequence_reasoning": "This is  a moderate risk as it is effect the services which must be available to legitimate users",
+      "Did": [
+        "DS-9"
+      ]
+    },
+    {
+      "security_control": "Data Encryption.",
+      "security_control_description": "Data Encryption is the process of converting data into an encrypted format that cannot be easily understood by unauthorized individuals. This is achieved by using encryption algorithms that transform the data into a form that is difficult to decipher without the correct key or password. Data encryption is a critical security measure for protecting sensitive data stored in databases, files, and other electronic formats. It helps to prevent unauthorized access, disclosure, alteration, or destruction of data. By encrypting data, organizations can safeguard confidential information, comply with regulatory requirements, and maintain the integrity and privacy of their data.",
+      "security_goal": "Encryption shall be implemented to protect data from eavesdropping.",
+      "id": "S-15",
+      "Threat_T": "Extraction of Serial port",
+      "security_description_threat": "Encryption shall be implemented to protect data from eavesdropping.",
+      "Sid": [
+        "SN-R-17"
+      ],
+      "Threat": "Extraction of Serial port",
+      "affected_security_goal": "Confidentiality of Serial port",
+      "damage_scenario_copy": "Stealing data, disrupt operations",
+      "Threat_id": "Th-15",
+      "damage_scenario": "Stealing data, disrupt operations",
+      "consequence": "Moderate",
+      "consequence_DS": "Stealing sensitive information, such as financial data or personal identification numbers.",
+      "consequence_reasoning": "This is a moderate-impact threat, as it \ndoes not typically cause any immediate damage. However, it can be used to steal sensitive data, which could then be used to commit identity theft, financial fraud, or other crimes.",
+      "Did": [
+        "DS-10"
+      ]
+    },
+    {
       "security_control": "Access Control",
       "security_control_description": "Access control is the process of controlling who can access what resources in a system. It is essential for protecting data and systems from unauthorized access, modification, or destruction. Access control can be implemented using a variety of methods, including:\n\n* **Discretionary access control (DAC)**: DAC allows the owner of a resource to grant or deny access to other users.\n* **Role-based access control (RBAC)**: RBAC allows administrators to assign users to roles, and then grant or deny access to resources based on the user's role.\n* **Mandatory access control (MAC)**: MAC restricts access to resources based on a set of rules defined by a central authority.",
       "security_goal": "Implement strict access controls to limit who can access and manipulate the serial port.",
@@ -1642,6 +2035,28 @@
       "consequence_reasoning": "This could have a devastating impact on the organization, depending on the data that is stolen or the systems that are taken offline.",
       "Did": [
         "DS-11"
+      ]
+    },
+    {
+      "security_control": "Redundancy",
+      "security_control_description": "Redundancy involves duplicating critical components or functions to ensure continued operation in the event of a failure or disruption. This can include duplicating hardware, software, or network connections, as well as implementing backup and recovery procedures to restore systems and data in case of a disaster or outage.",
+      "security_goal": "Implement redundancy in critical systems, such as redundant serial ports or backup communication channels, to maintain communication in case of a blockage.",
+      "id": "S-17",
+      "Threat_T": "Blocking Serial port",
+      "security_description_threat": "Implement redundancy in critical systems, such as redundant serial ports or backup communication channels, to maintain communication in case of a blockage.",
+      "Sid": [
+        "SN-R-19"
+      ],
+      "Threat": "Blocking Serial port",
+      "affected_security_goal": "Availability of Serial port",
+      "damage_scenario_copy": "Flood a device or network with traffic",
+      "Threat_id": "Th-17",
+      "damage_scenario": "Flood a device or network with traffic",
+      "consequence": "Moderate",
+      "consequence_DS": "Attacker can overwhelm the network and prevent legitimate messages from being sent",
+      "consequence_reasoning": "This is a moderate impact threat making it unavailable to legitimate users this could disrupt operations or deny access to critical services.",
+      "Did": [
+        "DS-12"
       ]
     }
   ],
