@@ -75,9 +75,11 @@
   ],
   "misuse": [
     {
-      "muc_description": "Consuming memory by dumping large files through USB interface",
+      "muc_description": "AUTOSAVE PRAVEEN Consuming memory by dumping large files through USB interface",
       "muc_comment": "Maxing out limited  on-board persistent memory",
-      "id": "MUC-1"
+      "id": "MUC-1",
+      "isNew": false,
+      "fromCSV": false
     },
     {
       "muc_description": "Introducing malicious files through USB interface",
