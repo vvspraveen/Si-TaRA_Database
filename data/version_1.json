@@ -771,14 +771,7 @@
       "Did": [
         "DS-12"
       ],
-      "Threat_i": "Blocking Serial port",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "3",
-      "Time": "1",
-      "Knowledge": "0",
-      "Sum": "4",
-      "Attack_Potential": "Beyond High"
+      "Threat_i": "Blocking Serial port"
     }
   ],
   "threatDamageAssociations": [
@@ -1191,8 +1184,7 @@
       "consequence": "Moderate",
       "Threat": "Blocking Serial port",
       "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
+      "risk_of_d": "Invalid Attack Potential"
     }
   ],
   "SecurityNeeds": [
