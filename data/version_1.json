@@ -599,9 +599,16 @@
       "Threat T": "",
       "id": "SN-R-1",
       "security_description_threat": "skksssksk",
-      "Threat": "",
-      "Threat_id": null,
-      "Threat_T": ""
+      "Threat": "Manipulation of CAN Communication inside the TOY Car",
+      "Threat_id": "Th-2",
+      "Threat_T": "Manipulation of CAN Communication inside the TOY Car",
+      "affected_security_goal": "Integrity of CAN Communication inside the TOY Car",
+      "Did": [
+        "DS-1",
+        "DS-2",
+        "DS-3"
+      ],
+      "isNew": false
     }
   ],
   "assetaddition": [
@@ -678,7 +685,17 @@
       "objective_description": "test3 description"
     }
   ],
-  "SecControls": [],
+  "SecControls": [
+    {
+      "id": "S-1",
+      "security_control": "test control",
+      "security_control_description": "testt",
+      "Sid": [
+        "SN-R-1"
+      ],
+      "isNew": false
+    }
+  ],
   "SecClaims": [],
   "version": 1
 }
