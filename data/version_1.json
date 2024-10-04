@@ -364,7 +364,14 @@
         "DS-3",
         "DS-4"
       ],
-      "Threat_i": "Extraction of CAN Communication inside the TOY Car"
+      "Threat_i": "Extraction of CAN Communication inside the TOY Car",
+      "Access": "99",
+      "Equipment": "99",
+      "Expertise": "99",
+      "Time": "99",
+      "Knowledge": "99",
+      "Sum": "495",
+      "Attack_Potential": "Basic"
     },
     {
       "Threat": "Manipulation of CAN Communication inside the TOY Car",
@@ -392,7 +399,14 @@
       "Threat": "Blocking CAN Communication inside the TOY Car",
       "affected_security_goal": "Availability of CAN Communication inside the TOY Car",
       "Did": "",
-      "Threat_i": "Blocking CAN Communication inside the TOY Car"
+      "Threat_i": "Blocking CAN Communication inside the TOY Car",
+      "Access": "99",
+      "Equipment": "99",
+      "Expertise": "99",
+      "Time": "99",
+      "Knowledge": "99",
+      "Sum": "495",
+      "Attack_Potential": "Basic"
     },
     {
       "Asset Description": "Infraref Communicatino between TOY card and remote",
@@ -402,7 +416,14 @@
       "Threat": "Extraction of Infraref Communicatino between TOY card and remote",
       "affected_security_goal": "Confidentiality of Infraref Communicatino between TOY card and remote",
       "Did": "",
-      "Threat_i": "Extraction of Infraref Communicatino between TOY card and remote"
+      "Threat_i": "Extraction of Infraref Communicatino between TOY card and remote",
+      "Access": "99",
+      "Equipment": "99",
+      "Expertise": "99",
+      "Time": "99",
+      "Knowledge": "99",
+      "Sum": "495",
+      "Attack_Potential": "Basic"
     },
     {
       "Asset Description": "Infraref Communicatino between TOY card and remote",
@@ -412,7 +433,14 @@
       "Threat": "Manipulation of Infraref Communicatino between TOY card and remote",
       "affected_security_goal": "Integrity of Infraref Communicatino between TOY card and remote",
       "Did": "",
-      "Threat_i": "Manipulation of Infraref Communicatino between TOY card and remote"
+      "Threat_i": "Manipulation of Infraref Communicatino between TOY card and remote",
+      "Access": "99",
+      "Equipment": "99",
+      "Expertise": "99",
+      "Time": "99",
+      "Knowledge": "99",
+      "Sum": "495",
+      "Attack_Potential": "Basic"
     },
     {
       "Asset Description": "Infraref Communicatino between TOY card and remote",
@@ -422,7 +450,14 @@
       "Threat": "Blocking Infraref Communicatino between TOY card and remote",
       "affected_security_goal": "Availability of Infraref Communicatino between TOY card and remote",
       "Did": "",
-      "Threat_i": "Blocking Infraref Communicatino between TOY card and remote"
+      "Threat_i": "Blocking Infraref Communicatino between TOY card and remote",
+      "Access": "99",
+      "Equipment": "99",
+      "Expertise": "99",
+      "Time": "99",
+      "Knowledge": "99",
+      "Sum": "495",
+      "Attack_Potential": "Basic"
     },
     {
       "Threat": "Extraction of Data",
@@ -450,7 +485,14 @@
       "Threat": "Manipulation of Data",
       "affected_security_goal": "Integrity of Data",
       "Did": "",
-      "Threat_i": "Manipulation of Data"
+      "Threat_i": "Manipulation of Data",
+      "Access": "99",
+      "Equipment": "99",
+      "Expertise": "99",
+      "Time": "99",
+      "Knowledge": "99",
+      "Sum": "495",
+      "Attack_Potential": "Basic"
     },
     {
       "Asset Description": "Data",
@@ -460,7 +502,14 @@
       "Threat": "Blocking Data",
       "affected_security_goal": "Availability of Data",
       "Did": "",
-      "Threat_i": "Blocking Data"
+      "Threat_i": "Blocking Data",
+      "Access": "99",
+      "Equipment": "99",
+      "Expertise": "99",
+      "Time": "99",
+      "Knowledge": "99",
+      "Sum": "495",
+      "Attack_Potential": "Basic"
     }
   ],
   "threatDamageAssociations": [
@@ -526,7 +575,8 @@
       "consequence": "Moderate",
       "Threat": "Extraction of CAN Communication inside the TOY Car",
       "risk": "Low",
-      "risk_of_d": "Invalid Attack Potential"
+      "attackPotential": "Basic",
+      "risk_of_d": "High"
     },
     {
       "id": "R-2",
