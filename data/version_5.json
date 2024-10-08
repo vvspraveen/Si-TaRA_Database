@@ -1,11 +1,9 @@
 {
   "assumption": [
     {
-      "assumption": "AUTOSAVING DATA Bosch insiders (e.g., personnel, developers, project managers and solution providers involved in this project) are trusted to the extent that they are authorized",
+      "assumption": "Bosch insiders (e.g., personnel, developers, project managers and solution providers involved in this project) are trusted to the extent that they are authorized",
       "assumption_comment": "Bosch responsibility",
-      "id": "Asm-1",
-      "isNew": false,
-      "fromCSV": false
+      "id": "Asm-1"
     },
     {
       "assumption": "Third party software / libraries are trusted and are compatible, that is, when integrated with the TOE do not endanger it.",
@@ -358,12 +356,6 @@
       "Objective": "Availability",
       "objective_description": "The serial port must be available to authorized users when needed.",
       "id": "A-17"
-    },
-    {
-      "id": "A-18",
-      "Asset_description": "testt asset",
-      "Objective": "Authorization",
-      "objective_description": "testtttt"
     }
   ],
   "ThreatDSs": [
@@ -588,15 +580,6 @@
         "DS-12"
       ],
       "Threat_i": "Blocking Serial port"
-    },
-    {
-      "id": "Th-18",
-      "Threat": "Unauthorized access to testt asset",
-      "affected_security_goal": "Authorization of testt asset",
-      "Did": [
-        "DS-7"
-      ],
-      "Threat_i": "Unauthorized access to testt asset"
     }
   ],
   "ThreatEvaluation_AP": [
@@ -609,8 +592,7 @@
       "Time": "1",
       "Sum": "4",
       "Threat": "Extraction of USB Stack",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Extraction of USB Stack"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-2",
@@ -621,8 +603,7 @@
       "Time": "1",
       "Sum": "16",
       "Threat": "Manipulation of USB Stack",
-      "Attack_Potential": "Moderate",
-      "Threat_i": "Manipulation of USB Stack"
+      "Attack_Potential": "Moderate"
     },
     {
       "id": "Th-3",
@@ -633,8 +614,7 @@
       "Time": "1",
       "Sum": "8",
       "Threat": "Extraction of WiFi Interface",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Extraction of WiFi Interface"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-4",
@@ -645,8 +625,7 @@
       "Time": "0",
       "Sum": "3",
       "Threat": "Manipulation of WiFi Interface",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Manipulation of WiFi Interface"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-5",
@@ -657,8 +636,7 @@
       "Time": "0",
       "Sum": "0",
       "Threat": "Blocking WiFi Interface",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Blocking WiFi Interface"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-6",
@@ -669,8 +647,7 @@
       "Time": "1",
       "Sum": "4",
       "Threat": "Extraction of WiFi module",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Extraction of WiFi module"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-7",
@@ -681,8 +658,7 @@
       "Time": "0",
       "Sum": "3",
       "Threat": "Blocking WiFi module",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Blocking WiFi module"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-8",
@@ -693,8 +669,7 @@
       "Time": "0",
       "Sum": "3",
       "Threat": "Extraction of WiFi Access Point",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Extraction of WiFi Access Point"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-9",
@@ -705,8 +680,7 @@
       "Time": "0",
       "Sum": "3",
       "Threat": "Manipulation of WiFi Access Point",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Manipulation of WiFi Access Point"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-10",
@@ -717,8 +691,7 @@
       "Time": "0",
       "Sum": "3",
       "Threat": "Blocking WiFi Access Point",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Blocking WiFi Access Point"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-11",
@@ -729,8 +702,7 @@
       "Time": "0",
       "Sum": "0",
       "Threat": "Blocking WiFi Router",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Blocking WiFi Router"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-12",
@@ -741,8 +713,7 @@
       "Time": "0",
       "Sum": "3",
       "Threat": "Extraction of FlexRay",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Extraction of FlexRay"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-13",
@@ -753,8 +724,7 @@
       "Time": "1",
       "Sum": "4",
       "Threat": "Manipulation of FlexRay",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Manipulation of FlexRay"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-14",
@@ -765,8 +735,7 @@
       "Time": "2",
       "Sum": "20",
       "Threat": "Blocking of FlexRay",
-      "Attack_Potential": "Enhanced Basic",
-      "Threat_i": "Blocking of FlexRay"
+      "Attack_Potential": "Enhanced Basic"
     },
     {
       "id": "Th-15",
@@ -777,8 +746,7 @@
       "Time": "1",
       "Sum": "14",
       "Threat": "Extraction of Serial port",
-      "Attack_Potential": "Moderate",
-      "Threat_i": "Extraction of Serial port"
+      "Attack_Potential": "Moderate"
     },
     {
       "id": "Th-16",
@@ -789,8 +757,7 @@
       "Time": "0",
       "Sum": "0",
       "Threat": "Manipulation of Serial port",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Manipulation of Serial port"
+      "Attack_Potential": "Beyond High"
     },
     {
       "Threat": "Blocking Serial port",
@@ -811,20 +778,6 @@
       "Time": "1",
       "Knowledge": "0",
       "Sum": "4",
-      "Attack_Potential": "Beyond High"
-    },
-    {
-      "id": "Th-18",
-      "Threat": "Unauthorized access to testt asset",
-      "affected_security_goal": "Authorization of testt asset",
-      "Did": "",
-      "Threat_i": "Unauthorized access to testt asset",
-      "Access": "1",
-      "Equipment": 0,
-      "Expertise": 0,
-      "Time": 0,
-      "Knowledge": 0,
-      "Sum": "1",
       "Attack_Potential": "Beyond High"
     }
   ],
@@ -947,13 +900,6 @@
       "damageScenarioId": "DS-12",
       "damageScenario": "Flood a device or network with traffic",
       "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-18",
-      "threat": "Unauthorized access to testt asset",
-      "damageScenarioId": "DS-7",
-      "damageScenario": "Laws, regulations and contracts are violated leading to penalties",
-      "cons": "Severe"
     }
   ],
   "updatedAssociations": [
@@ -1075,13 +1021,6 @@
       "damageScenarioId": "DS-12",
       "damageScenario": "Flood a device or network with traffic",
       "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-18",
-      "threat": "Unauthorized access to testt asset",
-      "damageScenarioId": "DS-7",
-      "damageScenario": "Laws, regulations and contracts are violated leading to penalties",
-      "cons": "Severe"
     }
   ],
   "RiskAssessment": [
@@ -1254,16 +1193,6 @@
       "risk": "Low",
       "attackPotential": "Beyond High",
       "risk_of_d": "Low"
-    },
-    {
-      "id": "R-18",
-      "damage_scenario": "Laws, regulations and contracts are violated leading to penalties",
-      "D_id": "DS-7",
-      "consequence": "Severe",
-      "Threat": "Unauthorized access to testt asset",
-      "risk": "High",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Medium"
     }
   ],
   "SecurityNeeds": [
@@ -1677,11 +1606,10 @@
     },
     {
       "id": "AA-18",
-      "Asset_description": "testt asset",
-      "Objective": "Authorization",
-      "objective_description": "testtttt",
-      "isNew": false,
-      "fromCSV": false
+      "Asset_description": "",
+      "Objective": "",
+      "objective_description": "",
+      "isNew": true
     }
   ],
   "SecControls": [
@@ -2060,16 +1988,6 @@
       ]
     }
   ],
-  "SecClaims": [
-    {
-      "id": "SC-1",
-      "security_claim": "this is test claim wow",
-      "Asid": [
-        "Asm-2"
-      ],
-      "responsible": "bosch",
-      "isNew": false
-    }
-  ],
+  "SecClaims": [],
   "version": "5"
 }
