@@ -1062,8 +1062,7 @@
       "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
       "Did": [
         "DS-1"
-      ],
-      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Separate Account for Privileged Access"
+      ]
     },
     {
       "security_control": "Encryption",
@@ -1107,8 +1106,7 @@
       "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
       "Did": [
         "DS-2"
-      ],
-      "selectedRequirement": "EISA-ACC-301 - Management of Authentication Secrets (EISA-PSA-003 - Database Management System) - Changing Default Passwords"
+      ]
     },
     {
       "security_control": "Continuous monitoring and logging of all USB activities: Audit trail.",
