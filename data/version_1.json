@@ -1063,7 +1063,7 @@
       "Did": [
         "DS-1"
       ],
-      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Deletion of Privileged Roles and Temporary Privileges"
+      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Review of Privileged Accounts"
     },
     {
       "security_control": "Encryption",
