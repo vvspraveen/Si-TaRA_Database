@@ -631,12 +631,13 @@
   "SecControls": [
     {
       "id": "S-1",
-      "security_control": "",
-      "security_control_description": "",
+      "security_control": "test sec control",
+      "security_control_description": "test",
       "Sid": [
         "SN-R-1"
       ],
-      "isNew": true
+      "isNew": false,
+      "selectedRequirement": "EISA-ACC-301 - Management of Authentication Secrets (EISA-PSA-003 - Database Management System) - Password Rules"
     }
   ],
   "SecClaims": [],
