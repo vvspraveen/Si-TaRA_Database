@@ -584,194 +584,185 @@
   ],
   "ThreatEvaluation_AP": [
     {
+      "Threat": "Extraction of WiFi Interface",
       "id": "Th-1",
       "Access": "0",
       "Equipment": "4",
       "Expertise": "3",
-      "Knowledge": "0",
       "Time": "1",
+      "Knowledge": "0",
       "Sum": "8",
-      "Threat": "Extraction of WiFi Interface",
       "Attack_Potential": "Beyond High"
     },
     {
+      "Threat": "Manipulation of WiFi Interface",
       "id": "Th-2",
       "Access": "0",
       "Equipment": "0",
       "Expertise": "3",
-      "Knowledge": "0",
       "Time": "0",
+      "Knowledge": "0",
       "Sum": "3",
-      "Threat": "Manipulation of WiFi Interface",
       "Attack_Potential": "Beyond High"
     },
     {
+      "Threat": "Blocking WiFi Interface",
       "id": "Th-3",
       "Access": "0",
       "Equipment": "0",
       "Expertise": "0",
-      "Knowledge": "0",
       "Time": "0",
+      "Knowledge": "0",
       "Sum": "0",
-      "Threat": "Blocking WiFi Interface",
       "Attack_Potential": "Beyond High"
     },
     {
+      "Threat": "Extraction of WiFi module",
       "id": "Th-4",
       "Access": "0",
       "Equipment": "0",
       "Expertise": "3",
-      "Knowledge": "0",
       "Time": "1",
+      "Knowledge": "0",
       "Sum": "4",
-      "Threat": "Extraction of WiFi module",
       "Attack_Potential": "Beyond High"
     },
     {
+      "Threat": "Blocking WiFi module",
       "id": "Th-5",
       "Access": "0",
       "Equipment": "0",
       "Expertise": "3",
-      "Knowledge": "0",
       "Time": "0",
+      "Knowledge": "0",
       "Sum": "3",
-      "Threat": "Blocking WiFi module",
       "Attack_Potential": "Beyond High"
     },
     {
+      "Threat": "Extraction of WiFi Access Point",
       "id": "Th-6",
       "Access": "0",
       "Equipment": "0",
       "Expertise": "3",
-      "Knowledge": "0",
       "Time": "0",
+      "Knowledge": "0",
       "Sum": "3",
-      "Threat": "Extraction of WiFi Access Point",
       "Attack_Potential": "Beyond High"
     },
     {
+      "Threat": "Manipulation of WiFi Access Point",
       "id": "Th-7",
       "Access": "0",
       "Equipment": "0",
       "Expertise": "3",
-      "Knowledge": "0",
       "Time": "0",
+      "Knowledge": "0",
       "Sum": "3",
-      "Threat": "Manipulation of WiFi Access Point",
       "Attack_Potential": "Beyond High"
     },
     {
+      "Threat": "Blocking WiFi Access Point",
       "id": "Th-8",
       "Access": "0",
       "Equipment": "0",
       "Expertise": "3",
-      "Knowledge": "0",
       "Time": "0",
+      "Knowledge": "0",
       "Sum": "3",
-      "Threat": "Blocking WiFi Access Point",
       "Attack_Potential": "Beyond High"
     },
     {
+      "Threat": "Blocking WiFi Router",
       "id": "Th-9",
       "Access": "0",
       "Equipment": "0",
       "Expertise": "0",
-      "Knowledge": "0",
       "Time": "0",
+      "Knowledge": "0",
       "Sum": "0",
-      "Threat": "Blocking WiFi Router",
       "Attack_Potential": "Beyond High"
     },
     {
+      "Threat": "Extraction of USB Stack",
       "id": "Th-10",
       "Access": "0",
       "Equipment": "0",
       "Expertise": "3",
-      "Knowledge": "0",
       "Time": "1",
+      "Knowledge": "0",
       "Sum": "4",
-      "Threat": "Extraction of USB Stack",
       "Attack_Potential": "Beyond High"
     },
     {
+      "Threat": "Manipulation of USB Stack",
       "id": "Th-11",
       "Access": "2",
       "Equipment": "4",
       "Expertise": "6",
-      "Knowledge": "3",
       "Time": "1",
+      "Knowledge": "3",
       "Sum": "16",
-      "Threat": "Manipulation of USB Stack",
       "Attack_Potential": "Moderate"
     },
     {
+      "Threat": "Extraction of FlexRay",
       "id": "Th-12",
       "Access": "0",
       "Equipment": "0",
       "Expertise": "3",
-      "Knowledge": "0",
       "Time": "0",
+      "Knowledge": "0",
       "Sum": "3",
-      "Threat": "Extraction of FlexRay",
       "Attack_Potential": "Beyond High"
     },
     {
+      "Threat": "Manipulation of FlexRay",
       "id": "Th-13",
       "Access": "0",
       "Equipment": "0",
       "Expertise": "3",
-      "Knowledge": "0",
       "Time": "1",
+      "Knowledge": "0",
       "Sum": "4",
-      "Threat": "Manipulation of FlexRay",
       "Attack_Potential": "Beyond High"
     },
     {
-      "id": "Th-14",
-      "Access": "5",
-      "Equipment": "0",
-      "Expertise": "6",
-      "Knowledge": "7",
-      "Time": "2",
-      "Sum": "20",
       "Threat": "Blocking of FlexRay",
-      "Attack_Potential": "Enhanced Basic"
+      "id": "Th-14",
+      "Attack_Potential": "Unknown"
     },
     {
+      "Threat": "Extraction of Serial port",
       "id": "Th-15",
       "Access": "0",
       "Equipment": "4",
       "Expertise": "6",
-      "Knowledge": "3",
       "Time": "1",
+      "Knowledge": "3",
       "Sum": "14",
-      "Threat": "Extraction of Serial port",
       "Attack_Potential": "Moderate"
     },
     {
+      "Threat": "Manipulation of Serial port",
       "id": "Th-16",
       "Access": "0",
       "Equipment": "0",
       "Expertise": "0",
-      "Knowledge": "0",
       "Time": "0",
+      "Knowledge": "0",
       "Sum": "0",
-      "Threat": "Manipulation of Serial port",
       "Attack_Potential": "Beyond High"
     },
     {
       "Threat": "Blocking Serial port",
-      "affected_security_goal": "Availability of Serial port",
-      "damage_scenario_copy": "Flood a device or network with traffic",
       "id": "Th-17",
-      "damage_scenario": "Flood a device or network with traffic",
-      "consequence": "Moderate",
-      "consequence_DS": "Attacker can overwhelm the network and prevent legitimate messages from being sent",
-      "consequence_reasoning": "This is a moderate impact threat making it unavailable to legitimate users this could disrupt operations or deny access to critical services.",
-      "Did": [
-        "DS-12"
-      ],
-      "Threat_i": "Blocking Serial port"
+      "Access": "0",
+      "Equipment": "0",
+      "Expertise": "3",
+      "Time": "1",
+      "Knowledge": "0",
+      "Sum": "4",
+      "Attack_Potential": "Beyond High"
     }
   ],
   "threatDamageAssociations": [
@@ -1154,8 +1145,8 @@
       "consequence": "Moderate",
       "Threat": "Blocking of FlexRay",
       "risk": "Low",
-      "attackPotential": "Enhanced Basic",
-      "risk_of_d": "High"
+      "attackPotential": "Unknown",
+      "risk_of_d": "Invalid Attack Potential"
     },
     {
       "id": "R-15",
@@ -1184,7 +1175,8 @@
       "consequence": "Moderate",
       "Threat": "Blocking Serial port",
       "risk": "Low",
-      "risk_of_d": "Invalid Attack Potential"
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
     }
   ],
   "SecurityNeeds": [
@@ -1668,10 +1660,7 @@
       "security_control": "Encryption",
       "security_control_description": "Encryption involves transforming plaintext into ciphertext to protect the confidentiality of sensitive data. It utilizes algorithms to encrypt data, rendering it unreadable without the proper decryption key. Encryption is employed to safeguard data in transit or at rest, ensuring that only authorized individuals can access and interpret it.",
       "security_goal": "Communication through WiFi/LAN shall employ industry standard and strong encryption suietes to prevent crypt-analaysis attacks",
-      "id": "S-4",
-      "Sid": [
-        "SN-R-2"
-      ]
+      "id": "S-4"
     },
     {
       "security_control": "Network Segmentation",
