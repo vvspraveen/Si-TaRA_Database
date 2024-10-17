@@ -380,7 +380,8 @@
       "Time": "0",
       "Sum": "7",
       "Threat": "Extraction of USB Stack",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Extraction of USB Stack"
     },
     {
       "id": "Th-2",
@@ -391,7 +392,8 @@
       "Time": "1",
       "Sum": "19",
       "Threat": "Manipulation of USB Stack",
-      "Attack_Potential": "Moderate"
+      "Attack_Potential": "Moderate",
+      "Threat_i": "Manipulation of USB Stack"
     },
     {
       "id": "Th-3",
@@ -402,7 +404,8 @@
       "Time": "1",
       "Sum": "8",
       "Threat": "Extraction of WiFi Interface",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Extraction of WiFi Interface"
     },
     {
       "id": "Th-4",
@@ -413,7 +416,8 @@
       "Time": "0",
       "Sum": "6",
       "Threat": "Manipulation of WiFi Interface",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Manipulation of WiFi Interface"
     },
     {
       "id": "Th-5",
@@ -424,7 +428,8 @@
       "Time": "0",
       "Sum": "0",
       "Threat": "Blocking WiFi Interface",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Blocking WiFi Interface"
     },
     {
       "id": "Th-6",
@@ -435,7 +440,8 @@
       "Time": "1",
       "Sum": "4",
       "Threat": "Extraction of WiFi module",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Extraction of WiFi module"
     },
     {
       "id": "Th-7",
@@ -446,7 +452,8 @@
       "Time": "0",
       "Sum": "3",
       "Threat": "Blocking WiFi module",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Blocking WiFi module"
     },
     {
       "id": "Th-8",
@@ -457,7 +464,8 @@
       "Time": "0",
       "Sum": "3",
       "Threat": "Extraction of WiFi Access Point",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Extraction of WiFi Access Point"
     },
     {
       "id": "Th-9",
@@ -468,7 +476,8 @@
       "Time": "0",
       "Sum": "3",
       "Threat": "Manipulation of WiFi Access Point",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Manipulation of WiFi Access Point"
     },
     {
       "id": "Th-10",
@@ -479,7 +488,8 @@
       "Time": "0",
       "Sum": "5",
       "Threat": "Blocking WiFi Access Point",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Blocking WiFi Access Point"
     },
     {
       "id": "Th-11",
@@ -490,7 +500,8 @@
       "Time": "0",
       "Sum": "0",
       "Threat": "Blocking WiFi Router",
-      "Attack_Potential": "Beyond High"
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Blocking WiFi Router"
     }
   ],
   "threatDamageAssociations": [
@@ -1063,7 +1074,7 @@
       "Did": [
         "DS-1"
       ],
-      "selectedRequirement": "EISA-ACC-301 - Management of Authentication Secrets (EISA-PSA-004 - Mobile Application) - Password Rules"
+      "selectedRequirement": "EISA-CRY-108 - Encrypted or Authenticated Mail Communication (EISA-PSA-004 - Mobile Application) - End-to-End Protected E-Mail Communication - Protection"
     },
     {
       "security_control": "Encryption",
