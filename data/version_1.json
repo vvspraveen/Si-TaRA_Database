@@ -1635,7 +1635,7 @@
       "Did": [
         "DS-1"
       ],
-      "selectedRequirement": "EISA-ACC-301 - Management of Authentication Secrets (EISA-PSA-003 - Database Management System) - Password Rules"
+      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Assignment of Privileged Access"
     },
     {
       "security_control": "Encryption",
