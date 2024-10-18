@@ -1073,8 +1073,7 @@
       "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
       "Did": [
         "DS-1"
-      ],
-      "selectedRequirement": "EISA-CRY-107 - Cryptographic Key Management (EISA-PSA-003 - Database Management System) - Standards for Storage of Cryptographic Material"
+      ]
     },
     {
       "security_control": "Encryption",
@@ -1096,8 +1095,7 @@
       "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
       "Did": [
         "DS-1"
-      ],
-      "selectedRequirement": "EISA-ACC-301 - Management of Authentication Secrets (EISA-PSA-003 - Database Management System) - Password Rules"
+      ]
     },
     {
       "security_control": "Firmware Security",
@@ -1119,8 +1117,7 @@
       "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
       "Did": [
         "DS-2"
-      ],
-      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Restriction and Control of Privileged Accounts"
+      ]
     },
     {
       "security_control": "Continuous monitoring and logging of all USB activities: Audit trail.",
@@ -1142,8 +1139,7 @@
       "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
       "Did": [
         "DS-1"
-      ],
-      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Separate Account for Privileged Access"
+      ]
     },
     {
       "security_control": "Detection",
@@ -1165,8 +1161,7 @@
       "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
       "Did": [
         "DS-4"
-      ],
-      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Review of Privileged Accounts"
+      ]
     },
     {
       "security_control": "Anomaly Detection",
@@ -1188,8 +1183,7 @@
       "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
       "Did": [
         "DS-3"
-      ],
-      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Restrictions on the Use of Shared Privileged Accounts"
+      ]
     },
     {
       "security_control": "Integrity.",
@@ -1211,8 +1205,7 @@
       "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
       "Did": [
         "DS-3"
-      ],
-      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Review of Privileged Accounts"
+      ]
     },
     {
       "security_control": "Network Segmentation",
