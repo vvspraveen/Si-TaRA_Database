@@ -1119,7 +1119,8 @@
       "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
       "Did": [
         "DS-2"
-      ]
+      ],
+      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Restriction and Control of Privileged Accounts"
     },
     {
       "security_control": "Continuous monitoring and logging of all USB activities: Audit trail.",
