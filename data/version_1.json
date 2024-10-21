@@ -1165,7 +1165,8 @@
       "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
       "Did": [
         "DS-4"
-      ]
+      ],
+      "selectedRequirement": "EISA-ACC-401 - Authentication Methods (EISA-PSA-004 - Mobile Application) - Single Sign-On Authentication"
     },
     {
       "security_control": "Anomaly Detection",
@@ -1187,7 +1188,8 @@
       "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
       "Did": [
         "DS-3"
-      ]
+      ],
+      "selectedRequirement": "EISA-CRY-108 - Encrypted or Authenticated Mail Communication (EISA-PSA-004 - Mobile Application) - End-to-End Protected E-Mail Communication - Protection"
     },
     {
       "security_control": "Integrity.",
