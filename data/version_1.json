@@ -1211,7 +1211,8 @@
       "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
       "Did": [
         "DS-3"
-      ]
+      ],
+      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Restriction and Control of Privileged Accounts"
     },
     {
       "security_control": "Network Segmentation",
