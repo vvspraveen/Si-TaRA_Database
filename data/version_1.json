@@ -1061,7 +1061,8 @@
       "Threat_T": "Extraction of USB Stack",
       "security_description_threat": "USB stack shall implement robust access control mechanisms to ensure that only authorized devices and users can initiate USB connections and data transfers.",
       "Sid": [
-        "SN-R-1"
+        "SN-R-1",
+        "SN-R-3"
       ],
       "Threat": "Extraction of USB Stack",
       "affected_security_goal": "Confidentiality of USB Stack",
@@ -1073,7 +1074,8 @@
       "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
       "Did": [
         "DS-1"
-      ]
+      ],
+      "selectedRequirement": "EISA-ACC-301 - Management of Authentication Secrets (EISA-PSA-003 - Database Management System) - Password Rules"
     },
     {
       "security_control": "Encryption",
@@ -1083,7 +1085,8 @@
       "Threat_T": "Extraction of USB Stack",
       "security_description_threat": "USB stack shall employ strong encryption techniques to protect data integrity and confidentiality during USB data transfers.",
       "Sid": [
-        "SN-R-2"
+        "SN-R-2",
+        "SN-R-3"
       ],
       "Threat": "Extraction of USB Stack",
       "affected_security_goal": "Confidentiality of USB Stack",
@@ -1095,7 +1098,8 @@
       "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
       "Did": [
         "DS-1"
-      ]
+      ],
+      "selectedRequirement": "EISA-CRY-107 - Cryptographic Key Management (EISA-PSA-004 - Mobile Application) - Cryptographic Key Management"
     },
     {
       "security_control": "Firmware Security",
