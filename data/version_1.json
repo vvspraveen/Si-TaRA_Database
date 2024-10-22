@@ -1121,7 +1121,8 @@
       "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
       "Did": [
         "DS-2"
-      ]
+      ],
+      "selectedRequirement": "EISA-ASM-101 - Asset Management (EISA-PSA-003 - Database Management System) - Inventory of Assets"
     },
     {
       "security_control": "Continuous monitoring and logging of all USB activities: Audit trail.",
