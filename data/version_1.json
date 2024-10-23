@@ -1,573 +1,518 @@
 {
   "assumption": [
     {
-      "assumption": "Bosch insiders (e.g., personnel, developers, project managers and solution providers involved in this project) are trusted to the extent that they are authorized",
-      "assumption_comment": "Bosch responsibility",
+      "assumption": "The Elastic Block Store (EBS) volumes provides reliable and durable block-level storage for Amazon EC2 instances and other services",
+      "assumption_comment": "Block-level storage of EBS",
       "id": "Asm-1"
     },
     {
-      "assumption": "Third party software / libraries are trusted and are compatible, that is, when integrated with the TOE do not endanger it.",
-      "assumption_comment": "USB stack",
+      "assumption": "EBS backup infrastructure is resilient and securely configured.",
+      "assumption_comment": "EBS backup system",
       "id": "Asm-2"
     },
     {
-      "assumption": "Diagnosis will be performed only through trusted hardware an trustworthy personal",
-      "assumption_comment": "USB Interface",
+      "assumption": "Security and availability of the cloud (including the database, the service, the infrastructure, the platform, etc.) is the responsibility of the cloud service provider (CSP) / data center",
+      "assumption_comment": "As per Bosch guidelines, the cloud on-boarding team (BSI) is responsible for ensuring this and it must be informed of any security needs concerned with configuration of Cloud Infrastructure",
       "id": "Asm-3"
     },
     {
-      "assumption": "Physical security and safety of the devices is the responsibility of the customer",
-      "assumption_comment": "Physical security and safety of the device must be ensured by customer. Physical access of devices must be monitored and controlled by customer.",
+      "assumption": "The underlying cloud infrastructure supporting ECS is securely configured",
+      "assumption_comment": "Proper security measures implemented to prevent threats and vulnerabilities",
       "id": "Asm-4"
     },
     {
-      "assumption": "Connected devices follow robust security measures",
-      "assumption_comment": "Updated antivirus software, firewalls, and other security features on devices shall be done by the users.",
+      "assumption": "Data stored in S3 buckets is encrypted at rest.",
+      "assumption_comment": "Without encryption, data could be vulnerable to exposure in the event of a breach or unauthorized access.",
       "id": "Asm-5"
     },
     {
-      "assumption": "Physical access to networking equipment is restricted",
-      "assumption_comment": "Physical Security",
+      "assumption": "Use of S3 complies with relevant regulatory standards, industry best practices, and data protection laws applicable to their organization",
+      "assumption_comment": "Implementing access controls and encryption, and regularly monitoring and auditing the system for potential security vulnerabilities.",
       "id": "Asm-6"
     },
     {
-      "assumption": "Connectivity between Gateway and Internet is always available",
-      "assumption_comment": "Service should be available",
+      "assumption": "Users configure access controls properly, utilizing IAM (Identity and Access Management) policies, S3 bucket policies, and Access Control Lists to restrict and manage access to their S3 resources",
+      "assumption_comment": "Access Control Configuration",
       "id": "Asm-7"
     },
     {
-      "assumption": "Physical Security of the Gateway, NILM, MMUE and Access Point is the responsibility of the Customer",
-      "assumption_comment": "Customer's responsibility",
+      "assumption": "Logging and monitoring mechanisms are in place to track access to S3 buckets and detect any suspicious or unauthorized activity",
+      "assumption_comment": "Without proper logging and monitoring, organizations may not be able to identify security incidents or breaches in a timely manner.",
       "id": "Asm-8"
     },
     {
-      "assumption": "Routers and connected devices are regularly updated with the latest firmware and software patches",
-      "assumption_comment": "Outdated firmware can expose vulnerabilities that attackers may exploit",
+      "assumption": "Organizations expect that CSPs will provide transparency regarding their security practices, including incident response procedures and communication in the event of a security incident",
+      "assumption_comment": "Proactive maintenance, including the consistent application of the latest security patches and upgrades, is crucial for safeguarding assets and ensuring the overall security of system environments",
       "id": "Asm-9"
     }
   ],
   "misuse": [
     {
-      "muc_description": "Consuming memory by dumping large files through USB interface",
-      "muc_comment": "Maxing out limited  on-board persistent memory",
+      "muc_description": "Unauthorized user gains access to an EBS volume and uses it for malicious purposes",
+      "muc_comment": "This can have serious consequences, as the attacker may be able to steal data, disrupt operations or even launch attacks on other systems",
       "id": "MUC-1"
     },
     {
-      "muc_description": "Introducing malicious files through USB interface",
-      "muc_comment": "Unauthenticated access to USB Interface",
+      "muc_description": " An attacker floods an EBS volume with a large number of read or write requests.",
+      "muc_comment": "Denial of Service (DoS) Attack",
       "id": "MUC-2"
     },
     {
-      "muc_description": "Manipulation of parameters to affect the quality through USB",
-      "muc_comment": "On-board USB Interface",
+      "muc_description": "An attacker could exploit weak access controls to gain unauthorized access to the ECS environment, potentially leading to escalation of privileges",
+      "muc_comment": "Privilege escalation",
       "id": "MUC-3"
     },
     {
-      "muc_description": "Using unauthorized USB to transfer data leading to loss of data",
-      "muc_comment": "On-board USB Interface",
+      "muc_description": "An attacker could intercept exposed data due to improperly secured network interfaces or access exposed secrets to gain unauthorized access",
+      "muc_comment": "Improper secured network interfaces or exposed secrets ",
       "id": "MUC-4"
     },
     {
-      "muc_description": "Access the Master gateway through the WiFi Hotspot",
-      "muc_comment": "WiFi Access Point not planned in phase I. Not to be considered for analysis.",
+      "muc_description": "Attackers can exploit container breakout vulnerabilities to gain unauthorized access to the underlying host operating system or to escape the container isolation boundary. ",
+      "muc_comment": "Container Breakout",
       "id": "MUC-5"
     },
     {
-      "muc_description": "WiFi may be misused to sniff (eavesdrop) the communication between the device and paired mobile device",
-      "muc_comment": "Insecure external interfaces",
+      "muc_description": "Attacker gaining access to an S3 bucket that contains sensitive data",
+      "muc_comment": "This can have serious consequences, as the attacker may be able to steal",
       "id": "MUC-6"
     },
     {
-      "muc_description": "WiFi may be misused to consume the memory of the device by dumping large files",
-      "muc_comment": "Maxing out limited on-board persistent memory",
+      "muc_description": "Attacker gains unauthorized access to IAM credentials through phishing",
+      "muc_comment": "Unprotected Buckets with Public Access",
       "id": "MUC-7"
     },
     {
-      "muc_description": "Malicious  malware can be introduced to the router making the network compromise",
-      "muc_comment": "These rogue entities can conduct various attacks, compromise security, and spread within the network.",
+      "muc_description": "Attackers can discover and access sensitive data stored in the buckets, leading to data exposure or unauthorized disclosure of information.",
+      "muc_comment": "Unprotected Buckets with Public Access",
       "id": "MUC-8"
     },
     {
-      "muc_description": "WiFi may be misused to load undesirable content on the device (by an adversary or malicious service person)",
-      "muc_comment": "Insider threats",
+      "muc_description": "Insider threats can result in unauthorized access, data manipulation, or intentional deletion of critical data stored in S3.",
+      "muc_comment": "Insider Threat",
       "id": "MUC-9"
     },
     {
-      "muc_description": "Attackers may set up rogue Wi-Fi access points with names similar to legitimate networks",
-      "muc_comment": "Evil Twin Attacks",
+      "muc_description": "An attacker gains unauthorized access to an EC2 instance, either through compromised credentials, vulnerabilities in the operating system or applications",
+      "muc_comment": "An unauthorized person gaining access to a system \nor information is a security concern. It can lead to data breaches, unauthorized changes, or other malicious activities. It is important to implement proper security measures, such as strong passwords and access controls, to prevent unauthorized access.",
       "id": "MUC-10"
-    },
-    {
-      "muc_description": "Disrupting the connectivity between the device and the network",
-      "muc_comment": "WiFi network",
-      "id": "MUC-11"
-    },
-    {
-      "muc_description": "Manipulation of Wireless Access Point configuration",
-      "muc_comment": "Configuration file of WiFi AP",
-      "id": "MUC-12"
-    },
-    {
-      "muc_description": "Reading sensitive data by sniffing WiFi",
-      "muc_comment": "WiFi Interface",
-      "id": "MUC-13"
     }
   ],
   "damageScenario": [
     {
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
       "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
       "id": "DS-1"
     },
     {
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
       "id": "DS-2"
     },
     {
-      "damage_scenario": "Degradation or loss of functionality ",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "id": "DS-3"
-    },
-    {
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
-      "id": "DS-4"
-    },
-    {
-      "damage_scenario": "Legal non-compliance",
+      "damage_scenario": "Damage to brand name / image / reputation",
       "consequence": "Serious",
-      "consequence_DS": "Compliance to legal requirements may be affected",
-      "consequence_reasoning": "Compliance to international and national legal requirements and standards such as GDPR is mandatory and this may lead to penalties",
-      "id": "DS-5"
+      "consequence_DS": "Brand image can be adversely affected because of malfunction, compromise or hacking of system, or data breach or disclosure of security flaws",
+      "consequence_reasoning": "Despite the contract limiting legal liability, brand image of Bosch is considered important enough to rate it as \"serious\". Negative publicity impacting brand value may impact future business and revenue. Customer confidence is affected. Competitive edge is diminished.",
+      "id": "DS-3"
     },
     {
       "damage_scenario": "Loss of customer trust",
       "consequence": "Moderate",
       "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
+      "id": "DS-4"
+    },
+    {
+      "damage_scenario": "Data loss, Manipulation of data",
+      "consequence": "Moderate",
+      "consequence_DS": "Manipulation of data Stored in AWS s3 will adversely affect functionality",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
+      "id": "DS-5"
+    },
+    {
+      "damage_scenario": "Loss of data",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
       "id": "DS-6"
+    },
+    {
+      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
+      "id": "DS-7"
     }
   ],
   "SecGoals": [
     {
-      "Asset_description": "USB Stack",
+      "Asset_description": "Elastic Block Store",
       "Objective": "Confidentiality",
-      "objective_description": "USB stack API should not expose sensitive information needed to access the system. USB stack API should not be tampered by MITM attacks to affect performance.",
+      "objective_description": "Confidentiality - Only authorized users can have access to EBS volumes data",
       "id": "A-1"
     },
     {
-      "Asset_description": "USB Stack",
+      "Asset_description": "Elastic Block Store",
       "Objective": "Integrity",
-      "objective_description": " ",
+      "objective_description": "\nIntegrity - Manipulation of data within EBS should not be done and data must maintain Integrity",
       "id": "A-2"
     },
     {
-      "Asset_description": "WiFi Interface",
-      "Objective": "Confidentiality",
-      "objective_description": "The data communication between the device and the WiFi network is confidential and must not be exposed.",
+      "Asset_description": "Elastic Block Store",
+      "Objective": "Availability",
+      "objective_description": "Availability - The data stored in EBS volumes should not be disrupted or interrupted",
       "id": "A-3"
     },
     {
-      "Asset_description": "WiFi Interface",
-      "Objective": "Integrity",
-      "objective_description": "The data communication between WiFi and the device must not be manipulated.",
+      "Asset_description": "Amazon Elastic Container Service",
+      "Objective": "Confidentiality",
+      "objective_description": "Confidentiality - Ensure that data and information within ECS remain confidential, preventing unauthorized access or disclosure.",
       "id": "A-4"
     },
     {
-      "Asset_description": "WiFi Interface",
-      "Objective": "Availability",
-      "objective_description": "The WiFi Interface must be available to enable data communication between the network and device.",
+      "Asset_description": "Amazon Elastic Container Service",
+      "Objective": "Integrity",
+      "objective_description": "\nIntegrity -  Containerized applications or services running within the ECS should not be tampered with",
       "id": "A-5"
     },
     {
-      "Asset_description": "WiFi module",
-      "Objective": "Confidentiality",
-      "objective_description": "Strict access control should be implemented both physically to protect from unauthorized access.",
+      "Asset_description": "Amazon Elastic Container Service",
+      "Objective": "Availability",
+      "objective_description": "Availability -  Containerized services within ECS should be available to minimize the downtime and disruptions caused by security incidents",
       "id": "A-6"
     },
     {
-      "Asset_description": "WiFi module",
+      "Asset_description": "Simple Storage Service",
       "Objective": "Availability",
-      "objective_description": "WiFi module should always be available to provide WiFi connectivity among devices.",
+      "objective_description": "Versioning and lifecycle policies must be employed ensuring data accessibility and durability.",
       "id": "A-7"
     },
     {
-      "Asset_description": "WiFi Access Point",
+      "Asset_description": "Simple Storage Service",
       "Objective": "Confidentiality",
-      "objective_description": "It is required that the configuration information sent from the user to the access point must not be exposed.",
+      "objective_description": "Amazon S3 ensures confidentiality by offering server-side encryption, secure data transfer with HTTPS, and fine-grained access controls through IAM and bucket policies.",
       "id": "A-8"
     },
     {
-      "Asset_description": "WiFi Access Point",
+      "Asset_description": "Simple Storage Service",
       "Objective": "Integrity",
-      "objective_description": "It is required that the configuration information sent from the user to the access point must not be tampered. Loss of integrity will impact the functionality of the system.",
+      "objective_description": "S3 maintains data using checksums, hash functions, and versioning to prevent Man In the Middle attacks",
       "id": "A-9"
     },
     {
-      "Asset_description": "WiFi Access Point",
-      "Objective": "Availability",
-      "objective_description": "It is required that the WiFi access point is always up and made available to the user whenever required for configuration. Loss of availability will lead to Denial-of-service",
+      "Asset_description": "EC2",
+      "Objective": "Confidentiality",
+      "objective_description": "Unauthorized users should not have access to the services",
       "id": "A-10"
     },
     {
-      "Asset_description": "WiFi Router",
-      "Objective": "Availability",
-      "objective_description": "WiFi Router should be protected from denial of service attacks",
+      "Asset_description": "EC2",
+      "Objective": "Integrity",
+      "objective_description": "Users cannot manipulate the data.",
       "id": "A-11"
+    },
+    {
+      "Asset_description": "EC2",
+      "Objective": "Availability",
+      "objective_description": "Availability of the service when needed",
+      "id": "A-12"
     }
   ],
   "ThreatDSs": [
     {
-      "Threat": "Extraction of USB Stack",
-      "affected_security_goal": "Confidentiality of USB Stack",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat": "Extraction of Elastic Block Store",
+      "affected_security_goal": "Confidentiality of Elastic Block Store",
+      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
       "id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
       "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
       "Did": [
         "DS-1"
       ]
     },
     {
-      "Threat": "Manipulation of USB Stack",
-      "affected_security_goal": "Integrity of USB Stack",
-      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
+      "Threat": "Manipulation of Elastic Block Store",
+      "affected_security_goal": "Integrity of Elastic Block Store",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
       "id": "Th-2",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
       "Did": [
         "DS-2"
       ]
     },
     {
-      "Threat": "Extraction of WiFi Interface",
-      "affected_security_goal": "Confidentiality of WiFi Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
+      "Threat": "Blocking Elastic Block Store",
+      "affected_security_goal": "Availability of Elastic Block Store",
+      "damage_scenario_copy": "Damage to brand name / image / reputation",
       "id": "Th-3",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
-      "Did": [
-        "DS-4"
-      ]
-    },
-    {
-      "Threat": "Manipulation of WiFi Interface",
-      "affected_security_goal": "Integrity of WiFi Interface",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
-      "id": "Th-4",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "Threat": "Blocking WiFi Interface",
-      "affected_security_goal": "Availability of WiFi Interface",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
-      "id": "Th-5",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "Threat": "Extraction of WiFi module",
-      "affected_security_goal": "Confidentiality of WiFi module",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
-      "id": "Th-6",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
-      "Did": [
-        "DS-4"
-      ]
-    },
-    {
-      "Threat": "Blocking WiFi module",
-      "affected_security_goal": "Availability of WiFi module",
-      "damage_scenario_copy": "Legal non-compliance",
-      "id": "Th-7",
-      "damage_scenario": "Legal non-compliance",
+      "damage_scenario": "Damage to brand name / image / reputation",
       "consequence": "Serious",
-      "consequence_DS": "Compliance to legal requirements may be affected",
-      "consequence_reasoning": "Compliance to international and national legal requirements and standards such as GDPR is mandatory and this may lead to penalties",
+      "consequence_DS": "Brand image can be adversely affected because of malfunction, compromise or hacking of system, or data breach or disclosure of security flaws",
+      "consequence_reasoning": "Despite the contract limiting legal liability, brand image of Bosch is considered important enough to rate it as \"serious\". Negative publicity impacting brand value may impact future business and revenue. Customer confidence is affected. Competitive edge is diminished.",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
+      "Threat": "Extraction of Amazon Elastic Container Service",
+      "affected_security_goal": "Confidentiality of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
+      "id": "Th-4",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
+      "Did": [
+        "DS-1"
+      ]
+    },
+    {
+      "Threat": "Integrity of Amazon Elastic Container Service",
+      "affected_security_goal": "Integrity of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
+      "id": "Th-5",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
+      "Did": [
+        "DS-2"
+      ]
+    },
+    {
+      "Threat": "Blocking Amazon Elastic Container Service",
+      "affected_security_goal": "Availability of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Loss of customer trust",
+      "id": "Th-6",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
+      "Did": [
+        "DS-4"
+      ]
+    },
+    {
+      "Threat": "Blocking Simple Storage Service",
+      "affected_security_goal": "Availability of Simple Storage Service",
+      "damage_scenario_copy": "Loss of Customer trust",
+      "id": "Th-7",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
+      "Did": [
+        "DS-4"
+      ]
+    },
+    {
+      "Threat": "Extraction of Simple Storage Service",
+      "affected_security_goal": "Confidentiality of Simple Storage Service",
+      "damage_scenario_copy": "Data loss, Manipulation of data",
+      "id": "Th-8",
+      "damage_scenario": "Data loss, Manipulation of data",
+      "consequence": "Moderate",
+      "consequence_DS": "Manipulation of data Stored in AWS s3 will adversely affect functionality",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
       "Did": [
         "DS-5"
       ]
     },
     {
-      "Threat": "Extraction of WiFi Access Point",
-      "affected_security_goal": "Confidentiality of WiFi Access Point",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
-      "id": "Th-8",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
+      "Threat": "Manipulation of Simple Storage Service",
+      "affected_security_goal": "Integrity of Simple Storage Service",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
+      "id": "Th-9",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
       "Did": [
-        "DS-4"
+        "DS-2"
       ]
     },
     {
-      "Threat": "Manipulation of WiFi Access Point",
-      "affected_security_goal": "Integrity of WiFi Access Point",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
-      "id": "Th-9",
-      "damage_scenario": "Degradation or loss of functionality ",
+      "Threat": "Extraction of EC2",
+      "affected_security_goal": "Confidentiality of EC2",
+      "damage_scenario_copy": "Loss of data",
+      "id": "Th-10",
+      "damage_scenario": "Loss of data",
       "consequence": "Moderate",
       "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "Threat": "Blocking WiFi Access Point",
-      "affected_security_goal": "Availability of WiFi Access Point",
-      "damage_scenario_copy": "Loss of customer trust",
-      "id": "Th-10",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
       "Did": [
         "DS-6"
       ]
     },
     {
-      "Threat": "Blocking WiFi Router",
-      "affected_security_goal": "Availability of WiFi Router",
-      "damage_scenario_copy": "Loss of customer trust",
+      "Threat": "Manipulation of EC2",
+      "affected_security_goal": "Integrity of EC2",
+      "damage_scenario_copy": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
       "id": "Th-11",
+      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
+      "Did": [
+        "DS-7"
+      ]
+    },
+    {
+      "Threat": "Blocking EC2",
+      "affected_security_goal": "Availability of EC2",
+      "damage_scenario_copy": "Loss of customer trust",
+      "id": "Th-12",
       "damage_scenario": "Loss of customer trust",
       "consequence": "Moderate",
       "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
       "Did": [
-        "DS-6"
+        "DS-4"
       ]
     }
   ],
   "ThreatEvaluation_AP": [
     {
-      "Threat": "Extraction of USB Stack",
-      "id": "Th-1",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "3",
-      "Time": "1",
-      "Knowledge": "0",
-      "Sum": "4",
-      "Attack_Potential": "Beyond High"
+      "Threat": "Extraction of Elastic Block Store",
+      "id": "Th-1"
     },
     {
-      "Threat": "Manipulation of USB Stack",
-      "id": "Th-2",
-      "Access": "2",
-      "Equipment": "4",
-      "Expertise": "6",
-      "Time": "1",
-      "Knowledge": "3",
-      "Sum": "16",
-      "Attack_Potential": "Moderate"
+      "Threat": "Manipulation of Elastic Block Store",
+      "id": "Th-2"
     },
     {
-      "Threat": "Extraction of WiFi Interface",
-      "id": "Th-3",
-      "Access": "0",
-      "Equipment": "4",
-      "Expertise": "3",
-      "Time": "1",
-      "Knowledge": "0",
-      "Sum": "8",
-      "Attack_Potential": "Beyond High"
+      "Threat": "Blocking Elastic Block Store",
+      "id": "Th-3"
     },
     {
-      "Threat": "Manipulation of WiFi Interface",
-      "id": "Th-4",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "3",
-      "Time": "0",
-      "Knowledge": "0",
-      "Sum": "3",
-      "Attack_Potential": "Beyond High"
+      "Threat": "Extraction of Amazon Elastic Container Service",
+      "id": "Th-4"
     },
     {
-      "Threat": "Blocking WiFi Interface",
-      "id": "Th-5",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "0",
-      "Time": "0",
-      "Knowledge": "0",
-      "Sum": "0",
-      "Attack_Potential": "Beyond High"
+      "Threat": "Integrity of Amazon Elastic Container Service",
+      "id": "Th-5"
     },
     {
-      "Threat": "Extraction of WiFi module",
-      "id": "Th-6",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "3",
-      "Time": "1",
-      "Knowledge": "0",
-      "Sum": "4",
-      "Attack_Potential": "Beyond High"
+      "Threat": "Blocking Amazon Elastic Container Service",
+      "id": "Th-6"
     },
     {
-      "Threat": "Blocking WiFi module",
-      "id": "Th-7",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "3",
-      "Time": "0",
-      "Knowledge": "0",
-      "Sum": "3",
-      "Attack_Potential": "Beyond High"
+      "Threat": "Blocking Simple Storage Service",
+      "id": "Th-7"
     },
     {
-      "Threat": "Extraction of WiFi Access Point",
-      "id": "Th-8",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "3",
-      "Time": "0",
-      "Knowledge": "0",
-      "Sum": "3",
-      "Attack_Potential": "Beyond High"
+      "Threat": "Extraction of Simple Storage Service",
+      "id": "Th-8"
     },
     {
-      "Threat": "Manipulation of WiFi Access Point",
-      "id": "Th-9",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "3",
-      "Time": "0",
-      "Knowledge": "0",
-      "Sum": "3",
-      "Attack_Potential": "Beyond High"
+      "Threat": "Manipulation of Simple Storage Service",
+      "id": "Th-9"
     },
     {
-      "Threat": "Blocking WiFi Access Point",
-      "id": "Th-10",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "3",
-      "Time": "0",
-      "Knowledge": "0",
-      "Sum": "3",
-      "Attack_Potential": "Beyond High"
+      "Threat": "Extraction of EC2",
+      "id": "Th-10"
     },
     {
-      "Threat": "Blocking WiFi Router",
-      "id": "Th-11",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "0",
-      "Time": "0",
-      "Knowledge": "0",
-      "Sum": "0",
-      "Attack_Potential": "Beyond High"
+      "Threat": "Manipulation of EC2",
+      "id": "Th-11"
+    },
+    {
+      "Threat": "Blocking EC2",
+      "id": "Th-12"
     }
   ],
   "threatDamageAssociations": [
     {
       "threatId": "Th-1",
-      "threat": "Extraction of USB Stack",
+      "threat": "Extraction of Elastic Block Store",
       "damageScenarioId": "DS-1",
-      "damageScenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "damageScenario": "Disclosure of Personally Identifiable Information",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-2",
-      "threat": "Manipulation of USB Stack",
+      "threat": "Manipulation of Elastic Block Store",
       "damageScenarioId": "DS-2",
-      "damageScenario": "Misuse or manipulation affecting Bosch",
-      "cons": "Negligible"
-    },
-    {
-      "threatId": "Th-3",
-      "threat": "Extraction of WiFi Interface",
-      "damageScenarioId": "DS-4",
-      "damageScenario": "Disclosure of IP or Proprietary Data ",
+      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "cons": "Moderate"
     },
     {
-      "threatId": "Th-4",
-      "threat": "Manipulation of WiFi Interface",
+      "threatId": "Th-3",
+      "threat": "Blocking Elastic Block Store",
       "damageScenarioId": "DS-3",
-      "damageScenario": "Degradation or loss of functionality ",
+      "damageScenario": "Damage to brand name / image / reputation",
+      "cons": "Serious"
+    },
+    {
+      "threatId": "Th-4",
+      "threat": "Extraction of Amazon Elastic Container Service",
+      "damageScenarioId": "DS-1",
+      "damageScenario": "Disclosure of Personally Identifiable Information",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-5",
-      "threat": "Blocking WiFi Interface",
-      "damageScenarioId": "DS-3",
-      "damageScenario": "Degradation or loss of functionality ",
+      "threat": "Integrity of Amazon Elastic Container Service",
+      "damageScenarioId": "DS-2",
+      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-6",
-      "threat": "Extraction of WiFi module",
+      "threat": "Blocking Amazon Elastic Container Service",
       "damageScenarioId": "DS-4",
-      "damageScenario": "Disclosure of IP or Proprietary Data ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-7",
-      "threat": "Blocking WiFi module",
-      "damageScenarioId": "DS-5",
-      "damageScenario": "Legal non-compliance",
-      "cons": "Serious"
-    },
-    {
-      "threatId": "Th-8",
-      "threat": "Extraction of WiFi Access Point",
-      "damageScenarioId": "DS-4",
-      "damageScenario": "Disclosure of IP or Proprietary Data ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-9",
-      "threat": "Manipulation of WiFi Access Point",
-      "damageScenarioId": "DS-3",
-      "damageScenario": "Degradation or loss of functionality ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-10",
-      "threat": "Blocking WiFi Access Point",
-      "damageScenarioId": "DS-6",
       "damageScenario": "Loss of customer trust",
       "cons": "Moderate"
     },
     {
-      "threatId": "Th-11",
-      "threat": "Blocking WiFi Router",
+      "threatId": "Th-7",
+      "threat": "Blocking Simple Storage Service",
+      "damageScenarioId": "DS-4",
+      "damageScenario": "Loss of customer trust",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-8",
+      "threat": "Extraction of Simple Storage Service",
+      "damageScenarioId": "DS-5",
+      "damageScenario": "Data loss, Manipulation of data",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-9",
+      "threat": "Manipulation of Simple Storage Service",
+      "damageScenarioId": "DS-2",
+      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-10",
+      "threat": "Extraction of EC2",
       "damageScenarioId": "DS-6",
+      "damageScenario": "Loss of data",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-11",
+      "threat": "Manipulation of EC2",
+      "damageScenarioId": "DS-7",
+      "damageScenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-12",
+      "threat": "Blocking EC2",
+      "damageScenarioId": "DS-4",
       "damageScenario": "Loss of customer trust",
       "cons": "Moderate"
     }
@@ -575,78 +520,85 @@
   "updatedAssociations": [
     {
       "threatId": "Th-1",
-      "threat": "Extraction of USB Stack",
+      "threat": "Extraction of Elastic Block Store",
       "damageScenarioId": "DS-1",
-      "damageScenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "damageScenario": "Disclosure of Personally Identifiable Information",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-2",
-      "threat": "Manipulation of USB Stack",
+      "threat": "Manipulation of Elastic Block Store",
       "damageScenarioId": "DS-2",
-      "damageScenario": "Misuse or manipulation affecting Bosch",
-      "cons": "Negligible"
-    },
-    {
-      "threatId": "Th-3",
-      "threat": "Extraction of WiFi Interface",
-      "damageScenarioId": "DS-4",
-      "damageScenario": "Disclosure of IP or Proprietary Data ",
+      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "cons": "Moderate"
     },
     {
-      "threatId": "Th-4",
-      "threat": "Manipulation of WiFi Interface",
+      "threatId": "Th-3",
+      "threat": "Blocking Elastic Block Store",
       "damageScenarioId": "DS-3",
-      "damageScenario": "Degradation or loss of functionality ",
+      "damageScenario": "Damage to brand name / image / reputation",
+      "cons": "Serious"
+    },
+    {
+      "threatId": "Th-4",
+      "threat": "Extraction of Amazon Elastic Container Service",
+      "damageScenarioId": "DS-1",
+      "damageScenario": "Disclosure of Personally Identifiable Information",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-5",
-      "threat": "Blocking WiFi Interface",
-      "damageScenarioId": "DS-3",
-      "damageScenario": "Degradation or loss of functionality ",
+      "threat": "Integrity of Amazon Elastic Container Service",
+      "damageScenarioId": "DS-2",
+      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-6",
-      "threat": "Extraction of WiFi module",
+      "threat": "Blocking Amazon Elastic Container Service",
       "damageScenarioId": "DS-4",
-      "damageScenario": "Disclosure of IP or Proprietary Data ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-7",
-      "threat": "Blocking WiFi module",
-      "damageScenarioId": "DS-5",
-      "damageScenario": "Legal non-compliance",
-      "cons": "Serious"
-    },
-    {
-      "threatId": "Th-8",
-      "threat": "Extraction of WiFi Access Point",
-      "damageScenarioId": "DS-4",
-      "damageScenario": "Disclosure of IP or Proprietary Data ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-9",
-      "threat": "Manipulation of WiFi Access Point",
-      "damageScenarioId": "DS-3",
-      "damageScenario": "Degradation or loss of functionality ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-10",
-      "threat": "Blocking WiFi Access Point",
-      "damageScenarioId": "DS-6",
       "damageScenario": "Loss of customer trust",
       "cons": "Moderate"
     },
     {
-      "threatId": "Th-11",
-      "threat": "Blocking WiFi Router",
+      "threatId": "Th-7",
+      "threat": "Blocking Simple Storage Service",
+      "damageScenarioId": "DS-4",
+      "damageScenario": "Loss of customer trust",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-8",
+      "threat": "Extraction of Simple Storage Service",
+      "damageScenarioId": "DS-5",
+      "damageScenario": "Data loss, Manipulation of data",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-9",
+      "threat": "Manipulation of Simple Storage Service",
+      "damageScenarioId": "DS-2",
+      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-10",
+      "threat": "Extraction of EC2",
       "damageScenarioId": "DS-6",
+      "damageScenario": "Loss of data",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-11",
+      "threat": "Manipulation of EC2",
+      "damageScenarioId": "DS-7",
+      "damageScenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-12",
+      "threat": "Blocking EC2",
+      "damageScenarioId": "DS-4",
       "damageScenario": "Loss of customer trust",
       "cons": "Moderate"
     }
@@ -654,412 +606,689 @@
   "RiskAssessment": [
     {
       "id": "R-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
       "D_id": "DS-1",
       "consequence": "Moderate",
-      "Threat": "Extraction of USB Stack",
+      "Threat": "Extraction of Elastic Block Store",
       "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
+      "risk_of_d": "Invalid Attack Potential"
     },
     {
       "id": "R-2",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "D_id": "DS-2",
-      "consequence": "Negligible",
-      "Threat": "Manipulation of USB Stack",
-      "risk": "Very Low",
-      "attackPotential": "Moderate",
-      "risk_of_d": "Low"
+      "consequence": "Moderate",
+      "Threat": "Manipulation of Elastic Block Store",
+      "risk": "Low",
+      "risk_of_d": "Invalid Attack Potential"
     },
     {
       "id": "R-3",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "D_id": "DS-4",
-      "consequence": "Moderate",
-      "Threat": "Extraction of WiFi Interface",
-      "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
+      "damage_scenario": "Damage to brand name / image / reputation",
+      "D_id": "DS-3",
+      "consequence": "Serious",
+      "Threat": "Blocking Elastic Block Store",
+      "risk": "Very High",
+      "risk_of_d": "Invalid Attack Potential"
     },
     {
       "id": "R-4",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "D_id": "DS-3",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
+      "D_id": "DS-1",
       "consequence": "Moderate",
-      "Threat": "Manipulation of WiFi Interface",
+      "Threat": "Extraction of Amazon Elastic Container Service",
       "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
+      "risk_of_d": "Invalid Attack Potential"
     },
     {
       "id": "R-5",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "D_id": "DS-3",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "D_id": "DS-2",
       "consequence": "Moderate",
-      "Threat": "Blocking WiFi Interface",
+      "Threat": "Integrity of Amazon Elastic Container Service",
       "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
+      "risk_of_d": "Invalid Attack Potential"
     },
     {
       "id": "R-6",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
+      "damage_scenario": "Loss of customer trust",
       "D_id": "DS-4",
       "consequence": "Moderate",
-      "Threat": "Extraction of WiFi module",
+      "Threat": "Blocking Amazon Elastic Container Service",
       "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
+      "risk_of_d": "Invalid Attack Potential"
     },
     {
       "id": "R-7",
-      "damage_scenario": "Legal non-compliance",
-      "D_id": "DS-5",
-      "consequence": "Serious",
-      "Threat": "Blocking WiFi module",
-      "risk": "Very High",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
+      "damage_scenario": "Loss of customer trust",
+      "D_id": "DS-4",
+      "consequence": "Moderate",
+      "Threat": "Blocking Simple Storage Service",
+      "risk": "Low",
+      "risk_of_d": "Invalid Attack Potential"
     },
     {
       "id": "R-8",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "D_id": "DS-4",
+      "damage_scenario": "Data loss, Manipulation of data",
+      "D_id": "DS-5",
       "consequence": "Moderate",
-      "Threat": "Extraction of WiFi Access Point",
+      "Threat": "Extraction of Simple Storage Service",
       "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
+      "risk_of_d": "Invalid Attack Potential"
     },
     {
       "id": "R-9",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "D_id": "DS-3",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "D_id": "DS-2",
       "consequence": "Moderate",
-      "Threat": "Manipulation of WiFi Access Point",
+      "Threat": "Manipulation of Simple Storage Service",
       "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
+      "risk_of_d": "Invalid Attack Potential"
     },
     {
       "id": "R-10",
-      "damage_scenario": "Loss of customer trust",
+      "damage_scenario": "Loss of data",
       "D_id": "DS-6",
       "consequence": "Moderate",
-      "Threat": "Blocking WiFi Access Point",
+      "Threat": "Extraction of EC2",
       "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
+      "risk_of_d": "Invalid Attack Potential"
     },
     {
       "id": "R-11",
-      "damage_scenario": "Loss of customer trust",
-      "D_id": "DS-6",
+      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "D_id": "DS-7",
       "consequence": "Moderate",
-      "Threat": "Blocking WiFi Router",
+      "Threat": "Manipulation of EC2",
       "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
+      "risk_of_d": "Invalid Attack Potential"
+    },
+    {
+      "id": "R-12",
+      "damage_scenario": "Loss of customer trust",
+      "D_id": "DS-4",
+      "consequence": "Moderate",
+      "Threat": "Blocking EC2",
+      "risk": "Low",
+      "risk_of_d": "Invalid Attack Potential"
     }
   ],
   "SecurityNeeds": [
     {
-      "Threat_T": "Extraction of USB Stack",
-      "security_description_threat": "USB stack shall implement robust access control mechanisms to ensure that only authorized devices and users can initiate USB connections and data transfers.",
+      "Threat_T": "Extraction of Elastic Block Store",
+      "security_description_threat": "EBS shall implement comprehensive access controls for block level storage of EBS to prevent unauthorized access",
       "id": "SN-R-1",
-      "Threat": "Extraction of USB Stack",
-      "affected_security_goal": "Confidentiality of USB Stack",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat": "Extraction of Elastic Block Store",
+      "affected_security_goal": "Confidentiality of Elastic Block Store",
+      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
       "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
       "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
       "Did": [
         "DS-1"
       ]
     },
     {
-      "Threat_T": "Extraction of USB Stack",
-      "security_description_threat": "USB stack shall employ strong encryption techniques to protect data integrity and confidentiality during USB data transfers.",
+      "Threat_T": "Manipulation of Elastic Block Store",
+      "security_description_threat": "EBS volumes shall implement robust encryption and data integrity mechanisms to ensure secure and durable storage for EC2 instances, minimizing the risk of data loss or performance degradation",
       "id": "SN-R-2",
-      "Threat": "Extraction of USB Stack",
-      "affected_security_goal": "Confidentiality of USB Stack",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-1"
-      ]
-    },
-    {
-      "Threat_T": "Manipulation of USB Stack",
-      "security_description_threat": "USB stack shall ensure the integrity and security of USB drivers and firmware.",
-      "id": "SN-R-3",
-      "Threat": "Manipulation of USB Stack",
-      "affected_security_goal": "Integrity of USB Stack",
-      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
+      "Threat": "Manipulation of Elastic Block Store",
+      "affected_security_goal": "Integrity of Elastic Block Store",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
       "Threat_id": "Th-2",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
       "Did": [
         "DS-2"
       ]
     },
     {
-      "Threat_T": "Extraction of USB Stack",
-      "security_description_threat": "USB stack shall facilitate continuous monitoring and logging of all USB activities.",
+      "Threat_T": "Blocking Elastic Block Store",
+      "security_description_threat": "EBS shall employ redundancy and failover measures to maximize the availability of block-level storage and minimize potential downtime.",
+      "id": "SN-R-3",
+      "Threat": "Blocking Elastic Block Store",
+      "affected_security_goal": "Availability of Elastic Block Store",
+      "damage_scenario_copy": "Damage to brand name / image / reputation",
+      "Threat_id": "Th-3",
+      "damage_scenario": "Damage to brand name / image / reputation",
+      "consequence": "Serious",
+      "consequence_DS": "Brand image can be adversely affected because of malfunction, compromise or hacking of system, or data breach or disclosure of security flaws",
+      "consequence_reasoning": "Despite the contract limiting legal liability, brand image of Bosch is considered important enough to rate it as \"serious\". Negative publicity impacting brand value may impact future business and revenue. Customer confidence is affected. Competitive edge is diminished.",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of Amazon Elastic Container Service",
+      "security_description_threat": "The ECS environment shall implement access controls to prevent unauthorized access and privilege escalation",
       "id": "SN-R-4",
-      "Threat": "Extraction of USB Stack",
-      "affected_security_goal": "Confidentiality of USB Stack",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat": "Extraction of Amazon Elastic Container Service",
+      "affected_security_goal": "Confidentiality of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
+      "Threat_id": "Th-4",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
       "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
       "Did": [
         "DS-1"
       ]
     },
     {
-      "Threat_T": "Extraction of WiFi Interface",
-      "security_description_threat": "Network Intrusion Detection Systems (NIDS) shall be deployed at the network perimeter to detect known attacks in the network traffic.",
+      "Threat_T": "Extraction of Amazon Elastic Container Service",
+      "security_description_threat": "The ECS environment shall enforce system and data integrity by using up-to-date execution environments and by restricting filesystem write access.",
       "id": "SN-R-5",
-      "Threat": "Extraction of WiFi Interface",
-      "affected_security_goal": "Confidentiality of WiFi Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
-      "Threat_id": "Th-3",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
-      "Did": [
-        "DS-4"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of WiFi module",
-      "security_description_threat": "Communication between the WiFi interface and its device employ two-way authentication mechanism to prevent spoofing on WiFi.",
-      "id": "SN-R-6",
-      "Threat": "Extraction of WiFi module",
-      "affected_security_goal": "Confidentiality of WiFi module",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
-      "Threat_id": "Th-6",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
-      "Did": [
-        "DS-4"
-      ]
-    },
-    {
-      "Threat_T": "Blocking WiFi Interface",
-      "security_description_threat": "Employ advanced anomaly detection mechanisms to identify abnormal traffic patterns indicative of a potential DoS attack",
-      "id": "SN-R-7",
-      "Threat": "Blocking WiFi Interface",
-      "affected_security_goal": "Availability of WiFi Interface",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
-      "Threat_id": "Th-5",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "Threat_T": "Manipulation of WiFi Interface",
-      "security_description_threat": "Firmware shall be protected against manipulation",
-      "id": "SN-R-8",
-      "Threat": "Manipulation of WiFi Interface",
-      "affected_security_goal": "Integrity of WiFi Interface",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
+      "Threat": "Extraction of Amazon Elastic Container Service",
+      "affected_security_goal": "Confidentiality of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
       "Threat_id": "Th-4",
-      "damage_scenario": "Degradation or loss of functionality ",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
       "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
       "Did": [
-        "DS-3"
+        "DS-1"
       ]
     },
     {
-      "Threat_T": "Extraction of WiFi Access Point",
-      "security_description_threat": "Communication through WiFi/LAN shall employ industry standard and strong encryption suites to prevent crypt-analysis attacks",
-      "id": "SN-R-9",
-      "Threat": "Extraction of WiFi Access Point",
-      "affected_security_goal": "Confidentiality of WiFi Access Point",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
-      "Threat_id": "Th-8",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
+      "Threat_T": "Integrity of Amazon Elastic Container Service",
+      "security_description_threat": "The ECS environment shall prevent unauthorized disclosure by avoiding exposing network interfaces and by securely managing secrets.",
+      "id": "SN-R-6",
+      "Threat": "Integrity of Amazon Elastic Container Service",
+      "affected_security_goal": "Integrity of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
+      "Threat_id": "Th-5",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
+      "Did": [
+        "DS-2"
+      ]
+    },
+    {
+      "Threat_T": "Blocking Amazon Elastic Container Service",
+      "security_description_threat": "The ECS environment shall establish monitoring and anomaly detection",
+      "id": "SN-R-7",
+      "Threat": "Blocking Amazon Elastic Container Service",
+      "affected_security_goal": "Availability of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Loss of customer trust",
+      "Threat_id": "Th-6",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
       "Did": [
         "DS-4"
       ]
     },
     {
-      "Threat_T": "Manipulation of WiFi Access Point",
-      "security_description_threat": "WiFi Access Point or Ethernet LAN Switch/Router shall be protected against known WiFi and Ethernet LAN attacks",
-      "id": "SN-R-10",
-      "Threat": "Manipulation of WiFi Access Point",
-      "affected_security_goal": "Integrity of WiFi Access Point",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
-      "Threat_id": "Th-9",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "Threat_T": "Blocking WiFi Access Point",
-      "security_description_threat": "The system shall protect the WiFi access point from Denial-of-service attack",
-      "id": "SN-R-11",
-      "Threat": "Blocking WiFi Access Point",
-      "affected_security_goal": "Availability of WiFi Access Point",
-      "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "Threat_T": "Blocking WiFi Router",
-      "security_description_threat": "Configure firewalls to filter incoming and outgoing traffic. Create rules that block or limit traffic from known malicious sources",
-      "id": "SN-R-12",
-      "Threat": "Blocking WiFi Router",
-      "affected_security_goal": "Availability of WiFi Router",
-      "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-11",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "Threat_T": "Blocking WiFi Module",
-      "security_description_threat": "Real-time monitoring tools to detect and respond to unusual spikes in Wi-Fi module activity",
-      "id": "SN-R-13",
-      "Threat": "Blocking WiFi module",
-      "affected_security_goal": "Availability of WiFi module",
-      "damage_scenario_copy": "Legal non-compliance",
+      "Threat_T": "Blocking Simple Storage Service",
+      "security_description_threat": "Proactive monitoring shall be done for early detection of potential DoS attacks, enabling quick response and mitigation to minimize the impact on S3 availability.",
+      "id": "SN-R-8",
+      "Threat": "Blocking Simple Storage Service",
+      "affected_security_goal": "Availability of Simple Storage Service",
+      "damage_scenario_copy": "Loss of Customer trust",
       "Threat_id": "Th-7",
-      "damage_scenario": "Legal non-compliance",
-      "consequence": "Serious",
-      "consequence_DS": "Compliance to legal requirements may be affected",
-      "consequence_reasoning": "Compliance to international and national legal requirements and standards such as GDPR is mandatory and this may lead to penalties",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
+      "Did": [
+        "DS-4"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of Simple Storage Service",
+      "security_description_threat": "Access control mechanisms shall prevent unauthorized access",
+      "id": "SN-R-9",
+      "Threat": "Extraction of Simple Storage Service",
+      "affected_security_goal": "Confidentiality of Simple Storage Service",
+      "damage_scenario_copy": "Data loss, Manipulation of data",
+      "Threat_id": "Th-8",
+      "damage_scenario": "Data loss, Manipulation of data",
+      "consequence": "Moderate",
+      "consequence_DS": "Manipulation of data Stored in AWS s3 will adversely affect functionality",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
       "Did": [
         "DS-5"
+      ]
+    },
+    {
+      "Threat_T": "Manipulation of Simple Storage Service",
+      "security_description_threat": "Encryption shall safeguard data integrity by preventing unauthorized access and tampering of data stored in S3.",
+      "id": "SN-R-10",
+      "Threat": "Manipulation of Simple Storage Service",
+      "affected_security_goal": "Integrity of Simple Storage Service",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
+      "Threat_id": "Th-9",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
+      "Did": [
+        "DS-2"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of EC2",
+      "security_description_threat": "EBS snapshots shall not be publicly restorable",
+      "id": "SN-R-11",
+      "Threat": "Extraction of EC2",
+      "affected_security_goal": "Confidentiality of EC2",
+      "damage_scenario_copy": "Loss of data",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of data",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "Threat_T": "Blocking EC2",
+      "security_description_threat": "Amazon EC2 shall be configured to use VPC endpoints that are created for the Amazon EC2 service",
+      "id": "SN-R-12",
+      "Threat": "Blocking EC2",
+      "affected_security_goal": "Availability of EC2",
+      "damage_scenario_copy": "Loss of customer trust",
+      "Threat_id": "Th-12",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
+      "Did": [
+        "DS-4"
+      ]
+    },
+    {
+      "Threat_T": "Manipulation of EC2",
+      "security_description_threat": "EC2 instances shall use Instance Metadata Service Version 2 (IMDSv2)",
+      "id": "SN-R-13",
+      "Threat": "Manipulation of EC2",
+      "affected_security_goal": "Integrity of EC2",
+      "damage_scenario_copy": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "Threat_id": "Th-11",
+      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
+      "Did": [
+        "DS-7"
+      ]
+    },
+    {
+      "Threat_T": "Manipulation of EC2",
+      "security_description_threat": "EC2 instances shall not use multiple ENIs",
+      "id": "SN-R-14",
+      "Threat": "Manipulation of EC2",
+      "affected_security_goal": "Integrity of EC2",
+      "damage_scenario_copy": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "Threat_id": "Th-11",
+      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
+      "Did": [
+        "DS-7"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of EC2",
+      "security_description_threat": "Security groups shall not allow unrestricted access to ports with high risk",
+      "id": "SN-R-15",
+      "Threat": "Extraction of EC2",
+      "affected_security_goal": "Confidentiality of EC2",
+      "damage_scenario_copy": "Loss of data",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of data",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of EC2",
+      "security_description_threat": "VPC default security groups shall not allow inbound or outbound traffic",
+      "id": "SN-R-16",
+      "Threat": "Extraction of EC2",
+      "affected_security_goal": "Confidentiality of EC2",
+      "damage_scenario_copy": "Loss of data",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of data",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "Threat_T": "Manipulation of EC2",
+      "security_description_threat": "VPC flow logging shall be enabled in all VPCs",
+      "id": "SN-R-17",
+      "Threat": "Manipulation of EC2",
+      "affected_security_goal": "Integrity of EC2",
+      "damage_scenario_copy": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "Threat_id": "Th-11",
+      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
+      "Did": [
+        "DS-7"
+      ]
+    },
+    {
+      "Threat_T": "Manipulation of EC2",
+      "security_description_threat": "Both VPN tunnels for an AWS Site-to-Site VPN connection shall be up",
+      "id": "SN-R-18",
+      "Threat": "Manipulation of EC2",
+      "affected_security_goal": "Integrity of EC2",
+      "damage_scenario_copy": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "Threat_id": "Th-11",
+      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
+      "Did": [
+        "DS-7"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of EC2",
+      "security_description_threat": "Network ACLs shall not allow ingress from 0.0.0.0/0 to port 22 or port 3389",
+      "id": "SN-R-19",
+      "Threat": "Extraction of EC2",
+      "affected_security_goal": "Confidentiality of EC2",
+      "damage_scenario_copy": "Loss of data",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of data",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of EC2",
+      "security_description_threat": "Security groups shall only allow unrestricted incoming traffic for authorized ports",
+      "id": "SN-R-20",
+      "Threat": "Extraction of EC2",
+      "affected_security_goal": "Confidentiality of EC2",
+      "damage_scenario_copy": "Loss of data",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of data",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "Threat_T": "Manipulation of EC2",
+      "security_description_threat": "EC2 Transit Gateways shall not automatically accept VPC attachment requests",
+      "id": "SN-R-21",
+      "Threat": "Manipulation of EC2",
+      "affected_security_goal": "Integrity of EC2",
+      "damage_scenario_copy": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "Threat_id": "Th-11",
+      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
+      "Did": [
+        "DS-7"
+      ]
+    },
+    {
+      "Threat_T": "Blocking EC2",
+      "security_description_threat": "EC2 paravirtual instance types shall not be used",
+      "id": "SN-R-22",
+      "Threat": "Blocking EC2",
+      "affected_security_goal": "Availability of EC2",
+      "damage_scenario_copy": "Loss of customer trust",
+      "Threat_id": "Th-12",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
+      "Did": [
+        "DS-4"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of EC2",
+      "security_description_threat": "EC2 launch templates shall not assign public IPs to network interfaces",
+      "id": "SN-R-23",
+      "Threat": "Extraction of EC2",
+      "affected_security_goal": "Confidentiality of EC2",
+      "damage_scenario_copy": "Loss of data",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of data",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of EC2",
+      "security_description_threat": "Attached EBS volumes shall be encrypted at-rest",
+      "id": "SN-R-24",
+      "Threat": "Extraction of EC2",
+      "affected_security_goal": "Confidentiality of EC2",
+      "damage_scenario_copy": "Loss of data",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of data",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "Threat_T": "Blocking EC2",
+      "security_description_threat": "Stopped EC2 instances shall be removed after a specified time period",
+      "id": "SN-R-25",
+      "Threat": "Blocking EC2",
+      "affected_security_goal": "Availability of EC2",
+      "damage_scenario_copy": "Loss of customer trust",
+      "Threat_id": "Th-12",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
+      "Did": [
+        "DS-4"
+      ]
+    },
+    {
+      "Threat_T": "Blocking EC2",
+      "security_description_threat": "Unused Network Access Control Lists shall be removed",
+      "id": "SN-R-26",
+      "Threat": "Blocking EC2",
+      "affected_security_goal": "Availability of EC2",
+      "damage_scenario_copy": "Loss of customer trust",
+      "Threat_id": "Th-12",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
+      "Did": [
+        "DS-4"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of EC2",
+      "security_description_threat": "EBS default encryption shall be enabled",
+      "id": "SN-R-27",
+      "Threat": "Extraction of EC2",
+      "affected_security_goal": "Confidentiality of EC2",
+      "damage_scenario_copy": "Loss of data",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of data",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of EC2",
+      "security_description_threat": "EC2 instances shall not have a public IPv4 address",
+      "id": "SN-R-28",
+      "Threat": "Extraction of EC2",
+      "affected_security_goal": "Confidentiality of EC2",
+      "damage_scenario_copy": "Loss of data",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of data",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of EC2",
+      "security_description_threat": "EC2 subnets shall not automatically assign public IP addresses",
+      "id": "SN-R-29",
+      "Threat": "Extraction of EC2",
+      "affected_security_goal": "Confidentiality of EC2",
+      "damage_scenario_copy": "Loss of data",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of data",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of EC2",
+      "security_description_threat": "EC2 Client VPN endpoints shall have client connection logging enabled",
+      "id": "SN-R-30",
+      "Threat": "Extraction of EC2",
+      "affected_security_goal": "Confidentiality of EC2",
+      "damage_scenario_copy": "Loss of data",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of data",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "Did": [
+        "DS-6"
       ]
     }
   ],
   "assetaddition": [
     {
-      "Asset_description": "USB Stack",
+      "Asset_description": "Elastic Block Store",
       "Objective": "Confidentiality",
-      "objective_description": "USB stack API should not expose sensitive information needed to access the system. USB stack API should not be tampered by MITM attacks to affect performance.",
+      "objective_description": "Confidentiality - Only authorized users can have access to EBS volumes data",
       "id": "AA-1"
     },
     {
-      "Asset_description": "USB Stack",
+      "Asset_description": "Elastic Block Store",
       "Objective": "Integrity",
-      "objective_description": " ",
+      "objective_description": "\nIntegrity - Manipulation of data within EBS should not be done and data must maintain Integrity",
       "id": "AA-2"
     },
     {
-      "Asset_description": "WiFi Interface",
-      "Objective": "Confidentiality",
-      "objective_description": "The data communication between the device and the WiFi network is confidential and must not be exposed.",
+      "Asset_description": "Elastic Block Store",
+      "Objective": "Availability",
+      "objective_description": "Availability - The data stored in EBS volumes should not be disrupted or interrupted",
       "id": "AA-3"
     },
     {
-      "Asset_description": "WiFi Interface",
-      "Objective": "Integrity",
-      "objective_description": "The data communication between WiFi and the device must not be manipulated.",
+      "Asset_description": "Amazon Elastic Container Service",
+      "Objective": "Confidentiality",
+      "objective_description": "Confidentiality - Ensure that data and information within ECS remain confidential, preventing unauthorized access or disclosure.",
       "id": "AA-4"
     },
     {
-      "Asset_description": "WiFi Interface",
-      "Objective": "Availability",
-      "objective_description": "The WiFi Interface must be available to enable data communication between the network and device.",
+      "Asset_description": "Amazon Elastic Container Service",
+      "Objective": "Integrity",
+      "objective_description": "\nIntegrity -  Containerized applications or services running within the ECS should not be tampered with",
       "id": "AA-5"
     },
     {
-      "Asset_description": "WiFi module",
-      "Objective": "Confidentiality",
-      "objective_description": "Strict access control should be implemented both physically to protect from unauthorized access.",
+      "Asset_description": "Amazon Elastic Container Service",
+      "Objective": "Availability",
+      "objective_description": "Availability -  Containerized services within ECS should be available to minimize the downtime and disruptions caused by security incidents",
       "id": "AA-6"
     },
     {
-      "Asset_description": "WiFi module",
+      "Asset_description": "Simple Storage Service",
       "Objective": "Availability",
-      "objective_description": "WiFi module should always be available to provide WiFi connectivity among devices.",
+      "objective_description": "Versioning and lifecycle policies must be employed ensuring data accessibility and durability.",
       "id": "AA-7"
     },
     {
-      "Asset_description": "WiFi Access Point",
+      "Asset_description": "Simple Storage Service",
       "Objective": "Confidentiality",
-      "objective_description": "It is required that the configuration information sent from the user to the access point must not be exposed.",
+      "objective_description": "Amazon S3 ensures confidentiality by offering server-side encryption, secure data transfer with HTTPS, and fine-grained access controls through IAM and bucket policies.",
       "id": "AA-8"
     },
     {
-      "Asset_description": "WiFi Access Point",
+      "Asset_description": "Simple Storage Service",
       "Objective": "Integrity",
-      "objective_description": "It is required that the configuration information sent from the user to the access point must not be tampered. Loss of integrity will impact the functionality of the system.",
+      "objective_description": "S3 maintains data using checksums, hash functions, and versioning to prevent Man In the Middle attacks",
       "id": "AA-9"
     },
     {
-      "Asset_description": "WiFi Access Point",
-      "Objective": "Availability",
-      "objective_description": "It is required that the WiFi access point is always up and made available to the user whenever required for configuration. Loss of availability will lead to Denial-of-service",
+      "Asset_description": "EC2",
+      "Objective": "Confidentiality",
+      "objective_description": "Unauthorized users should not have access to the services",
       "id": "AA-10"
     },
     {
-      "Asset_description": "WiFi Router",
-      "Objective": "Availability",
-      "objective_description": "WiFi Router should be protected from denial of service attacks",
+      "Asset_description": "EC2",
+      "Objective": "Integrity",
+      "objective_description": "Users cannot manipulate the data.",
       "id": "AA-11"
+    },
+    {
+      "Asset_description": "EC2",
+      "Objective": "Availability",
+      "objective_description": "Availability of the service when needed",
+      "id": "AA-12"
     }
   ],
   "SecControls": [
     {
-      "security_control": "Access control.",
-      "security_control_description": "Access control refers to security policies, processes, and mechanisms that restrict and manage access to data, information, applications, and physical locations based on assigned privileges. It establishes who can access specific resources, what actions they are allowed to perform, and under what conditions. Access control helps protect against unauthorized access, modification, or disclosure of confidential or sensitive information.",
-      "security_goal": "USB stack shall implement robust access control mechanisms to ensure that only authorized devices and users can initiate USB connections and data transfers.",
+      "security_control": "Access Control",
+      "security_control_description": "Access control is a security control that restricts access to protected resources based on a set of defined rules, ensuring only authorized individuals or entities can access these resources. It plays a crucial role in data security and privacy by limiting exposure and minimizing the risk of unauthorized access, use, disclosure, or modification of sensitive information.",
+      "security_goal": "EBS shall implement comprehensive access controls for block level storage of EBS to prevent unauthorized access",
       "id": "S-1",
-      "Threat_T": "Extraction of USB Stack",
-      "security_description_threat": "USB stack shall implement robust access control mechanisms to ensure that only authorized devices and users can initiate USB connections and data transfers.",
+      "Threat_T": "Extraction of Elastic Block Store",
+      "security_description_threat": "EBS shall implement comprehensive access controls for block level storage of EBS to prevent unauthorized access",
       "Sid": [
-        "SN-R-1"
+        "SN-R-1",
+        "SN-R-3"
       ],
-      "Threat": "Extraction of USB Stack",
-      "affected_security_goal": "Confidentiality of USB Stack",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat": "Extraction of Elastic Block Store",
+      "affected_security_goal": "Confidentiality of Elastic Block Store",
+      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
       "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
       "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
       "Did": [
         "DS-1"
       ],
@@ -1067,244 +1296,362 @@
     },
     {
       "security_control": "Encryption",
-      "security_control_description": "Encryption is the process of transforming data into a form that cannot be easily understood by unauthorized people. This is done by using a mathematical algorithm to scramble the data, making it difficult to decipher without the correct key or password. Encryption is used to protect sensitive data, such as financial information, medical records, and personal identification numbers, from unauthorized access.",
-      "security_goal": "USB stack shall employ strong encryption techniques to protect data integrity and confidentiality during USB data transfers.",
+      "security_control_description": "Encryption involves transforming data into a form that cannot be easily understood by unauthorized individuals. It is used to protect sensitive information, such as financial data, personal information, and intellectual property, from unauthorized access, use, disclosure, disruption, modification, or destruction. Encryption algorithms use mathematical transformations to convert plaintext into ciphertext, which can only be decrypted using the correct encryption key.",
+      "security_goal": "EBS volumes shall implement robust encryption and data integrity mechanisms to ensure secure and durable storage for EC2 instances, minimizing the risk of data loss or performance degradation",
       "id": "S-2",
-      "Threat_T": "Extraction of USB Stack",
-      "security_description_threat": "USB stack shall employ strong encryption techniques to protect data integrity and confidentiality during USB data transfers.",
+      "Threat_T": "Manipulation of Elastic Block Store",
+      "security_description_threat": "EBS volumes shall implement robust encryption and data integrity mechanisms to ensure secure and durable storage for EC2 instances, minimizing the risk of data loss or performance degradation",
       "Sid": [
-        "SN-R-2"
-      ],
-      "Threat": "Extraction of USB Stack",
-      "affected_security_goal": "Confidentiality of USB Stack",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-1"
-      ]
-    },
-    {
-      "security_control": "Firmware Security",
-      "security_control_description": "Firmware Security involves protecting firmware from unauthorized modifications or access to maintain the integrity and availability of devices. It encompasses measures to prevent malicious firmware updates, detect firmware tampering, and verify firmware authenticity to ensure only legitimate firmware is loaded and executed on devices.",
-      "security_goal": "USB stack shall ensure the integrity and security of USB drivers and firmware.",
-      "id": "S-3",
-      "Threat_T": "Manipulation of USB Stack",
-      "security_description_threat": "USB stack shall ensure the integrity and security of USB drivers and firmware.",
-      "Sid": [
+        "SN-R-2",
         "SN-R-3"
       ],
-      "Threat": "Manipulation of USB Stack",
-      "affected_security_goal": "Integrity of USB Stack",
-      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
+      "Threat": "Manipulation of Elastic Block Store",
+      "affected_security_goal": "Integrity of Elastic Block Store",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
       "Threat_id": "Th-2",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
       "Did": [
         "DS-2"
-      ]
+      ],
+      "selectedRequirement": "EISA-CRY-107 - Cryptographic Key Management (EISA-PSA-003 - Database Management System) - Cryptographic Key Management"
     },
     {
-      "security_control": "Continuous monitoring and logging of all USB activities: Audit trail.",
-      "security_control_description": "Continuous monitoring and logging of USB activities creates an audit trail that provides visibility into USB device usage and data transfer, facilitating the detection and investigation of potential security incidents. This audit trail includes information such as the type of USB device, the time and date of the activity, the user who initiated the activity, the data transferred, and the destination of the data. By continuously monitoring and logging USB activities, organizations can identify and respond to security threats in a timely manner, reducing the risk of data breaches and other security incidents.",
-      "security_goal": "USB stack shall facilitate continuous monitoring and logging of all USB activities.",
-      "id": "S-4",
-      "Threat_T": "Extraction of USB Stack",
-      "security_description_threat": "USB stack shall facilitate continuous monitoring and logging of all USB activities.",
+      "security_control": "Redundancy",
+      "security_control_description": "Redundancy involves the duplication of critical components or functions to ensure continuous availability and resilience in the event of a failure or disruption. By having redundant systems, organizations can reduce the impact of outages and maintain business continuity. This control helps prevent disruptions to operations, data loss, and downtime, ensuring that critical systems and services are available even when one component fails.",
+      "security_goal": "EBS shall employ redundancy and failover measures to maximize the availability of block-level storage and minimize potential downtime.",
+      "id": "S-3",
+      "Threat_T": "Blocking Elastic Block Store",
+      "security_description_threat": "EBS shall employ redundancy and failover measures to maximize the availability of block-level storage and minimize potential downtime.",
       "Sid": [
+        "SN-R-3",
         "SN-R-4"
       ],
-      "Threat": "Extraction of USB Stack",
-      "affected_security_goal": "Confidentiality of USB Stack",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "Threat": "Blocking Elastic Block Store",
+      "affected_security_goal": "Availability of Elastic Block Store",
+      "damage_scenario_copy": "Damage to brand name / image / reputation",
+      "Threat_id": "Th-3",
+      "damage_scenario": "Damage to brand name / image / reputation",
+      "consequence": "Serious",
+      "consequence_DS": "Brand image can be adversely affected because of malfunction, compromise or hacking of system, or data breach or disclosure of security flaws",
+      "consequence_reasoning": "Despite the contract limiting legal liability, brand image of Bosch is considered important enough to rate it as \"serious\". Negative publicity impacting brand value may impact future business and revenue. Customer confidence is affected. Competitive edge is diminished.",
       "Did": [
-        "DS-1"
-      ]
+        "DS-3"
+      ],
+      "selectedRequirement": "EISA-ACC-301 - Management of Authentication Secrets (EISA-PSA-003 - Database Management System) - Changing Default Passwords"
     },
     {
-      "security_control": "Detection",
-      "security_control_description": "Detection is the identification of the occurrence of a security event. This includes identifying the source of the event, the affected resource(s), and the extent of the damage. Detection can be achieved through a variety of methods, including:\n\n* **Security logs:** Security logs provide a record of all events that have occurred on a system, including successful and failed login attempts, file modifications, and system errors.\n* **Intrusion detection systems (IDSs):** IDSs monitor network traffic for suspicious activity that may indicate an attack is taking place.\n* **Security information and event management (SIEM) systems:** SIEMs aggregate and correlate data from multiple sources, such as security logs and IDS alerts, to provide a comprehensive view of the security posture of an organization.",
-      "security_goal": "Network Intrusion Detection Systems (NIDS) shall be deployed at the network perimeter to detect known attacks in the network traffic.",
-      "id": "S-5",
-      "Threat_T": "Extraction of WiFi Interface",
-      "security_description_threat": "Network Intrusion Detection Systems (NIDS) shall be deployed at the network perimeter to detect known attacks in the network traffic.",
+      "security_control": "Least Privilege",
+      "security_control_description": "Least Privilege is a security control that limits the privileges and permissions granted to users, applications, and systems to only those necessary to perform their intended functions. By limiting privileges, organizations can reduce the risk of unauthorized access to critical resources and mitigate the potential impact of security breaches. The principle of least privilege ensures that users and systems only have the minimum level of access required to fulfill their roles and responsibilities. By implementing this control, organizations can enhance the overall security posture of their systems and applications by minimizing the potential for privilege escalation and malicious activity.",
+      "security_goal": "The ECS environment shall enforce system and data integrity by using up-to-date execution environments and by restricting filesystem write access.",
+      "id": "S-4",
+      "Threat_T": "Extraction of Amazon Elastic Container Service",
+      "security_description_threat": "The ECS environment shall enforce system and data integrity by using up-to-date execution environments and by restricting filesystem write access.",
       "Sid": [
-        "SN-R-5"
+        "SN-R-5",
+        "SN-R-3"
       ],
-      "Threat": "Extraction of WiFi Interface",
-      "affected_security_goal": "Confidentiality of WiFi Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
-      "Threat_id": "Th-3",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
+      "Threat": "Extraction of Amazon Elastic Container Service",
+      "affected_security_goal": "Confidentiality of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
+      "Threat_id": "Th-4",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
       "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
+      "Did": [
+        "DS-1"
+      ],
+      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Restriction and Control of Privileged Accounts"
+    },
+    {
+      "security_control": "Network hardening",
+      "security_control_description": "Network hardening involves implementing security measures to protect network resources from unauthorized access, damage, or disruption. It encompasses a range of techniques, including:\n\n* **Firewall configuration:** Establishing rules to restrict access to and from the network based on IP addresses, ports, and protocols.\n* **Intrusion detection and prevention systems (IDS/IPS):** Monitoring network traffic for suspicious activity and taking action to block or mitigate threats.\n* **Virtual private networks (VPNs):** Encrypting network traffic for secure communication over public networks.\n* **Network segmentation:** Dividing the network into smaller, isolated segments to limit the spread of threats.\n* **Patch management:** Regularly updating software and systems to address vulnerabilities and security flaws.\n* **Access control lists (ACLs):** Restricting access to network resources based on user identity and role.\n* **Strong password policies:** Enforcing complex and unique passwords to prevent unauthorized access.\n* **Data encryption:** Encrypting sensitive data to protect it from eavesdropping and theft.",
+      "security_goal": "The ECS environment shall prevent unauthorized disclosure by avoiding exposing network interfaces and by securely managing secrets.",
+      "id": "S-5",
+      "Threat_T": "Integrity of Amazon Elastic Container Service",
+      "security_description_threat": "The ECS environment shall prevent unauthorized disclosure by avoiding exposing network interfaces and by securely managing secrets.",
+      "Sid": [
+        "SN-R-6",
+        "SN-R-8"
+      ],
+      "Threat": "Integrity of Amazon Elastic Container Service",
+      "affected_security_goal": "Integrity of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
+      "Threat_id": "Th-5",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
+      "Did": [
+        "DS-2"
+      ],
+      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Assignment of Privileged Access"
+    },
+    {
+      "security_control": "Monitoring",
+      "security_control_description": "Monitoring involves the ongoing collection and analysis of security-relevant data to detect, identify, and mitigate security risks and incidents. It includes actively monitoring systems, networks, applications, and user activities to identify potential threats, unauthorized access, or malicious activity. Monitoring involves using tools and techniques such as log analysis, intrusion detection, vulnerability scanning, and network traffic analysis to gather and analyze data. It also includes continuous monitoring of user accounts, system configurations, and other security-related activities to detect anomalies, deviations from established baselines, or suspicious behavior that may indicate a security issue. The goal of monitoring is to provide real-time visibility into the security posture of the organization and to enable the timely detection and response to security incidents.",
+      "security_goal": "The ECS environment shall establish monitoring and anomaly detection",
+      "id": "S-6",
+      "Threat_T": "Blocking Amazon Elastic Container Service",
+      "security_description_threat": "The ECS environment shall establish monitoring and anomaly detection",
+      "Sid": [
+        "SN-R-7"
+      ],
+      "Threat": "Blocking Amazon Elastic Container Service",
+      "affected_security_goal": "Availability of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Loss of customer trust",
+      "Threat_id": "Th-6",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
       "Did": [
         "DS-4"
       ]
     },
     {
-      "security_control": "Anomaly Detection",
-      "security_control_description": "Anomaly Detection involves the use of techniques and algorithms to identify anomalous patterns or deviations from expected behavior within a system or network. These techniques analyze data and activity logs, searching for deviations or irregularities that may indicate potential threats or suspicious activities. By identifying these anomalies, security teams can proactively detect potential security breaches, investigate the cause of the anomaly, and take appropriate corrective actions to mitigate risks.",
-      "security_goal": "Employ advanced anomaly detection mechanisms to identify abnormal traffic patterns indicative of a potential DoS attack",
-      "id": "S-6",
-      "Threat_T": "Blocking WiFi Interface",
-      "security_description_threat": "Employ advanced anomaly detection mechanisms to identify abnormal traffic patterns indicative of a potential DoS attack",
-      "Sid": [
-        "SN-R-7"
-      ],
-      "Threat": "Blocking WiFi Interface",
-      "affected_security_goal": "Availability of WiFi Interface",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
-      "Threat_id": "Th-5",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "security_control": "Integrity.",
-      "security_control_description": "Integrity ensures that information and systems remain complete and unaltered throughout their entire lifecycle. It involves protecting data from unauthorized modification, destruction, or disclosure. This security control includes measures such as data authenticity checks, digital signatures, access controls, and data backup and recovery plans.",
-      "security_goal": "Firmware shall be protected against manipulation",
+      "security_control": "Authorization",
+      "security_control_description": "Authorization is the process of granting access to resources based on a user's identity and the permissions associated with that identity. It helps ensure that only authorized users can access specific resources, preventing unauthorized access and potential data breaches. The authorization mechanism typically involves verifying the user's credentials, determining their access level, and granting or denying access based on pre-defined rules and policies. It helps establish a secure and controlled environment by restricting access to only those who have the necessary permissions, reducing the risk of unauthorized access and the potential compromise of sensitive data.",
+      "security_goal": "Access control mechanisms shall prevent unauthorized access",
       "id": "S-7",
-      "Threat_T": "Manipulation of WiFi Interface",
-      "security_description_threat": "Firmware shall be protected against manipulation",
+      "Threat_T": "Extraction of Simple Storage Service",
+      "security_description_threat": "Access control mechanisms shall prevent unauthorized access",
       "Sid": [
-        "SN-R-8"
+        "SN-R-9"
       ],
-      "Threat": "Manipulation of WiFi Interface",
-      "affected_security_goal": "Integrity of WiFi Interface",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
-      "Threat_id": "Th-4",
-      "damage_scenario": "Degradation or loss of functionality ",
+      "Threat": "Extraction of Simple Storage Service",
+      "affected_security_goal": "Confidentiality of Simple Storage Service",
+      "damage_scenario_copy": "Data loss, Manipulation of data",
+      "Threat_id": "Th-8",
+      "damage_scenario": "Data loss, Manipulation of data",
       "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "security_control": "Network Segmentation",
-      "security_control_description": "Network Segmentation refers to the practice of dividing a computer network into smaller, isolated subnetworks called segments. This helps to improve security by limiting the spread of threats and data breaches within the network. By segmenting the network into smaller, more manageable sections, it reduces the attack surface and makes it more difficult for unauthorized users to access sensitive data or systems.",
-      "security_goal": "WiFi Access Point or Ethernet LAN Switch/Router shall be protected against known WiFi and Ethernet LAN attacks",
-      "id": "S-8",
-      "Threat_T": "Manipulation of WiFi Access Point",
-      "security_description_threat": "WiFi Access Point or Ethernet LAN Switch/Router shall be protected against known WiFi and Ethernet LAN attacks",
-      "Sid": [
-        "SN-R-10"
-      ],
-      "Threat": "Manipulation of WiFi Access Point",
-      "affected_security_goal": "Integrity of WiFi Access Point",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
-      "Threat_id": "Th-9",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "security_control": "Network Intrusion Prevention System (NIPS)",
-      "security_control_description": "Network Intrusion Prevention Systems (NIPS) are security solutions that actively monitor network traffic for malicious activity and take action to block or prevent threats from entering the network. NIPS use a variety of techniques, such as signature-based detection, anomaly detection, and deep packet inspection, to identify and block malicious traffic. NIPS are important security controls for protecting networks from a wide range of threats, including viruses, malware, botnets, and denial-of-service attacks.",
-      "security_goal": "The system shall protect the WiFi access point from Denial-of-service attack",
-      "id": "S-9",
-      "Threat_T": "Blocking WiFi Access Point",
-      "security_description_threat": "The system shall protect the WiFi access point from Denial-of-service attack",
-      "Sid": [
-        "SN-R-11"
-      ],
-      "Threat": "Blocking WiFi Access Point",
-      "affected_security_goal": "Availability of WiFi Access Point",
-      "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "security_control": "Firewall",
-      "security_control_description": "A firewall is a network security device that monitors and controls incoming and outgoing network traffic based on predetermined security rules. It establishes a barrier between trusted and untrusted networks, protecting internal networks from external threats while allowing authorized traffic to flow through. Firewalls can operate in various modes, such as packet filtering, stateful inspection, and deep packet inspection, to enforce security policies and prevent unauthorized access to protected systems and resources.",
-      "security_goal": "Configure firewalls to filter incoming and outgoing traffic. Create rules that block or limit traffic from known malicious sources",
-      "id": "S-10",
-      "Threat_T": "Blocking WiFi Router",
-      "security_description_threat": "Configure firewalls to filter incoming and outgoing traffic. Create rules that block or limit traffic from known malicious sources",
-      "Sid": [
-        "SN-R-12"
-      ],
-      "Threat": "Blocking WiFi Router",
-      "affected_security_goal": "Availability of WiFi Router",
-      "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-11",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "security_control": "Intrusion Detection System (IDS)",
-      "security_control_description": "An Intrusion Detection System (IDS) is a security tool that monitors network traffic to identify and log unauthorized attempts to access the network or its devices. It can detect and alert on security breaches, such as malware infections, denial-of-service attacks, and unauthorized access attempts, by analyzing network traffic patterns and looking for malicious activities or behaviors that deviate from normal network traffic.",
-      "security_goal": "Real-time monitoring tools to detect and respond to unusual spikes in Wi-Fi module activity",
-      "id": "S-11",
-      "Threat_T": "Blocking WiFi Module",
-      "security_description_threat": "Real-time monitoring tools to detect and respond to unusual spikes in Wi-Fi module activity",
-      "Sid": [
-        "SN-R-13"
-      ],
-      "Threat": "Blocking WiFi module",
-      "affected_security_goal": "Availability of WiFi module",
-      "damage_scenario_copy": "Legal non-compliance",
-      "Threat_id": "Th-7",
-      "damage_scenario": "Legal non-compliance",
-      "consequence": "Serious",
-      "consequence_DS": "Compliance to legal requirements may be affected",
-      "consequence_reasoning": "Compliance to international and national legal requirements and standards such as GDPR is mandatory and this may lead to penalties",
+      "consequence_DS": "Manipulation of data Stored in AWS s3 will adversely affect functionality",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
       "Did": [
         "DS-5"
       ]
     },
     {
-      "security_control": "Two-way Authentication",
-      "security_control_description": "Two-way authentication is a security mechanism that requires two authentication factors to verify the identity of a user. The first factor is typically something the user knows, such as a password or PIN, while the second factor is something the user has, such as a mobile phone or smart card.",
-      "security_goal": "Communication between the WiFi interface and its device employ two-way authentication mechanism to prevent spoofing on WiFi.",
-      "id": "S-12",
-      "Threat_T": "Extraction of WiFi module",
-      "security_description_threat": "Communication between the WiFi interface and its device employ two-way authentication mechanism to prevent spoofing on WiFi.",
+      "security_control": "Preventive",
+      "security_control_description": "Preventive controls are proactive measures designed to prevent security incidents from occurring in the first place. These controls focus on identifying and mitigating vulnerabilities, preventing unauthorized access, and ensuring the integrity of information systems.",
+      "security_goal": "EBS snapshots shall not be publicly restorable",
+      "id": "S-8",
+      "Threat_T": "Extraction of EC2",
+      "security_description_threat": "EBS snapshots shall not be publicly restorable",
       "Sid": [
-        "SN-R-6"
+        "SN-R-11"
       ],
-      "Threat": "Extraction of WiFi module",
-      "affected_security_goal": "Confidentiality of WiFi module",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
-      "Threat_id": "Th-6",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
+      "Threat": "Extraction of EC2",
+      "affected_security_goal": "Confidentiality of EC2",
+      "damage_scenario_copy": "Loss of data",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of data",
       "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "security_control": "Network segmentation",
+      "security_control_description": "Network segmentation involves dividing a network into smaller, isolated segments or subnets. Each segment is assigned a unique network address and access is restricted between segments using firewalls, routers, or other security devices. By isolating different parts of the network, segmentation can limit the spread of threats and improve overall security. For example, public-facing servers can be isolated from internal systems, reducing the risk of external attacks reaching critical data.",
+      "security_goal": "Amazon EC2 shall be configured to use VPC endpoints that are created for the Amazon EC2 service",
+      "id": "S-9",
+      "Threat_T": "Blocking EC2",
+      "security_description_threat": "Amazon EC2 shall be configured to use VPC endpoints that are created for the Amazon EC2 service",
+      "Sid": [
+        "SN-R-12"
+      ],
+      "Threat": "Blocking EC2",
+      "affected_security_goal": "Availability of EC2",
+      "damage_scenario_copy": "Loss of customer trust",
+      "Threat_id": "Th-12",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
       "Did": [
         "DS-4"
+      ]
+    },
+    {
+      "security_control": "Restrictive Access",
+      "security_control_description": "Restrictive access is a security control that limits access to a system, resources, or data to only those individuals who have been authorized to do so. This is done to protect sensitive information from unauthorized access and to maintain the integrity of the system.",
+      "security_goal": "VPC default security groups shall not allow inbound or outbound traffic",
+      "id": "S-10",
+      "Threat_T": "Extraction of EC2",
+      "security_description_threat": "VPC default security groups shall not allow inbound or outbound traffic",
+      "Sid": [
+        "SN-R-16"
+      ],
+      "Threat": "Extraction of EC2",
+      "affected_security_goal": "Confidentiality of EC2",
+      "damage_scenario_copy": "Loss of data",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of data",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "security_control": "Logging",
+      "security_control_description": "Logging involves recording and storing events and activities that occur within a system or network. It plays a crucial role in security by providing a historical record of actions, allowing for incident investigation, regulatory compliance, and security analysis. Logs can contain information such as user activities, system configurations, network traffic, and security events. They serve as an important tool for detecting and responding to security incidents, identifying anomalous behavior, and conducting security audits.",
+      "security_goal": "VPC flow logging shall be enabled in all VPCs",
+      "id": "S-11",
+      "Threat_T": "Manipulation of EC2",
+      "security_description_threat": "VPC flow logging shall be enabled in all VPCs",
+      "Sid": [
+        "SN-R-17"
+      ],
+      "Threat": "Manipulation of EC2",
+      "affected_security_goal": "Integrity of EC2",
+      "damage_scenario_copy": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "Threat_id": "Th-11",
+      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
+      "Did": [
+        "DS-7"
+      ]
+    },
+    {
+      "security_control": "Network redundancy",
+      "security_control_description": "Network redundancy involves implementing multiple network paths or network elements to ensure continuous network connectivity and minimize the risk of downtime. It helps prevent disruptions and enables partial or full recovery of network services in case of component failures, infrastructure events, or other types of outages. By diversifying network paths and utilizing backup systems, network redundancy reduces the impact of network failures, enhances fault tolerance, and improves overall network reliability and availability.",
+      "security_goal": "Both VPN tunnels for an AWS Site-to-Site VPN connection shall be up",
+      "id": "S-12",
+      "Threat_T": "Manipulation of EC2",
+      "security_description_threat": "Both VPN tunnels for an AWS Site-to-Site VPN connection shall be up",
+      "Sid": [
+        "SN-R-18"
+      ],
+      "Threat": "Manipulation of EC2",
+      "affected_security_goal": "Integrity of EC2",
+      "damage_scenario_copy": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "Threat_id": "Th-11",
+      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
+      "Did": [
+        "DS-7"
+      ]
+    },
+    {
+      "security_control": "Network ACLs",
+      "security_control_description": "Network Access Control Lists (ACLs) are a set of rules that define which network traffic is allowed to enter or leave a network. ACLs can be used to control access to specific hosts, networks, or services. They can also be used to restrict traffic based on source or destination IP address, port number, or protocol.",
+      "security_goal": "Network ACLs shall not allow ingress from 0.0.0.0/0 to port 22 or port 3389",
+      "id": "S-13",
+      "Threat_T": "Extraction of EC2",
+      "security_description_threat": "Network ACLs shall not allow ingress from 0.0.0.0/0 to port 22 or port 3389",
+      "Sid": [
+        "SN-R-19"
+      ],
+      "Threat": "Extraction of EC2",
+      "affected_security_goal": "Confidentiality of EC2",
+      "damage_scenario_copy": "Loss of data",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of data",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "security_control": "Network Access Control",
+      "security_control_description": "Network Access Control (NAC) is a security control that identifies, authorizes, and enforces access to the network based on pre-defined policies. It verifies the identity of devices, users, and applications attempting to connect to the network and grants access only to those that meet the specified security criteria. NAC systems typically use a combination of authentication, authorization, and accounting (AAA) protocols to enforce access control policies and provide centralized management and visibility into network access.",
+      "security_goal": "Security groups shall only allow unrestricted incoming traffic for authorized ports",
+      "id": "S-14",
+      "Threat_T": "Extraction of EC2",
+      "security_description_threat": "Security groups shall only allow unrestricted incoming traffic for authorized ports",
+      "Sid": [
+        "SN-R-20"
+      ],
+      "Threat": "Extraction of EC2",
+      "affected_security_goal": "Confidentiality of EC2",
+      "damage_scenario_copy": "Loss of data",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of data",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "Did": [
+        "DS-6"
+      ]
+    },
+    {
+      "security_control": "Data Retention",
+      "security_control_description": "Data retention involves establishing and implementing policies and procedures for the secure storage and disposal of sensitive data. This includes determining the appropriate retention period for different types of data based on business needs, legal and regulatory requirements, and privacy concerns. The control also includes measures to ensure the secure disposal of data when it is no longer needed, such as through encryption, deletion, or physical destruction.",
+      "security_goal": "Stopped EC2 instances shall be removed after a specified time period",
+      "id": "S-15",
+      "Threat_T": "Blocking EC2",
+      "security_description_threat": "Stopped EC2 instances shall be removed after a specified time period",
+      "Sid": [
+        "SN-R-25"
+      ],
+      "Threat": "Blocking EC2",
+      "affected_security_goal": "Availability of EC2",
+      "damage_scenario_copy": "Loss of customer trust",
+      "Threat_id": "Th-12",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
+      "Did": [
+        "DS-4"
+      ]
+    },
+    {
+      "security_control": "Network Configuration",
+      "security_control_description": "Network Configuration is the process of setting up and configuring the network devices and services to ensure secure network communication. It involves configuring network parameters such as IP addresses, routing protocols, firewalls, intrusion detection systems (IDS), and access control lists (ACLs). Network Configuration also includes implementing security measures such as network segmentation, virtual LANs (VLANs), and encryption.",
+      "security_goal": "Unused Network Access Control Lists shall be removed",
+      "id": "S-16",
+      "Threat_T": "Blocking EC2",
+      "security_description_threat": "Unused Network Access Control Lists shall be removed",
+      "Sid": [
+        "SN-R-26"
+      ],
+      "Threat": "Blocking EC2",
+      "affected_security_goal": "Availability of EC2",
+      "damage_scenario_copy": "Loss of customer trust",
+      "Threat_id": "Th-12",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
+      "Did": [
+        "DS-4"
+      ]
+    },
+    {
+      "security_control": "Network Security",
+      "security_control_description": "Network Security safeguards the confidentiality, integrity, and availability of network resources and assets by implementing controls to protect against unauthorized access, damage, or disruption. It involves measures such as firewalls, intrusion detection and prevention systems, access control lists, network segmentation, and encryption to secure network infrastructure, connections, and data in transit.",
+      "security_goal": "EC2 instances shall not have a public IPv4 address",
+      "id": "S-17",
+      "Threat_T": "Extraction of EC2",
+      "security_description_threat": "EC2 instances shall not have a public IPv4 address",
+      "Sid": [
+        "SN-R-28"
+      ],
+      "Threat": "Extraction of EC2",
+      "affected_security_goal": "Confidentiality of EC2",
+      "damage_scenario_copy": "Loss of data",
+      "Threat_id": "Th-10",
+      "damage_scenario": "Loss of data",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "Did": [
+        "DS-6"
       ]
     }
   ],
