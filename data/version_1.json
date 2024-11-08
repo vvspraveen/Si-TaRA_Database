@@ -632,12 +632,12 @@
       "affected_security_goal": "Integrity of test asset",
       "Did": "",
       "Threat_i": "Manipulation of test asset",
-      "Access": 0,
+      "Access": "1",
       "Equipment": 0,
       "Expertise": 0,
       "Time": 0,
       "Knowledge": 0,
-      "Sum": "0",
+      "Sum": "1",
       "Attack_Potential": "Beyond High"
     },
     {
@@ -1301,6 +1301,19 @@
       "Did": [
         "DS-4"
       ]
+    },
+    {
+      "id": "SN-R-17",
+      "security_description_threat": "test security measure",
+      "Threat": "Manipulation of test asset",
+      "Threat_T": "Manipulation of test asset",
+      "affected_security_goal": "Integrity of test asset",
+      "Did": [
+        "DS-2",
+        "DS-3"
+      ],
+      "Threat_id": "Th-14",
+      "isNew": false
     }
   ],
   "assetaddition": [
@@ -1416,20 +1429,29 @@
       "security_control_description": "Access control ensures that only authorized individuals and processes have access to specific resources, such as data, systems, and applications. It involves identifying, authenticating, and authorizing users, and controlling their access to sensitive information and operations based on their roles, privileges, and responsibilities. Effective access control measures help protect against unauthorized access, modification, or destruction of data, and ensure compliance with regulatory requirements.",
       "security_goal": "The ECS environment shall implement access controls to prevent unauthorized access and privilege escalation",
       "id": "S-2",
-      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Review of Privileged Accounts"
+      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Review of Privileged Accounts",
+      "Sid": [
+        "SN-R-2"
+      ]
     },
     {
       "security_control": "Least Privilege",
       "security_control_description": "Least Privilege is a security control that limits the privileges and permissions granted to users, applications, and systems to only those necessary to perform their intended functions. By limiting privileges, organizations can reduce the risk of unauthorized access to critical resources and mitigate the potential impact of security breaches. The principle of least privilege ensures that users and systems only have the minimum level of access required to fulfill their roles and responsibilities. By implementing this control, organizations can enhance the overall security posture of their systems and applications by minimizing the potential for privilege escalation and malicious activity.",
       "security_goal": "The ECS environment shall enforce system and data integrity by using up-to-date execution environments and by restricting filesystem write access.",
       "id": "S-3",
-      "selectedRequirement": "EISA-ACC-301 - Management of Authentication Secrets (EISA-PSA-003 - Database Management System) - PIN Code Rules"
+      "selectedRequirement": "EISA-ACC-301 - Management of Authentication Secrets (EISA-PSA-003 - Database Management System) - PIN Code Rules",
+      "Sid": [
+        "SN-R-3"
+      ]
     },
     {
       "security_control": "Network hardening",
       "security_control_description": "Network hardening involves implementing security measures to protect network resources from unauthorized access, damage, or disruption. It encompasses a range of techniques, including:\n\n* **Firewall configuration:** Establishing rules to restrict access to and from the network based on IP addresses, ports, and protocols.\n* **Intrusion detection and prevention systems (IDS/IPS):** Monitoring network traffic for suspicious activity and taking action to block or mitigate threats.\n* **Virtual private networks (VPNs):** Encrypting network traffic for secure communication over public networks.\n* **Network segmentation:** Dividing the network into smaller, isolated segments to limit the spread of threats.\n* **Patch management:** Regularly updating software and systems to address vulnerabilities and security flaws.\n* **Access control lists (ACLs):** Restricting access to network resources based on user identity and role.\n* **Strong password policies:** Enforcing complex and unique passwords to prevent unauthorized access.\n* **Data encryption:** Encrypting sensitive data to protect it from eavesdropping and theft.",
       "security_goal": "The ECS environment shall prevent unauthorized disclosure by avoiding exposing network interfaces and by securely managing secrets.",
-      "id": "S-4"
+      "id": "S-4",
+      "Sid": [
+        "SN-R-4"
+      ]
     },
     {
       "security_control": "Monitoring",
@@ -1480,6 +1502,16 @@
       "id": "S-12"
     }
   ],
-  "SecClaims": [],
+  "SecClaims": [
+    {
+      "id": "SC-1",
+      "security_claim": "test claim",
+      "Asid": [
+        "Asm-2"
+      ],
+      "responsible": "Bosch",
+      "isNew": false
+    }
+  ],
   "version": 1
 }
