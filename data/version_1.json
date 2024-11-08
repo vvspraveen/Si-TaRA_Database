@@ -265,6 +265,18 @@
       "Objective": "Availability",
       "objective_description": " ",
       "id": "A-13"
+    },
+    {
+      "id": "A-14",
+      "Asset_description": "test asset",
+      "Objective": "Integrity",
+      "objective_description": "test"
+    },
+    {
+      "id": "A-15",
+      "Asset_description": "test asset 2",
+      "Objective": "Freshness",
+      "objective_description": "testt"
     }
   ],
   "ThreatDSs": [
@@ -436,19 +448,38 @@
       "Did": [
         "DS-4"
       ]
+    },
+    {
+      "id": "Th-14",
+      "Threat": "Manipulation of test asset",
+      "affected_security_goal": "Integrity of test asset",
+      "Did": [
+        "DS-2",
+        "DS-3"
+      ],
+      "Threat_i": "Manipulation of test asset"
+    },
+    {
+      "id": "Th-15",
+      "Threat": "Replay of test asset 2",
+      "affected_security_goal": "Freshness of test asset 2",
+      "Did": [
+        "DS-5"
+      ],
+      "Threat_i": "Replay of test asset 2"
     }
   ],
   "ThreatEvaluation_AP": [
     {
       "id": "Th-1",
-      "Access": "0",
-      "Equipment": "9",
-      "Expertise": "9",
-      "Knowledge": "7",
-      "Time": "99",
-      "Sum": "124",
+      "Access": 0,
+      "Equipment": 0,
+      "Expertise": 3,
+      "Knowledge": 3,
+      "Time": 0,
+      "Sum": "6",
       "Threat": "Blocking AWS App Mesh",
-      "Attack_Potential": "Basic",
+      "Attack_Potential": "Beyond High",
       "Threat_i": "Blocking AWS App Mesh"
     },
     {
@@ -489,23 +520,23 @@
     },
     {
       "id": "Th-5",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "8",
-      "Knowledge": "7",
-      "Time": "2",
-      "Sum": "17",
+      "Access": 0,
+      "Equipment": 0,
+      "Expertise": 3,
+      "Knowledge": 3,
+      "Time": 2,
+      "Sum": "8",
       "Threat": "Extraction of AWS Lambda",
-      "Attack_Potential": "Moderate",
+      "Attack_Potential": "Beyond High",
       "Threat_i": "Extraction of AWS Lambda"
     },
     {
       "id": "Th-6",
-      "Access": "0",
-      "Equipment": "4",
-      "Expertise": "6",
-      "Knowledge": "7",
-      "Time": "2",
+      "Access": 0,
+      "Equipment": 4,
+      "Expertise": 6,
+      "Knowledge": 7,
+      "Time": 2,
       "Sum": "19",
       "Threat": "Manipulation of AWS Lambda",
       "Attack_Potential": "Moderate",
@@ -513,11 +544,11 @@
     },
     {
       "id": "Th-7",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "3",
-      "Knowledge": "0",
-      "Time": "0",
+      "Access": 0,
+      "Equipment": 0,
+      "Expertise": 3,
+      "Knowledge": 0,
+      "Time": 0,
       "Sum": "3",
       "Threat": "Blocking AWS Lambda",
       "Attack_Potential": "Beyond High",
@@ -539,12 +570,12 @@
       "id": "Th-9",
       "Access": "2",
       "Equipment": "0",
-      "Expertise": "8",
-      "Knowledge": "11",
-      "Time": "5",
-      "Sum": "26",
+      "Expertise": "6",
+      "Knowledge": "3",
+      "Time": "3",
+      "Sum": "14",
       "Threat": "Manipulation of Amazon S3 Glacier",
-      "Attack_Potential": "Basic",
+      "Attack_Potential": "Moderate",
       "Threat_i": "Manipulation of Amazon S3 Glacier"
     },
     {
@@ -573,14 +604,14 @@
     },
     {
       "id": "Th-12",
-      "Access": "19",
+      "Access": "0",
       "Equipment": "11",
-      "Expertise": "8",
+      "Expertise": "6",
       "Knowledge": "4",
       "Time": "3",
-      "Sum": "45",
+      "Sum": "24",
       "Threat": "Manipulation of AWS Batch",
-      "Attack_Potential": "Basic",
+      "Attack_Potential": "Enhanced Basic",
       "Threat_i": "Manipulation of AWS Batch"
     },
     {
@@ -594,6 +625,34 @@
       "Threat": "Blocking AWS Batch",
       "Attack_Potential": "Beyond High",
       "Threat_i": "Blocking AWS Batch"
+    },
+    {
+      "id": "Th-14",
+      "Threat": "Manipulation of test asset",
+      "affected_security_goal": "Integrity of test asset",
+      "Did": "",
+      "Threat_i": "Manipulation of test asset",
+      "Access": 0,
+      "Equipment": 0,
+      "Expertise": 0,
+      "Time": 0,
+      "Knowledge": 0,
+      "Sum": "0",
+      "Attack_Potential": "Beyond High"
+    },
+    {
+      "id": "Th-15",
+      "Threat": "Replay of test asset 2",
+      "affected_security_goal": "Freshness of test asset 2",
+      "Did": "",
+      "Threat_i": "Replay of test asset 2",
+      "Access": "99",
+      "Equipment": "99",
+      "Expertise": "99",
+      "Time": "99",
+      "Knowledge": "99",
+      "Sum": "495",
+      "Attack_Potential": "Basic"
     }
   ],
   "threatDamageAssociations": [
@@ -686,6 +745,27 @@
       "threat": "Blocking AWS Batch",
       "damageScenarioId": "DS-4",
       "damageScenario": "Loss of customer trust",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-14",
+      "threat": "Manipulation of test asset",
+      "damageScenarioId": "DS-2",
+      "damageScenario": "Disclosure of Personally Identifiable Information",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-14",
+      "threat": "Manipulation of test asset",
+      "damageScenarioId": "DS-3",
+      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-15",
+      "threat": "Replay of test asset 2",
+      "damageScenarioId": "DS-5",
+      "damageScenario": "Data loss, Manipulation of data",
       "cons": "Moderate"
     }
   ],
@@ -780,6 +860,27 @@
       "damageScenarioId": "DS-4",
       "damageScenario": "Loss of customer trust",
       "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-14",
+      "threat": "Manipulation of test asset",
+      "damageScenarioId": "DS-2",
+      "damageScenario": "Disclosure of Personally Identifiable Information",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-14",
+      "threat": "Manipulation of test asset",
+      "damageScenarioId": "DS-3",
+      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-15",
+      "threat": "Replay of test asset 2",
+      "damageScenarioId": "DS-5",
+      "damageScenario": "Data loss, Manipulation of data",
+      "cons": "Moderate"
     }
   ],
   "RiskAssessment": [
@@ -790,8 +891,8 @@
       "consequence": "Serious",
       "Threat": "Blocking AWS App Mesh",
       "risk": "Very High",
-      "attackPotential": "Basic",
-      "risk_of_d": "Very High"
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
     },
     {
       "id": "R-2",
@@ -830,8 +931,8 @@
       "consequence": "Moderate",
       "Threat": "Extraction of AWS Lambda",
       "risk": "Low",
-      "attackPotential": "Moderate",
-      "risk_of_d": "Medium"
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
     },
     {
       "id": "R-6",
@@ -870,8 +971,8 @@
       "consequence": "Moderate",
       "Threat": "Manipulation of Amazon S3 Glacier",
       "risk": "Low",
-      "attackPotential": "Basic",
-      "risk_of_d": "High"
+      "attackPotential": "Moderate",
+      "risk_of_d": "Medium"
     },
     {
       "id": "R-10",
@@ -900,7 +1001,7 @@
       "consequence": "Moderate",
       "Threat": "Manipulation of AWS Batch",
       "risk": "Low",
-      "attackPotential": "Basic",
+      "attackPotential": "Enhanced Basic",
       "risk_of_d": "High"
     },
     {
@@ -912,6 +1013,36 @@
       "risk": "Low",
       "attackPotential": "Beyond High",
       "risk_of_d": "Low"
+    },
+    {
+      "id": "R-14",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
+      "D_id": "DS-2",
+      "consequence": "Moderate",
+      "Threat": "Manipulation of test asset",
+      "risk": "Low",
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
+    },
+    {
+      "id": "R-15",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "D_id": "DS-3",
+      "consequence": "Moderate",
+      "Threat": "Manipulation of test asset",
+      "risk": "Low",
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
+    },
+    {
+      "id": "R-16",
+      "damage_scenario": "Data loss, Manipulation of data",
+      "D_id": "DS-5",
+      "consequence": "Moderate",
+      "Threat": "Replay of test asset 2",
+      "risk": "Low",
+      "attackPotential": "Basic",
+      "risk_of_d": "High"
     }
   ],
   "SecurityNeeds": [
@@ -1250,6 +1381,22 @@
       "Objective": "Availability",
       "objective_description": " ",
       "id": "AA-13"
+    },
+    {
+      "id": "AA-14",
+      "Asset_description": "test asset",
+      "Objective": "Integrity",
+      "objective_description": "test",
+      "isNew": false,
+      "fromCSV": false
+    },
+    {
+      "id": "AA-15",
+      "Asset_description": "test asset 2",
+      "Objective": "Freshness",
+      "objective_description": "testt",
+      "isNew": false,
+      "fromCSV": false
     }
   ],
   "SecControls": [
