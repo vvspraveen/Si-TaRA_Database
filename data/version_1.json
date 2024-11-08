@@ -1,13 +1,13 @@
 {
   "assumption": [
     {
-      "assumption": "The Elastic Block Store (EBS) volumes provides reliable and durable block-level storage for Amazon EC2 instances and other services",
-      "assumption_comment": "Block-level storage of EBS",
+      "assumption": "Cloud webserver and services comes inside the trust boundary.",
+      "assumption_comment": "The trust boundary of the cloud infrastructure and specifies that the cloud webserver and services are included within it",
       "id": "Asm-1"
     },
     {
-      "assumption": "EBS backup infrastructure is resilient and securely configured.",
-      "assumption_comment": "EBS backup system",
+      "assumption": "The underlying cloud infrastructure supporting ECS is securely configured",
+      "assumption_comment": "Proper security measures implemented to prevent threats and vulnerabilities",
       "id": "Asm-2"
     },
     {
@@ -16,108 +16,113 @@
       "id": "Asm-3"
     },
     {
-      "assumption": "The underlying cloud infrastructure supporting ECS is securely configured",
-      "assumption_comment": "Proper security measures implemented to prevent threats and vulnerabilities",
+      "assumption": "Data is encrypted both in transit and at rest",
+      "assumption_comment": "Encryption should be done to protect against eavesdropping and data breaches.",
       "id": "Asm-4"
     },
     {
-      "assumption": "Data stored in S3 buckets is encrypted at rest.",
-      "assumption_comment": "Without encryption, data could be vulnerable to exposure in the event of a breach or unauthorized access.",
+      "assumption": "Customer is responsible for designing, building, and maintaining secure applications that run on the service",
+      "assumption_comment": "AWS Lambda is designed to automatically scale \nto handle incoming requests, and it is generally able to provide low latency and high throughput for function invocations.",
       "id": "Asm-5"
     },
     {
-      "assumption": "Use of S3 complies with relevant regulatory standards, industry best practices, and data protection laws applicable to their organization",
-      "assumption_comment": "Implementing access controls and encryption, and regularly monitoring and auditing the system for potential security vulnerabilities.",
+      "assumption": "Lambda functions are developed using secure coding practices ",
+      "assumption_comment": "Secure Development practices",
       "id": "Asm-6"
     },
     {
-      "assumption": "Users configure access controls properly, utilizing IAM (Identity and Access Management) policies, S3 bucket policies, and Access Control Lists to restrict and manage access to their S3 resources",
-      "assumption_comment": "Access Control Configuration",
+      "assumption": "User is responsible for securing their encryption keys \nand managing access to their data",
+      "assumption_comment": "User must take steps to protect their encryption \nkeys, such as using a secure key management system, and they must also manage access to their data by controlling who has permission to retrieve it.",
       "id": "Asm-7"
     },
     {
-      "assumption": "Logging and monitoring mechanisms are in place to track access to S3 buckets and detect any suspicious or unauthorized activity",
-      "assumption_comment": "Without proper logging and monitoring, organizations may not be able to identify security incidents or breaches in a timely manner.",
+      "assumption": "Data transmitted to and from Amazon S3 Glacier is secured using encrypted communication channels",
+      "assumption_comment": "Secure Data Transmission",
       "id": "Asm-8"
     },
     {
-      "assumption": "Organizations expect that CSPs will provide transparency regarding their security practices, including incident response procedures and communication in the event of a security incident",
-      "assumption_comment": "Proactive maintenance, including the consistent application of the latest security patches and upgrades, is crucial for safeguarding assets and ensuring the overall security of system environments",
+      "assumption": "Amazon S3 Glacier provides mechanisms for encrypting data at rest, ensuring that stored archives remain confidential",
+      "assumption_comment": "Data Encryption at Rest",
       "id": "Asm-9"
+    },
+    {
+      "assumption": "Amazon S3 Glacier has reduced availability compared to other storage options due to its focus on long-term data archiving and infrequent access",
+      "assumption_comment": "S3 Glacier is designed specifically for data that is \ninfrequently accessed, and as a result, it may take several hours to retrieve data from the service",
+      "id": "Asm-10"
     }
   ],
   "misuse": [
     {
-      "muc_description": "Unauthorized user gains access to an EBS volume and uses it for malicious purposes",
-      "muc_comment": "This can have serious consequences, as the attacker may be able to steal data, disrupt operations or even launch attacks on other systems",
+      "muc_description": "Attacker is able to gain access to the mesh and manipulate the communication between the microservices, potentially leading to unauthorized access to sensitive data or disruption of service",
+      "muc_comment": "It's the consequence of data breaches and the need for proper security measure to protect sensitive information.",
       "id": "MUC-1"
-    },
-    {
-      "muc_description": " An attacker floods an EBS volume with a large number of read or write requests.",
-      "muc_comment": "Denial of Service (DoS) Attack",
-      "id": "MUC-2"
     },
     {
       "muc_description": "An attacker could exploit weak access controls to gain unauthorized access to the ECS environment, potentially leading to escalation of privileges",
       "muc_comment": "Privilege escalation",
-      "id": "MUC-3"
+      "id": "MUC-2"
     },
     {
       "muc_description": "An attacker could intercept exposed data due to improperly secured network interfaces or access exposed secrets to gain unauthorized access",
       "muc_comment": "Improper secured network interfaces or exposed secrets ",
-      "id": "MUC-4"
+      "id": "MUC-3"
     },
     {
       "muc_description": "Attackers can exploit container breakout vulnerabilities to gain unauthorized access to the underlying host operating system or to escape the container isolation boundary. ",
       "muc_comment": "Container Breakout",
+      "id": "MUC-4"
+    },
+    {
+      "muc_description": "An attacker exploits a vulnerable Lambda function to access and exfiltrate sensitive data stored within the function's environment or accessible resources, bypassing access controls and security mechanisms.",
+      "muc_comment": "Data Exfiltration",
       "id": "MUC-5"
     },
     {
-      "muc_description": "Attacker gaining access to an S3 bucket that contains sensitive data",
-      "muc_comment": "This can have serious consequences, as the attacker may be able to steal",
+      "muc_description": "An attacker crafts a Lambda function that performs a computationally expensive task and then invokes it repeatedly, potentially from multiple sources, to overload the Lambda service and cause denial of service for legitimate users.",
+      "muc_comment": "DOS attacks",
       "id": "MUC-6"
     },
     {
-      "muc_description": "Attacker gains unauthorized access to IAM credentials through phishing",
-      "muc_comment": "Unprotected Buckets with Public Access",
+      "muc_description": "An attacker exploits vulnerabilities in Lambda function configurations to escalate privileges and gain unauthorized access to additional resources or sensitive data within the AWS environment.",
+      "muc_comment": "Privilege Escalation",
       "id": "MUC-7"
     },
     {
-      "muc_description": "Attackers can discover and access sensitive data stored in the buckets, leading to data exposure or unauthorized disclosure of information.",
-      "muc_comment": "Unprotected Buckets with Public Access",
+      "muc_description": "Attacker floods Glacier with a high volume of requests, causing a service outage",
+      "muc_comment": "DoS attacks can disrupt service availability. ",
       "id": "MUC-8"
     },
     {
-      "muc_description": "Insider threats can result in unauthorized access, data manipulation, or intentional deletion of critical data stored in S3.",
-      "muc_comment": "Insider Threat",
+      "muc_description": "Attacker exploits misconfigured access controls to gain unauthorized access to Glacier resources",
+      "muc_comment": "Exploitation of Misconfigured Access Controls",
       "id": "MUC-9"
     },
     {
-      "muc_description": "An attacker gains unauthorized access to an EC2 instance, either through compromised credentials, vulnerabilities in the operating system or applications",
-      "muc_comment": "An unauthorized person gaining access to a system \nor information is a security concern. It can lead to data breaches, unauthorized changes, or other malicious activities. It is important to implement proper security measures, such as strong passwords and access controls, to prevent unauthorized access.",
+      "muc_description": "Attacker gains unauthorized access to Glacier archives and retrieves sensitive data",
+      "muc_comment": "Unauthorized retrieval can lead to data exposure and compromise confidentiality",
       "id": "MUC-10"
     }
   ],
   "damageScenario": [
     {
+      "damage_scenario": "Unreliable operation, data loss, data breaches, disruption functionality",
+      "consequence": "Serious",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
+      "consequence_reasoning": "It will create a significant data loss, downtime, business disruption, increased cost negatively impact on organisation",
+      "id": "DS-1"
+    },
+    {
       "damage_scenario": "Disclosure of Personally Identifiable Information",
       "consequence": "Moderate",
       "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
-      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
-      "id": "DS-1"
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards is mandatory and this may lead to penalties.",
+      "id": "DS-2"
     },
     {
       "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "consequence": "Moderate",
       "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
       "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
-      "id": "DS-2"
-    },
-    {
-      "damage_scenario": "Damage to brand name / image / reputation",
-      "consequence": "Serious",
-      "consequence_DS": "Brand image can be adversely affected because of malfunction, compromise or hacking of system, or data breach or disclosure of security flaws",
-      "consequence_reasoning": "Despite the contract limiting legal liability, brand image of Bosch is considered important enough to rate it as \"serious\". Negative publicity impacting brand value may impact future business and revenue. Customer confidence is affected. Competitive edge is diminished.",
       "id": "DS-3"
     },
     {
@@ -130,170 +135,132 @@
     {
       "damage_scenario": "Data loss, Manipulation of data",
       "consequence": "Moderate",
-      "consequence_DS": "Manipulation of data Stored in AWS s3 will adversely affect functionality",
+      "consequence_DS": "Manipulation of data will adversely affect functionality",
       "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
       "id": "DS-5"
     },
     {
-      "damage_scenario": "Loss of data",
+      "damage_scenario": "Disclosure Proprietary Data or sensitive \nInformation",
       "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "consequence_DS": "Data can be recovered and it does not a high impact on the organization",
+      "consequence_reasoning": "It has a moderate legal consequences.",
       "id": "DS-6"
     },
     {
-      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "damage_scenario": "Manipulation of data",
       "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
+      "consequence_DS": "Attackers may tamper with or manipulate checksums and hash values associated with archives to disguise unauthorized modifications",
+      "consequence_reasoning": "Organizations often implement backup and redundancy measures for critical data",
       "id": "DS-7"
     }
   ],
   "SecGoals": [
     {
-      "Asset_description": "Elastic Block Store",
-      "Objective": "Confidentiality",
-      "objective_description": "Confidentiality - Only authorized users can have access to EBS volumes data",
-      "id": "A-1"
-    },
-    {
-      "Asset_description": "Elastic Block Store",
-      "Objective": "Integrity",
-      "objective_description": "\nIntegrity - Manipulation of data within EBS should not be done and data must maintain Integrity",
-      "id": "A-2"
-    },
-    {
-      "Asset_description": "Elastic Block Store",
+      "Asset_description": "AWS App Mesh",
       "Objective": "Availability",
-      "objective_description": "Availability - The data stored in EBS volumes should not be disrupted or interrupted",
-      "id": "A-3"
+      "objective_description": "Ensuring that data and systems are accessible and usable when needed. ",
+      "id": "A-1"
     },
     {
       "Asset_description": "Amazon Elastic Container Service",
       "Objective": "Confidentiality",
       "objective_description": "Confidentiality - Ensure that data and information within ECS remain confidential, preventing unauthorized access or disclosure.",
-      "id": "A-4"
+      "id": "A-2"
     },
     {
       "Asset_description": "Amazon Elastic Container Service",
       "Objective": "Integrity",
       "objective_description": "\nIntegrity -  Containerized applications or services running within the ECS should not be tampered with",
-      "id": "A-5"
+      "id": "A-3"
     },
     {
       "Asset_description": "Amazon Elastic Container Service",
       "Objective": "Availability",
       "objective_description": "Availability -  Containerized services within ECS should be available to minimize the downtime and disruptions caused by security incidents",
+      "id": "A-4"
+    },
+    {
+      "Asset_description": "AWS Lambda",
+      "Objective": "Confidentiality",
+      "objective_description": "AWS Lambda implements security measures to protect the confidentiality of customer data and applications.",
+      "id": "A-5"
+    },
+    {
+      "Asset_description": "AWS Lambda",
+      "Objective": "Integrity",
+      "objective_description": "AWS Lambda implements security measures to protect the integrity of customer data and applications",
       "id": "A-6"
     },
     {
-      "Asset_description": "Simple Storage Service",
+      "Asset_description": "AWS Lambda",
       "Objective": "Availability",
-      "objective_description": "Versioning and lifecycle policies must be employed ensuring data accessibility and durability.",
+      "objective_description": "AWS Lambda provides a highly available and scalable infrastructure for running customer applications.",
       "id": "A-7"
     },
     {
-      "Asset_description": "Simple Storage Service",
+      "Asset_description": "Amazon S3 Glacier",
       "Objective": "Confidentiality",
-      "objective_description": "Amazon S3 ensures confidentiality by offering server-side encryption, secure data transfer with HTTPS, and fine-grained access controls through IAM and bucket policies.",
+      "objective_description": "Exploiting weak access controls or compromised credentials to gain unauthorized access to Glacier archives and retrieve confidential data",
       "id": "A-8"
     },
     {
-      "Asset_description": "Simple Storage Service",
+      "Asset_description": "Amazon S3 Glacier",
       "Objective": "Integrity",
-      "objective_description": "S3 maintains data using checksums, hash functions, and versioning to prevent Man In the Middle attacks",
+      "objective_description": "Malicious actors may attempt to alter the contents of Glacier archives during storage or retrieval, compromising the integrity of the stored data",
       "id": "A-9"
     },
     {
-      "Asset_description": "EC2",
-      "Objective": "Confidentiality",
-      "objective_description": "Unauthorized users should not have access to the services",
-      "id": "A-10"
-    },
-    {
-      "Asset_description": "EC2",
-      "Objective": "Integrity",
-      "objective_description": "Users cannot manipulate the data.",
-      "id": "A-11"
-    },
-    {
-      "Asset_description": "EC2",
+      "Asset_description": "Amazon S3 Glacier",
       "Objective": "Availability",
-      "objective_description": "Availability of the service when needed",
-      "id": "A-12"
+      "objective_description": "Overwhelming S3 Glacier with a high volume of requests to disrupt or delay the retrieval of archives, impacting the availability of data",
+      "id": "A-10"
     }
   ],
   "ThreatDSs": [
     {
-      "Threat": "Extraction of Elastic Block Store",
-      "affected_security_goal": "Confidentiality of Elastic Block Store",
-      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
+      "Threat": "Blocking AWS App Mesh",
+      "affected_security_goal": "Availability of AWS App Mesh",
+      "damage_scenario_copy": "Unreliable operation, data loss, data breaches, disruption functionality",
       "id": "Th-1",
-      "damage_scenario": "Disclosure of Personally Identifiable Information",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
-      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
+      "damage_scenario": "Unreliable operation, data loss, data breaches, disruption functionality",
+      "consequence": "Serious",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
+      "consequence_reasoning": "It will create a significant data loss, downtime, business disruption, increased cost negatively impact on organisation",
       "Did": [
         "DS-1"
-      ]
-    },
-    {
-      "Threat": "Manipulation of Elastic Block Store",
-      "affected_security_goal": "Integrity of Elastic Block Store",
-      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "id": "Th-2",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
-      "Did": [
-        "DS-2"
-      ]
-    },
-    {
-      "Threat": "Blocking Elastic Block Store",
-      "affected_security_goal": "Availability of Elastic Block Store",
-      "damage_scenario_copy": "Damage to brand name / image / reputation",
-      "id": "Th-3",
-      "damage_scenario": "Damage to brand name / image / reputation",
-      "consequence": "Serious",
-      "consequence_DS": "Brand image can be adversely affected because of malfunction, compromise or hacking of system, or data breach or disclosure of security flaws",
-      "consequence_reasoning": "Despite the contract limiting legal liability, brand image of Bosch is considered important enough to rate it as \"serious\". Negative publicity impacting brand value may impact future business and revenue. Customer confidence is affected. Competitive edge is diminished.",
-      "Did": [
-        "DS-3"
       ]
     },
     {
       "Threat": "Extraction of Amazon Elastic Container Service",
       "affected_security_goal": "Confidentiality of Amazon Elastic Container Service",
       "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
-      "id": "Th-4",
+      "id": "Th-2",
       "damage_scenario": "Disclosure of Personally Identifiable Information",
       "consequence": "Moderate",
       "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
-      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards is mandatory and this may lead to penalties.",
       "Did": [
-        "DS-1"
+        "DS-2"
       ]
     },
     {
       "Threat": "Integrity of Amazon Elastic Container Service",
       "affected_security_goal": "Integrity of Amazon Elastic Container Service",
       "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "id": "Th-5",
+      "id": "Th-3",
       "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "consequence": "Moderate",
       "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
       "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
       "Did": [
-        "DS-2"
+        "DS-3"
       ]
     },
     {
       "Threat": "Blocking Amazon Elastic Container Service",
       "affected_security_goal": "Availability of Amazon Elastic Container Service",
       "damage_scenario_copy": "Loss of customer trust",
-      "id": "Th-6",
+      "id": "Th-4",
       "damage_scenario": "Loss of customer trust",
       "consequence": "Moderate",
       "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
@@ -303,8 +270,34 @@
       ]
     },
     {
-      "Threat": "Blocking Simple Storage Service",
-      "affected_security_goal": "Availability of Simple Storage Service",
+      "Threat": "Extraction of AWS Lambda",
+      "affected_security_goal": "Confidentiality of AWS Lambda",
+      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
+      "id": "Th-5",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards is mandatory and this may lead to penalties.",
+      "Did": [
+        "DS-2"
+      ]
+    },
+    {
+      "Threat": "Manipulation of AWS Lambda",
+      "affected_security_goal": "Integrity of AWS Lambda",
+      "damage_scenario_copy": "Data loss, Manipulation of data",
+      "id": "Th-6",
+      "damage_scenario": "Data loss, Manipulation of data",
+      "consequence": "Moderate",
+      "consequence_DS": "Manipulation of data will adversely affect functionality",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
+      "Did": [
+        "DS-5"
+      ]
+    },
+    {
+      "Threat": "Blocking AWS Lambda",
+      "affected_security_goal": "Availability of AWS Lambda",
       "damage_scenario_copy": "Loss of Customer trust",
       "id": "Th-7",
       "damage_scenario": "Loss of customer trust",
@@ -316,62 +309,36 @@
       ]
     },
     {
-      "Threat": "Extraction of Simple Storage Service",
-      "affected_security_goal": "Confidentiality of Simple Storage Service",
-      "damage_scenario_copy": "Data loss, Manipulation of data",
+      "Threat": "Extraction of Amazon S3 Glacier",
+      "affected_security_goal": "Confidentiality of Amazon S3 Glacier",
+      "damage_scenario_copy": "Disclosure Proprietary Data or sensitive \nInformation",
       "id": "Th-8",
-      "damage_scenario": "Data loss, Manipulation of data",
+      "damage_scenario": "Disclosure Proprietary Data or sensitive \nInformation",
       "consequence": "Moderate",
-      "consequence_DS": "Manipulation of data Stored in AWS s3 will adversely affect functionality",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
-      "Did": [
-        "DS-5"
-      ]
-    },
-    {
-      "Threat": "Manipulation of Simple Storage Service",
-      "affected_security_goal": "Integrity of Simple Storage Service",
-      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "id": "Th-9",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
-      "Did": [
-        "DS-2"
-      ]
-    },
-    {
-      "Threat": "Extraction of EC2",
-      "affected_security_goal": "Confidentiality of EC2",
-      "damage_scenario_copy": "Loss of data",
-      "id": "Th-10",
-      "damage_scenario": "Loss of data",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "consequence_DS": "Data can be recovered and it does not a high impact on the organization",
+      "consequence_reasoning": "It has a moderate legal consequences.",
       "Did": [
         "DS-6"
       ]
     },
     {
-      "Threat": "Manipulation of EC2",
-      "affected_security_goal": "Integrity of EC2",
-      "damage_scenario_copy": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "id": "Th-11",
-      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
+      "Threat": "Manipulation of Amazon S3 Glacier",
+      "affected_security_goal": "Integrity of Amazon S3 Glacier",
+      "damage_scenario_copy": "Manipulation of data",
+      "id": "Th-9",
+      "damage_scenario": "Manipulation of data",
       "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
+      "consequence_DS": "Attackers may tamper with or manipulate checksums and hash values associated with archives to disguise unauthorized modifications",
+      "consequence_reasoning": "Organizations often implement backup and redundancy measures for critical data",
       "Did": [
         "DS-7"
       ]
     },
     {
-      "Threat": "Blocking EC2",
-      "affected_security_goal": "Availability of EC2",
+      "Threat": "Blocking Amazon S3 Glacier",
+      "affected_security_goal": "Availability of Amazon S3 Glacier",
       "damage_scenario_copy": "Loss of customer trust",
-      "id": "Th-12",
+      "id": "Th-10",
       "damage_scenario": "Loss of customer trust",
       "consequence": "Moderate",
       "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
@@ -383,135 +350,183 @@
   ],
   "ThreatEvaluation_AP": [
     {
-      "Threat": "Extraction of Elastic Block Store",
-      "id": "Th-1"
+      "id": "Th-1",
+      "Access": 0,
+      "Equipment": 0,
+      "Expertise": 3,
+      "Knowledge": 3,
+      "Time": 0,
+      "Sum": "6",
+      "Threat": "Blocking AWS App Mesh",
+      "Attack_Potential": "Beyond High"
     },
     {
-      "Threat": "Manipulation of Elastic Block Store",
-      "id": "Th-2"
-    },
-    {
-      "Threat": "Blocking Elastic Block Store",
-      "id": "Th-3"
-    },
-    {
+      "id": "Th-2",
+      "Access": "0",
+      "Equipment": "0",
+      "Expertise": "3",
+      "Knowledge": "7",
+      "Time": "0",
+      "Sum": "10",
       "Threat": "Extraction of Amazon Elastic Container Service",
-      "id": "Th-4"
+      "Attack_Potential": "High"
     },
     {
+      "id": "Th-3",
+      "Access": "2",
+      "Equipment": "4",
+      "Expertise": "3",
+      "Knowledge": "7",
+      "Time": "2",
+      "Sum": "18",
       "Threat": "Integrity of Amazon Elastic Container Service",
-      "id": "Th-5"
+      "Attack_Potential": "Moderate"
     },
     {
+      "id": "Th-4",
+      "Access": "0",
+      "Equipment": "0",
+      "Expertise": "3",
+      "Knowledge": "0",
+      "Time": "0",
+      "Sum": "3",
       "Threat": "Blocking Amazon Elastic Container Service",
-      "id": "Th-6"
+      "Attack_Potential": "Beyond High"
     },
     {
-      "Threat": "Blocking Simple Storage Service",
-      "id": "Th-7"
+      "id": "Th-5",
+      "Access": 0,
+      "Equipment": 0,
+      "Expertise": 3,
+      "Knowledge": 3,
+      "Time": 2,
+      "Sum": "8",
+      "Threat": "Extraction of AWS Lambda",
+      "Attack_Potential": "Beyond High"
     },
     {
-      "Threat": "Extraction of Simple Storage Service",
-      "id": "Th-8"
+      "id": "Th-6",
+      "Access": 0,
+      "Equipment": 4,
+      "Expertise": 6,
+      "Knowledge": 7,
+      "Time": 2,
+      "Sum": "19",
+      "Threat": "Manipulation of AWS Lambda",
+      "Attack_Potential": "Moderate"
     },
     {
-      "Threat": "Manipulation of Simple Storage Service",
-      "id": "Th-9"
+      "id": "Th-7",
+      "Access": 0,
+      "Equipment": 0,
+      "Expertise": 3,
+      "Knowledge": 0,
+      "Time": 0,
+      "Sum": "3",
+      "Threat": "Blocking AWS Lambda",
+      "Attack_Potential": "Beyond High"
     },
     {
-      "Threat": "Extraction of EC2",
-      "id": "Th-10"
+      "id": "Th-8",
+      "Access": "2",
+      "Equipment": "4",
+      "Expertise": "6",
+      "Knowledge": "7",
+      "Time": "1",
+      "Sum": "20",
+      "Threat": "Extraction of Amazon S3 Glacier",
+      "Attack_Potential": "Enhanced Basic"
     },
     {
-      "Threat": "Manipulation of EC2",
-      "id": "Th-11"
+      "id": "Th-9",
+      "Access": "2",
+      "Equipment": "0",
+      "Expertise": "6",
+      "Knowledge": "3",
+      "Time": "3",
+      "Sum": "14",
+      "Threat": "Manipulation of Amazon S3 Glacier",
+      "Attack_Potential": "Moderate"
     },
     {
-      "Threat": "Blocking EC2",
-      "id": "Th-12"
+      "id": "Th-10",
+      "Access": "0",
+      "Equipment": "0",
+      "Expertise": "3",
+      "Knowledge": "3",
+      "Time": "1",
+      "Sum": "7",
+      "Threat": "Blocking Amazon S3 Glacier",
+      "Attack_Potential": "Beyond High"
     }
   ],
   "threatDamageAssociations": [
     {
       "threatId": "Th-1",
-      "threat": "Extraction of Elastic Block Store",
+      "threat": "Blocking AWS App Mesh",
       "damageScenarioId": "DS-1",
-      "damageScenario": "Disclosure of Personally Identifiable Information",
-      "cons": "Moderate"
+      "damageScenario": "Unreliable operation, data loss, data breaches, disruption functionality",
+      "cons": "Serious"
     },
     {
       "threatId": "Th-2",
-      "threat": "Manipulation of Elastic Block Store",
+      "threat": "Extraction of Amazon Elastic Container Service",
       "damageScenarioId": "DS-2",
-      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "damageScenario": "Disclosure of Personally Identifiable Information",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-3",
-      "threat": "Blocking Elastic Block Store",
-      "damageScenarioId": "DS-3",
-      "damageScenario": "Damage to brand name / image / reputation",
-      "cons": "Serious"
-    },
-    {
-      "threatId": "Th-4",
-      "threat": "Extraction of Amazon Elastic Container Service",
-      "damageScenarioId": "DS-1",
-      "damageScenario": "Disclosure of Personally Identifiable Information",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-5",
       "threat": "Integrity of Amazon Elastic Container Service",
-      "damageScenarioId": "DS-2",
+      "damageScenarioId": "DS-3",
       "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "cons": "Moderate"
     },
     {
-      "threatId": "Th-6",
+      "threatId": "Th-4",
       "threat": "Blocking Amazon Elastic Container Service",
       "damageScenarioId": "DS-4",
       "damageScenario": "Loss of customer trust",
       "cons": "Moderate"
     },
     {
+      "threatId": "Th-5",
+      "threat": "Extraction of AWS Lambda",
+      "damageScenarioId": "DS-2",
+      "damageScenario": "Disclosure of Personally Identifiable Information",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-6",
+      "threat": "Manipulation of AWS Lambda",
+      "damageScenarioId": "DS-5",
+      "damageScenario": "Data loss, Manipulation of data",
+      "cons": "Moderate"
+    },
+    {
       "threatId": "Th-7",
-      "threat": "Blocking Simple Storage Service",
+      "threat": "Blocking AWS Lambda",
       "damageScenarioId": "DS-4",
       "damageScenario": "Loss of customer trust",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-8",
-      "threat": "Extraction of Simple Storage Service",
-      "damageScenarioId": "DS-5",
-      "damageScenario": "Data loss, Manipulation of data",
+      "threat": "Extraction of Amazon S3 Glacier",
+      "damageScenarioId": "DS-6",
+      "damageScenario": "Disclosure Proprietary Data or sensitive \nInformation",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-9",
-      "threat": "Manipulation of Simple Storage Service",
-      "damageScenarioId": "DS-2",
-      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "threat": "Manipulation of Amazon S3 Glacier",
+      "damageScenarioId": "DS-7",
+      "damageScenario": "Manipulation of data",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-10",
-      "threat": "Extraction of EC2",
-      "damageScenarioId": "DS-6",
-      "damageScenario": "Loss of data",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-11",
-      "threat": "Manipulation of EC2",
-      "damageScenarioId": "DS-7",
-      "damageScenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-12",
-      "threat": "Blocking EC2",
+      "threat": "Blocking Amazon S3 Glacier",
       "damageScenarioId": "DS-4",
       "damageScenario": "Loss of customer trust",
       "cons": "Moderate"
@@ -520,84 +535,70 @@
   "updatedAssociations": [
     {
       "threatId": "Th-1",
-      "threat": "Extraction of Elastic Block Store",
+      "threat": "Blocking AWS App Mesh",
       "damageScenarioId": "DS-1",
-      "damageScenario": "Disclosure of Personally Identifiable Information",
-      "cons": "Moderate"
+      "damageScenario": "Unreliable operation, data loss, data breaches, disruption functionality",
+      "cons": "Serious"
     },
     {
       "threatId": "Th-2",
-      "threat": "Manipulation of Elastic Block Store",
+      "threat": "Extraction of Amazon Elastic Container Service",
       "damageScenarioId": "DS-2",
-      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "damageScenario": "Disclosure of Personally Identifiable Information",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-3",
-      "threat": "Blocking Elastic Block Store",
-      "damageScenarioId": "DS-3",
-      "damageScenario": "Damage to brand name / image / reputation",
-      "cons": "Serious"
-    },
-    {
-      "threatId": "Th-4",
-      "threat": "Extraction of Amazon Elastic Container Service",
-      "damageScenarioId": "DS-1",
-      "damageScenario": "Disclosure of Personally Identifiable Information",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-5",
       "threat": "Integrity of Amazon Elastic Container Service",
-      "damageScenarioId": "DS-2",
+      "damageScenarioId": "DS-3",
       "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "cons": "Moderate"
     },
     {
-      "threatId": "Th-6",
+      "threatId": "Th-4",
       "threat": "Blocking Amazon Elastic Container Service",
       "damageScenarioId": "DS-4",
       "damageScenario": "Loss of customer trust",
       "cons": "Moderate"
     },
     {
+      "threatId": "Th-5",
+      "threat": "Extraction of AWS Lambda",
+      "damageScenarioId": "DS-2",
+      "damageScenario": "Disclosure of Personally Identifiable Information",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-6",
+      "threat": "Manipulation of AWS Lambda",
+      "damageScenarioId": "DS-5",
+      "damageScenario": "Data loss, Manipulation of data",
+      "cons": "Moderate"
+    },
+    {
       "threatId": "Th-7",
-      "threat": "Blocking Simple Storage Service",
+      "threat": "Blocking AWS Lambda",
       "damageScenarioId": "DS-4",
       "damageScenario": "Loss of customer trust",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-8",
-      "threat": "Extraction of Simple Storage Service",
-      "damageScenarioId": "DS-5",
-      "damageScenario": "Data loss, Manipulation of data",
+      "threat": "Extraction of Amazon S3 Glacier",
+      "damageScenarioId": "DS-6",
+      "damageScenario": "Disclosure Proprietary Data or sensitive \nInformation",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-9",
-      "threat": "Manipulation of Simple Storage Service",
-      "damageScenarioId": "DS-2",
-      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "threat": "Manipulation of Amazon S3 Glacier",
+      "damageScenarioId": "DS-7",
+      "damageScenario": "Manipulation of data",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-10",
-      "threat": "Extraction of EC2",
-      "damageScenarioId": "DS-6",
-      "damageScenario": "Loss of data",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-11",
-      "threat": "Manipulation of EC2",
-      "damageScenarioId": "DS-7",
-      "damageScenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-12",
-      "threat": "Blocking EC2",
+      "threat": "Blocking Amazon S3 Glacier",
       "damageScenarioId": "DS-4",
       "damageScenario": "Loss of customer trust",
       "cons": "Moderate"
@@ -606,218 +607,178 @@
   "RiskAssessment": [
     {
       "id": "R-1",
-      "damage_scenario": "Disclosure of Personally Identifiable Information",
+      "damage_scenario": "Unreliable operation, data loss, data breaches, disruption functionality",
       "D_id": "DS-1",
-      "consequence": "Moderate",
-      "Threat": "Extraction of Elastic Block Store",
-      "risk": "Low",
-      "risk_of_d": "Invalid Attack Potential"
+      "consequence": "Serious",
+      "Threat": "Blocking AWS App Mesh",
+      "risk": "Very High",
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
     },
     {
       "id": "R-2",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "D_id": "DS-2",
-      "consequence": "Moderate",
-      "Threat": "Manipulation of Elastic Block Store",
-      "risk": "Low",
-      "risk_of_d": "Invalid Attack Potential"
-    },
-    {
-      "id": "R-3",
-      "damage_scenario": "Damage to brand name / image / reputation",
-      "D_id": "DS-3",
-      "consequence": "Serious",
-      "Threat": "Blocking Elastic Block Store",
-      "risk": "Very High",
-      "risk_of_d": "Invalid Attack Potential"
-    },
-    {
-      "id": "R-4",
       "damage_scenario": "Disclosure of Personally Identifiable Information",
-      "D_id": "DS-1",
+      "D_id": "DS-2",
       "consequence": "Moderate",
       "Threat": "Extraction of Amazon Elastic Container Service",
       "risk": "Low",
-      "risk_of_d": "Invalid Attack Potential"
+      "attackPotential": "High",
+      "risk_of_d": "Medium"
     },
     {
-      "id": "R-5",
+      "id": "R-3",
       "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "D_id": "DS-2",
+      "D_id": "DS-3",
       "consequence": "Moderate",
       "Threat": "Integrity of Amazon Elastic Container Service",
       "risk": "Low",
-      "risk_of_d": "Invalid Attack Potential"
+      "attackPotential": "Moderate",
+      "risk_of_d": "Medium"
     },
     {
-      "id": "R-6",
+      "id": "R-4",
       "damage_scenario": "Loss of customer trust",
       "D_id": "DS-4",
       "consequence": "Moderate",
       "Threat": "Blocking Amazon Elastic Container Service",
       "risk": "Low",
-      "risk_of_d": "Invalid Attack Potential"
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
+    },
+    {
+      "id": "R-5",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
+      "D_id": "DS-2",
+      "consequence": "Moderate",
+      "Threat": "Extraction of AWS Lambda",
+      "risk": "Low",
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
+    },
+    {
+      "id": "R-6",
+      "damage_scenario": "Data loss, Manipulation of data",
+      "D_id": "DS-5",
+      "consequence": "Moderate",
+      "Threat": "Manipulation of AWS Lambda",
+      "risk": "Low",
+      "attackPotential": "Moderate",
+      "risk_of_d": "Medium"
     },
     {
       "id": "R-7",
       "damage_scenario": "Loss of customer trust",
       "D_id": "DS-4",
       "consequence": "Moderate",
-      "Threat": "Blocking Simple Storage Service",
+      "Threat": "Blocking AWS Lambda",
       "risk": "Low",
-      "risk_of_d": "Invalid Attack Potential"
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
     },
     {
       "id": "R-8",
-      "damage_scenario": "Data loss, Manipulation of data",
-      "D_id": "DS-5",
+      "damage_scenario": "Disclosure Proprietary Data or sensitive \nInformation",
+      "D_id": "DS-6",
       "consequence": "Moderate",
-      "Threat": "Extraction of Simple Storage Service",
+      "Threat": "Extraction of Amazon S3 Glacier",
       "risk": "Low",
-      "risk_of_d": "Invalid Attack Potential"
+      "attackPotential": "Enhanced Basic",
+      "risk_of_d": "High"
     },
     {
       "id": "R-9",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "D_id": "DS-2",
+      "damage_scenario": "Manipulation of data",
+      "D_id": "DS-7",
       "consequence": "Moderate",
-      "Threat": "Manipulation of Simple Storage Service",
+      "Threat": "Manipulation of Amazon S3 Glacier",
       "risk": "Low",
-      "risk_of_d": "Invalid Attack Potential"
+      "attackPotential": "Moderate",
+      "risk_of_d": "Medium"
     },
     {
       "id": "R-10",
-      "damage_scenario": "Loss of data",
-      "D_id": "DS-6",
-      "consequence": "Moderate",
-      "Threat": "Extraction of EC2",
-      "risk": "Low",
-      "risk_of_d": "Invalid Attack Potential"
-    },
-    {
-      "id": "R-11",
-      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "D_id": "DS-7",
-      "consequence": "Moderate",
-      "Threat": "Manipulation of EC2",
-      "risk": "Low",
-      "risk_of_d": "Invalid Attack Potential"
-    },
-    {
-      "id": "R-12",
       "damage_scenario": "Loss of customer trust",
       "D_id": "DS-4",
       "consequence": "Moderate",
-      "Threat": "Blocking EC2",
+      "Threat": "Blocking Amazon S3 Glacier",
       "risk": "Low",
-      "risk_of_d": "Invalid Attack Potential"
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
     }
   ],
   "SecurityNeeds": [
     {
-      "Threat_T": "Extraction of Elastic Block Store",
-      "security_description_threat": "EBS shall implement comprehensive access controls for block level storage of EBS to prevent unauthorized access",
+      "Threat_T": "Blocking AWS App Mesh",
+      "security_description_threat": "Unavailability of services cause user inconvience",
       "id": "SN-R-1",
-      "Threat": "Extraction of Elastic Block Store",
-      "affected_security_goal": "Confidentiality of Elastic Block Store",
-      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
+      "Threat": "Blocking AWS App Mesh",
+      "affected_security_goal": "Availability of AWS App Mesh",
+      "damage_scenario_copy": "Unreliable operation, data loss, data breaches, disruption functionality",
       "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of Personally Identifiable Information",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
-      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
+      "damage_scenario": "Unreliable operation, data loss, data breaches, disruption functionality",
+      "consequence": "Serious",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
+      "consequence_reasoning": "It will create a significant data loss, downtime, business disruption, increased cost negatively impact on organisation",
       "Did": [
         "DS-1"
-      ]
-    },
-    {
-      "Threat_T": "Manipulation of Elastic Block Store",
-      "security_description_threat": "EBS volumes shall implement robust encryption and data integrity mechanisms to ensure secure and durable storage for EC2 instances, minimizing the risk of data loss or performance degradation",
-      "id": "SN-R-2",
-      "Threat": "Manipulation of Elastic Block Store",
-      "affected_security_goal": "Integrity of Elastic Block Store",
-      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "Threat_id": "Th-2",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
-      "Did": [
-        "DS-2"
-      ]
-    },
-    {
-      "Threat_T": "Blocking Elastic Block Store",
-      "security_description_threat": "EBS shall employ redundancy and failover measures to maximize the availability of block-level storage and minimize potential downtime.",
-      "id": "SN-R-3",
-      "Threat": "Blocking Elastic Block Store",
-      "affected_security_goal": "Availability of Elastic Block Store",
-      "damage_scenario_copy": "Damage to brand name / image / reputation",
-      "Threat_id": "Th-3",
-      "damage_scenario": "Damage to brand name / image / reputation",
-      "consequence": "Serious",
-      "consequence_DS": "Brand image can be adversely affected because of malfunction, compromise or hacking of system, or data breach or disclosure of security flaws",
-      "consequence_reasoning": "Despite the contract limiting legal liability, brand image of Bosch is considered important enough to rate it as \"serious\". Negative publicity impacting brand value may impact future business and revenue. Customer confidence is affected. Competitive edge is diminished.",
-      "Did": [
-        "DS-3"
       ]
     },
     {
       "Threat_T": "Extraction of Amazon Elastic Container Service",
       "security_description_threat": "The ECS environment shall implement access controls to prevent unauthorized access and privilege escalation",
-      "id": "SN-R-4",
+      "id": "SN-R-2",
       "Threat": "Extraction of Amazon Elastic Container Service",
       "affected_security_goal": "Confidentiality of Amazon Elastic Container Service",
       "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
-      "Threat_id": "Th-4",
+      "Threat_id": "Th-2",
       "damage_scenario": "Disclosure of Personally Identifiable Information",
       "consequence": "Moderate",
       "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
-      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
-      "Did": [
-        "DS-1"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of Amazon Elastic Container Service",
-      "security_description_threat": "The ECS environment shall enforce system and data integrity by using up-to-date execution environments and by restricting filesystem write access.",
-      "id": "SN-R-5",
-      "Threat": "Extraction of Amazon Elastic Container Service",
-      "affected_security_goal": "Confidentiality of Amazon Elastic Container Service",
-      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
-      "Threat_id": "Th-4",
-      "damage_scenario": "Disclosure of Personally Identifiable Information",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
-      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
-      "Did": [
-        "DS-1"
-      ]
-    },
-    {
-      "Threat_T": "Integrity of Amazon Elastic Container Service",
-      "security_description_threat": "The ECS environment shall prevent unauthorized disclosure by avoiding exposing network interfaces and by securely managing secrets.",
-      "id": "SN-R-6",
-      "Threat": "Integrity of Amazon Elastic Container Service",
-      "affected_security_goal": "Integrity of Amazon Elastic Container Service",
-      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "Threat_id": "Th-5",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards is mandatory and this may lead to penalties.",
       "Did": [
         "DS-2"
       ]
     },
     {
+      "Threat_T": "Extraction of Amazon Elastic Container Service",
+      "security_description_threat": "The ECS environment shall enforce system and data integrity by using up-to-date execution environments and by restricting filesystem write access.",
+      "id": "SN-R-3",
+      "Threat": "Extraction of Amazon Elastic Container Service",
+      "affected_security_goal": "Confidentiality of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
+      "Threat_id": "Th-2",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards is mandatory and this may lead to penalties.",
+      "Did": [
+        "DS-2"
+      ]
+    },
+    {
+      "Threat_T": "Integrity of Amazon Elastic Container Service",
+      "security_description_threat": "The ECS environment shall prevent unauthorized disclosure by avoiding exposing network interfaces and by securely managing secrets.",
+      "id": "SN-R-4",
+      "Threat": "Integrity of Amazon Elastic Container Service",
+      "affected_security_goal": "Integrity of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
+      "Threat_id": "Th-3",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
       "Threat_T": "Blocking Amazon Elastic Container Service",
       "security_description_threat": "The ECS environment shall establish monitoring and anomaly detection",
-      "id": "SN-R-7",
+      "id": "SN-R-5",
       "Threat": "Blocking Amazon Elastic Container Service",
       "affected_security_goal": "Availability of Amazon Elastic Container Service",
       "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-6",
+      "Threat_id": "Th-4",
       "damage_scenario": "Loss of customer trust",
       "consequence": "Moderate",
       "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
@@ -827,11 +788,43 @@
       ]
     },
     {
-      "Threat_T": "Blocking Simple Storage Service",
-      "security_description_threat": "Proactive monitoring shall be done for early detection of potential DoS attacks, enabling quick response and mitigation to minimize the impact on S3 availability.",
+      "Threat_T": "Extraction of AWS Lambda",
+      "security_description_threat": "Access to a system using stolen or guessed credentials, or through exploiting a vulnerability in the system",
+      "id": "SN-R-6",
+      "Threat": "Extraction of AWS Lambda",
+      "affected_security_goal": "Confidentiality of AWS Lambda",
+      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
+      "Threat_id": "Th-5",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards is mandatory and this may lead to penalties.",
+      "Did": [
+        "DS-2"
+      ]
+    },
+    {
+      "Threat_T": "Manipulation of AWS Lambda",
+      "security_description_threat": "Using iam roles which block all permissions by default ",
+      "id": "SN-R-7",
+      "Threat": "Manipulation of AWS Lambda",
+      "affected_security_goal": "Integrity of AWS Lambda",
+      "damage_scenario_copy": "Data loss, Manipulation of data",
+      "Threat_id": "Th-6",
+      "damage_scenario": "Data loss, Manipulation of data",
+      "consequence": "Moderate",
+      "consequence_DS": "Manipulation of data will adversely affect functionality",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
+      "Did": [
+        "DS-5"
+      ]
+    },
+    {
+      "Threat_T": "Blocking AWS Lambda",
+      "security_description_threat": "Unavailability of services cause user inconvenience",
       "id": "SN-R-8",
-      "Threat": "Blocking Simple Storage Service",
-      "affected_security_goal": "Availability of Simple Storage Service",
+      "Threat": "Blocking AWS Lambda",
+      "affected_security_goal": "Availability of AWS Lambda",
       "damage_scenario_copy": "Loss of Customer trust",
       "Threat_id": "Th-7",
       "damage_scenario": "Loss of customer trust",
@@ -843,815 +836,297 @@
       ]
     },
     {
-      "Threat_T": "Extraction of Simple Storage Service",
-      "security_description_threat": "Access control mechanisms shall prevent unauthorized access",
+      "Threat_T": "Extraction of Amazon S3 Glacier",
+      "security_description_threat": "Implement strict access controls using AWS Identity and Access Management (IAM) to ensure that only authorized users or applications have the necessary permissions to retrieve or extract data from S3 Glacier.",
       "id": "SN-R-9",
-      "Threat": "Extraction of Simple Storage Service",
-      "affected_security_goal": "Confidentiality of Simple Storage Service",
-      "damage_scenario_copy": "Data loss, Manipulation of data",
+      "Threat": "Extraction of Amazon S3 Glacier",
+      "affected_security_goal": "Confidentiality of Amazon S3 Glacier",
+      "damage_scenario_copy": "Disclosure Proprietary Data or sensitive \nInformation",
       "Threat_id": "Th-8",
-      "damage_scenario": "Data loss, Manipulation of data",
+      "damage_scenario": "Disclosure Proprietary Data or sensitive \nInformation",
       "consequence": "Moderate",
-      "consequence_DS": "Manipulation of data Stored in AWS s3 will adversely affect functionality",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
+      "consequence_DS": "Data can be recovered and it does not a high impact on the organization",
+      "consequence_reasoning": "It has a moderate legal consequences.",
       "Did": [
-        "DS-5"
+        "DS-6"
       ]
     },
     {
-      "Threat_T": "Manipulation of Simple Storage Service",
-      "security_description_threat": "Encryption shall safeguard data integrity by preventing unauthorized access and tampering of data stored in S3.",
+      "Threat_T": "Manipulation of Amazon S3 Glacier",
+      "security_description_threat": "Enable checksums, hash functions, or other data integrity checks to detect any unauthorized modifications to the data stored in S3 Glacier",
       "id": "SN-R-10",
-      "Threat": "Manipulation of Simple Storage Service",
-      "affected_security_goal": "Integrity of Simple Storage Service",
-      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
+      "Threat": "Manipulation of Amazon S3 Glacier",
+      "affected_security_goal": "Integrity of Amazon S3 Glacier",
+      "damage_scenario_copy": "Manipulation of data",
       "Threat_id": "Th-9",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "damage_scenario": "Manipulation of data",
       "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
+      "consequence_DS": "Attackers may tamper with or manipulate checksums and hash values associated with archives to disguise unauthorized modifications",
+      "consequence_reasoning": "Organizations often implement backup and redundancy measures for critical data",
       "Did": [
-        "DS-2"
+        "DS-7"
       ]
     },
     {
-      "Threat_T": "Extraction of EC2",
-      "security_description_threat": "EBS snapshots shall not be publicly restorable",
+      "Threat_T": "Blocking Amazon S3 Glacier",
+      "security_description_threat": "Employ robust access controls to block unauthorized users or applications from accessing or modifying data stored in S3 Glacier. ",
       "id": "SN-R-11",
-      "Threat": "Extraction of EC2",
-      "affected_security_goal": "Confidentiality of EC2",
-      "damage_scenario_copy": "Loss of data",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Loss of data",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "Threat_T": "Blocking EC2",
-      "security_description_threat": "Amazon EC2 shall be configured to use VPC endpoints that are created for the Amazon EC2 service",
-      "id": "SN-R-12",
-      "Threat": "Blocking EC2",
-      "affected_security_goal": "Availability of EC2",
+      "Threat": "Blocking Amazon S3 Glacier",
+      "affected_security_goal": "Availability of Amazon S3 Glacier",
       "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-12",
+      "Threat_id": "Th-10",
       "damage_scenario": "Loss of customer trust",
       "consequence": "Moderate",
       "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
       "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
       "Did": [
         "DS-4"
-      ]
-    },
-    {
-      "Threat_T": "Manipulation of EC2",
-      "security_description_threat": "EC2 instances shall use Instance Metadata Service Version 2 (IMDSv2)",
-      "id": "SN-R-13",
-      "Threat": "Manipulation of EC2",
-      "affected_security_goal": "Integrity of EC2",
-      "damage_scenario_copy": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "Threat_id": "Th-11",
-      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
-      "Did": [
-        "DS-7"
-      ]
-    },
-    {
-      "Threat_T": "Manipulation of EC2",
-      "security_description_threat": "EC2 instances shall not use multiple ENIs",
-      "id": "SN-R-14",
-      "Threat": "Manipulation of EC2",
-      "affected_security_goal": "Integrity of EC2",
-      "damage_scenario_copy": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "Threat_id": "Th-11",
-      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
-      "Did": [
-        "DS-7"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of EC2",
-      "security_description_threat": "Security groups shall not allow unrestricted access to ports with high risk",
-      "id": "SN-R-15",
-      "Threat": "Extraction of EC2",
-      "affected_security_goal": "Confidentiality of EC2",
-      "damage_scenario_copy": "Loss of data",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Loss of data",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of EC2",
-      "security_description_threat": "VPC default security groups shall not allow inbound or outbound traffic",
-      "id": "SN-R-16",
-      "Threat": "Extraction of EC2",
-      "affected_security_goal": "Confidentiality of EC2",
-      "damage_scenario_copy": "Loss of data",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Loss of data",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "Threat_T": "Manipulation of EC2",
-      "security_description_threat": "VPC flow logging shall be enabled in all VPCs",
-      "id": "SN-R-17",
-      "Threat": "Manipulation of EC2",
-      "affected_security_goal": "Integrity of EC2",
-      "damage_scenario_copy": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "Threat_id": "Th-11",
-      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
-      "Did": [
-        "DS-7"
-      ]
-    },
-    {
-      "Threat_T": "Manipulation of EC2",
-      "security_description_threat": "Both VPN tunnels for an AWS Site-to-Site VPN connection shall be up",
-      "id": "SN-R-18",
-      "Threat": "Manipulation of EC2",
-      "affected_security_goal": "Integrity of EC2",
-      "damage_scenario_copy": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "Threat_id": "Th-11",
-      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
-      "Did": [
-        "DS-7"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of EC2",
-      "security_description_threat": "Network ACLs shall not allow ingress from 0.0.0.0/0 to port 22 or port 3389",
-      "id": "SN-R-19",
-      "Threat": "Extraction of EC2",
-      "affected_security_goal": "Confidentiality of EC2",
-      "damage_scenario_copy": "Loss of data",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Loss of data",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of EC2",
-      "security_description_threat": "Security groups shall only allow unrestricted incoming traffic for authorized ports",
-      "id": "SN-R-20",
-      "Threat": "Extraction of EC2",
-      "affected_security_goal": "Confidentiality of EC2",
-      "damage_scenario_copy": "Loss of data",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Loss of data",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "Threat_T": "Manipulation of EC2",
-      "security_description_threat": "EC2 Transit Gateways shall not automatically accept VPC attachment requests",
-      "id": "SN-R-21",
-      "Threat": "Manipulation of EC2",
-      "affected_security_goal": "Integrity of EC2",
-      "damage_scenario_copy": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "Threat_id": "Th-11",
-      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
-      "Did": [
-        "DS-7"
-      ]
-    },
-    {
-      "Threat_T": "Blocking EC2",
-      "security_description_threat": "EC2 paravirtual instance types shall not be used",
-      "id": "SN-R-22",
-      "Threat": "Blocking EC2",
-      "affected_security_goal": "Availability of EC2",
-      "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-12",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
-      "Did": [
-        "DS-4"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of EC2",
-      "security_description_threat": "EC2 launch templates shall not assign public IPs to network interfaces",
-      "id": "SN-R-23",
-      "Threat": "Extraction of EC2",
-      "affected_security_goal": "Confidentiality of EC2",
-      "damage_scenario_copy": "Loss of data",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Loss of data",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of EC2",
-      "security_description_threat": "Attached EBS volumes shall be encrypted at-rest",
-      "id": "SN-R-24",
-      "Threat": "Extraction of EC2",
-      "affected_security_goal": "Confidentiality of EC2",
-      "damage_scenario_copy": "Loss of data",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Loss of data",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "Threat_T": "Blocking EC2",
-      "security_description_threat": "Stopped EC2 instances shall be removed after a specified time period",
-      "id": "SN-R-25",
-      "Threat": "Blocking EC2",
-      "affected_security_goal": "Availability of EC2",
-      "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-12",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
-      "Did": [
-        "DS-4"
-      ]
-    },
-    {
-      "Threat_T": "Blocking EC2",
-      "security_description_threat": "Unused Network Access Control Lists shall be removed",
-      "id": "SN-R-26",
-      "Threat": "Blocking EC2",
-      "affected_security_goal": "Availability of EC2",
-      "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-12",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
-      "Did": [
-        "DS-4"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of EC2",
-      "security_description_threat": "EBS default encryption shall be enabled",
-      "id": "SN-R-27",
-      "Threat": "Extraction of EC2",
-      "affected_security_goal": "Confidentiality of EC2",
-      "damage_scenario_copy": "Loss of data",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Loss of data",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of EC2",
-      "security_description_threat": "EC2 instances shall not have a public IPv4 address",
-      "id": "SN-R-28",
-      "Threat": "Extraction of EC2",
-      "affected_security_goal": "Confidentiality of EC2",
-      "damage_scenario_copy": "Loss of data",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Loss of data",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of EC2",
-      "security_description_threat": "EC2 subnets shall not automatically assign public IP addresses",
-      "id": "SN-R-29",
-      "Threat": "Extraction of EC2",
-      "affected_security_goal": "Confidentiality of EC2",
-      "damage_scenario_copy": "Loss of data",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Loss of data",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of EC2",
-      "security_description_threat": "EC2 Client VPN endpoints shall have client connection logging enabled",
-      "id": "SN-R-30",
-      "Threat": "Extraction of EC2",
-      "affected_security_goal": "Confidentiality of EC2",
-      "damage_scenario_copy": "Loss of data",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Loss of data",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
-      "Did": [
-        "DS-6"
       ]
     }
   ],
   "assetaddition": [
     {
-      "Asset_description": "Elastic Block Store",
-      "Objective": "Confidentiality",
-      "objective_description": "Confidentiality - Only authorized users can have access to EBS volumes data",
-      "id": "AA-1"
-    },
-    {
-      "Asset_description": "Elastic Block Store",
-      "Objective": "Integrity",
-      "objective_description": "\nIntegrity - Manipulation of data within EBS should not be done and data must maintain Integrity",
-      "id": "AA-2"
-    },
-    {
-      "Asset_description": "Elastic Block Store",
+      "Asset_description": "AWS App Mesh",
       "Objective": "Availability",
-      "objective_description": "Availability - The data stored in EBS volumes should not be disrupted or interrupted",
-      "id": "AA-3"
+      "objective_description": "Ensuring that data and systems are accessible and usable when needed. ",
+      "id": "AA-1"
     },
     {
       "Asset_description": "Amazon Elastic Container Service",
       "Objective": "Confidentiality",
       "objective_description": "Confidentiality - Ensure that data and information within ECS remain confidential, preventing unauthorized access or disclosure.",
-      "id": "AA-4"
+      "id": "AA-2"
     },
     {
       "Asset_description": "Amazon Elastic Container Service",
       "Objective": "Integrity",
       "objective_description": "\nIntegrity -  Containerized applications or services running within the ECS should not be tampered with",
-      "id": "AA-5"
+      "id": "AA-3"
     },
     {
       "Asset_description": "Amazon Elastic Container Service",
       "Objective": "Availability",
       "objective_description": "Availability -  Containerized services within ECS should be available to minimize the downtime and disruptions caused by security incidents",
+      "id": "AA-4"
+    },
+    {
+      "Asset_description": "AWS Lambda",
+      "Objective": "Confidentiality",
+      "objective_description": "AWS Lambda implements security measures to protect the confidentiality of customer data and applications.",
+      "id": "AA-5"
+    },
+    {
+      "Asset_description": "AWS Lambda",
+      "Objective": "Integrity",
+      "objective_description": "AWS Lambda implements security measures to protect the integrity of customer data and applications",
       "id": "AA-6"
     },
     {
-      "Asset_description": "Simple Storage Service",
+      "Asset_description": "AWS Lambda",
       "Objective": "Availability",
-      "objective_description": "Versioning and lifecycle policies must be employed ensuring data accessibility and durability.",
+      "objective_description": "AWS Lambda provides a highly available and scalable infrastructure for running customer applications.",
       "id": "AA-7"
     },
     {
-      "Asset_description": "Simple Storage Service",
+      "Asset_description": "Amazon S3 Glacier",
       "Objective": "Confidentiality",
-      "objective_description": "Amazon S3 ensures confidentiality by offering server-side encryption, secure data transfer with HTTPS, and fine-grained access controls through IAM and bucket policies.",
+      "objective_description": "Exploiting weak access controls or compromised credentials to gain unauthorized access to Glacier archives and retrieve confidential data",
       "id": "AA-8"
     },
     {
-      "Asset_description": "Simple Storage Service",
+      "Asset_description": "Amazon S3 Glacier",
       "Objective": "Integrity",
-      "objective_description": "S3 maintains data using checksums, hash functions, and versioning to prevent Man In the Middle attacks",
+      "objective_description": "Malicious actors may attempt to alter the contents of Glacier archives during storage or retrieval, compromising the integrity of the stored data",
       "id": "AA-9"
     },
     {
-      "Asset_description": "EC2",
-      "Objective": "Confidentiality",
-      "objective_description": "Unauthorized users should not have access to the services",
-      "id": "AA-10"
-    },
-    {
-      "Asset_description": "EC2",
-      "Objective": "Integrity",
-      "objective_description": "Users cannot manipulate the data.",
-      "id": "AA-11"
-    },
-    {
-      "Asset_description": "EC2",
+      "Asset_description": "Amazon S3 Glacier",
       "Objective": "Availability",
-      "objective_description": "Availability of the service when needed",
-      "id": "AA-12"
+      "objective_description": "Overwhelming S3 Glacier with a high volume of requests to disrupt or delay the retrieval of archives, impacting the availability of data",
+      "id": "AA-10"
     }
   ],
   "SecControls": [
     {
-      "security_control": "Access Control",
-      "security_control_description": "Access control is a security control that restricts access to protected resources based on a set of defined rules, ensuring only authorized individuals or entities can access these resources. It plays a crucial role in data security and privacy by limiting exposure and minimizing the risk of unauthorized access, use, disclosure, or modification of sensitive information.",
-      "security_goal": "EBS shall implement comprehensive access controls for block level storage of EBS to prevent unauthorized access",
-      "id": "S-1",
-      "Threat_T": "Extraction of Elastic Block Store",
-      "security_description_threat": "EBS shall implement comprehensive access controls for block level storage of EBS to prevent unauthorized access",
+      "security_control": "Resilience",
+      "security_control_description": "Resilience ensures the ability of a system to recover from a failure and continue operating within an acceptable level of degradation. It includes the capability to detect, isolate, and recover from faults, while maintaining the availability and integrity of the system.",
+      "security_goal": "Enhance application resilience by employing a secure default retry strategy to increase the chances of request success.",
+      "id": "S-1"
+    },
+    {
+      "security_control": "Access control",
+      "security_control_description": "Access control ensures that only authorized individuals and processes have access to specific resources, such as data, systems, and applications. It involves identifying, authenticating, and authorizing users, and controlling their access to sensitive information and operations based on their roles, privileges, and responsibilities. Effective access control measures help protect against unauthorized access, modification, or destruction of data, and ensure compliance with regulatory requirements.",
+      "security_goal": "The ECS environment shall implement access controls to prevent unauthorized access and privilege escalation",
+      "id": "S-2",
+      "Threat_T": "Extraction of Amazon Elastic Container Service",
+      "security_description_threat": "The ECS environment shall implement access controls to prevent unauthorized access and privilege escalation",
       "Sid": [
-        "SN-R-1",
-        "SN-R-3"
+        "SN-R-2"
       ],
-      "Threat": "Extraction of Elastic Block Store",
-      "affected_security_goal": "Confidentiality of Elastic Block Store",
+      "Threat": "Extraction of Amazon Elastic Container Service",
+      "affected_security_goal": "Confidentiality of Amazon Elastic Container Service",
       "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
-      "Threat_id": "Th-1",
+      "Threat_id": "Th-2",
       "damage_scenario": "Disclosure of Personally Identifiable Information",
       "consequence": "Moderate",
       "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
-      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
-      "Did": [
-        "DS-1"
-      ],
-      "selectedRequirement": "EISA-ACC-301 - Management of Authentication Secrets (EISA-PSA-003 - Database Management System) - Password Rules"
-    },
-    {
-      "security_control": "Encryption",
-      "security_control_description": "Encryption involves transforming data into a form that cannot be easily understood by unauthorized individuals. It is used to protect sensitive information, such as financial data, personal information, and intellectual property, from unauthorized access, use, disclosure, disruption, modification, or destruction. Encryption algorithms use mathematical transformations to convert plaintext into ciphertext, which can only be decrypted using the correct encryption key.",
-      "security_goal": "EBS volumes shall implement robust encryption and data integrity mechanisms to ensure secure and durable storage for EC2 instances, minimizing the risk of data loss or performance degradation",
-      "id": "S-2",
-      "Threat_T": "Manipulation of Elastic Block Store",
-      "security_description_threat": "EBS volumes shall implement robust encryption and data integrity mechanisms to ensure secure and durable storage for EC2 instances, minimizing the risk of data loss or performance degradation",
-      "Sid": [
-        "SN-R-2",
-        "SN-R-3"
-      ],
-      "Threat": "Manipulation of Elastic Block Store",
-      "affected_security_goal": "Integrity of Elastic Block Store",
-      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "Threat_id": "Th-2",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards is mandatory and this may lead to penalties.",
       "Did": [
         "DS-2"
-      ],
-      "selectedRequirement": "EISA-CRY-107 - Cryptographic Key Management (EISA-PSA-003 - Database Management System) - Cryptographic Key Management"
-    },
-    {
-      "security_control": "Redundancy",
-      "security_control_description": "Redundancy involves the duplication of critical components or functions to ensure continuous availability and resilience in the event of a failure or disruption. By having redundant systems, organizations can reduce the impact of outages and maintain business continuity. This control helps prevent disruptions to operations, data loss, and downtime, ensuring that critical systems and services are available even when one component fails.",
-      "security_goal": "EBS shall employ redundancy and failover measures to maximize the availability of block-level storage and minimize potential downtime.",
-      "id": "S-3",
-      "Threat_T": "Blocking Elastic Block Store",
-      "security_description_threat": "EBS shall employ redundancy and failover measures to maximize the availability of block-level storage and minimize potential downtime.",
-      "Sid": [
-        "SN-R-3",
-        "SN-R-4"
-      ],
-      "Threat": "Blocking Elastic Block Store",
-      "affected_security_goal": "Availability of Elastic Block Store",
-      "damage_scenario_copy": "Damage to brand name / image / reputation",
-      "Threat_id": "Th-3",
-      "damage_scenario": "Damage to brand name / image / reputation",
-      "consequence": "Serious",
-      "consequence_DS": "Brand image can be adversely affected because of malfunction, compromise or hacking of system, or data breach or disclosure of security flaws",
-      "consequence_reasoning": "Despite the contract limiting legal liability, brand image of Bosch is considered important enough to rate it as \"serious\". Negative publicity impacting brand value may impact future business and revenue. Customer confidence is affected. Competitive edge is diminished.",
-      "Did": [
-        "DS-3"
-      ],
-      "selectedRequirement": "EISA-ACC-301 - Management of Authentication Secrets (EISA-PSA-003 - Database Management System) - Changing Default Passwords"
+      ]
     },
     {
       "security_control": "Least Privilege",
       "security_control_description": "Least Privilege is a security control that limits the privileges and permissions granted to users, applications, and systems to only those necessary to perform their intended functions. By limiting privileges, organizations can reduce the risk of unauthorized access to critical resources and mitigate the potential impact of security breaches. The principle of least privilege ensures that users and systems only have the minimum level of access required to fulfill their roles and responsibilities. By implementing this control, organizations can enhance the overall security posture of their systems and applications by minimizing the potential for privilege escalation and malicious activity.",
       "security_goal": "The ECS environment shall enforce system and data integrity by using up-to-date execution environments and by restricting filesystem write access.",
-      "id": "S-4",
+      "id": "S-3",
       "Threat_T": "Extraction of Amazon Elastic Container Service",
       "security_description_threat": "The ECS environment shall enforce system and data integrity by using up-to-date execution environments and by restricting filesystem write access.",
       "Sid": [
-        "SN-R-5",
         "SN-R-3"
       ],
       "Threat": "Extraction of Amazon Elastic Container Service",
       "affected_security_goal": "Confidentiality of Amazon Elastic Container Service",
       "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
-      "Threat_id": "Th-4",
+      "Threat_id": "Th-2",
       "damage_scenario": "Disclosure of Personally Identifiable Information",
       "consequence": "Moderate",
       "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
-      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards is mandatory and this may lead to penalties.",
       "Did": [
-        "DS-1"
-      ],
-      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Restriction and Control of Privileged Accounts"
+        "DS-2"
+      ]
     },
     {
       "security_control": "Network hardening",
       "security_control_description": "Network hardening involves implementing security measures to protect network resources from unauthorized access, damage, or disruption. It encompasses a range of techniques, including:\n\n* **Firewall configuration:** Establishing rules to restrict access to and from the network based on IP addresses, ports, and protocols.\n* **Intrusion detection and prevention systems (IDS/IPS):** Monitoring network traffic for suspicious activity and taking action to block or mitigate threats.\n* **Virtual private networks (VPNs):** Encrypting network traffic for secure communication over public networks.\n* **Network segmentation:** Dividing the network into smaller, isolated segments to limit the spread of threats.\n* **Patch management:** Regularly updating software and systems to address vulnerabilities and security flaws.\n* **Access control lists (ACLs):** Restricting access to network resources based on user identity and role.\n* **Strong password policies:** Enforcing complex and unique passwords to prevent unauthorized access.\n* **Data encryption:** Encrypting sensitive data to protect it from eavesdropping and theft.",
       "security_goal": "The ECS environment shall prevent unauthorized disclosure by avoiding exposing network interfaces and by securely managing secrets.",
-      "id": "S-5",
+      "id": "S-4",
       "Threat_T": "Integrity of Amazon Elastic Container Service",
       "security_description_threat": "The ECS environment shall prevent unauthorized disclosure by avoiding exposing network interfaces and by securely managing secrets.",
       "Sid": [
-        "SN-R-6",
-        "SN-R-8"
+        "SN-R-4"
       ],
       "Threat": "Integrity of Amazon Elastic Container Service",
       "affected_security_goal": "Integrity of Amazon Elastic Container Service",
       "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "Threat_id": "Th-5",
+      "Threat_id": "Th-3",
       "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "consequence": "Moderate",
       "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
       "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
       "Did": [
-        "DS-2"
-      ],
-      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Assignment of Privileged Access"
+        "DS-3"
+      ]
     },
     {
       "security_control": "Monitoring",
       "security_control_description": "Monitoring involves the ongoing collection and analysis of security-relevant data to detect, identify, and mitigate security risks and incidents. It includes actively monitoring systems, networks, applications, and user activities to identify potential threats, unauthorized access, or malicious activity. Monitoring involves using tools and techniques such as log analysis, intrusion detection, vulnerability scanning, and network traffic analysis to gather and analyze data. It also includes continuous monitoring of user accounts, system configurations, and other security-related activities to detect anomalies, deviations from established baselines, or suspicious behavior that may indicate a security issue. The goal of monitoring is to provide real-time visibility into the security posture of the organization and to enable the timely detection and response to security incidents.",
       "security_goal": "The ECS environment shall establish monitoring and anomaly detection",
-      "id": "S-6",
+      "id": "S-5",
       "Threat_T": "Blocking Amazon Elastic Container Service",
       "security_description_threat": "The ECS environment shall establish monitoring and anomaly detection",
       "Sid": [
-        "SN-R-7"
+        "SN-R-5"
       ],
       "Threat": "Blocking Amazon Elastic Container Service",
       "affected_security_goal": "Availability of Amazon Elastic Container Service",
       "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-6",
+      "Threat_id": "Th-4",
       "damage_scenario": "Loss of customer trust",
       "consequence": "Moderate",
       "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
       "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
       "Did": [
         "DS-4"
+      ]
+    },
+    {
+      "security_control": "Authentication",
+      "security_control_description": "Authentication is the process of verifying the identity of a user or entity. It ensures that only authorized users have access to specific resources, systems, or data. Authentication typically involves a combination of methods, such as passwords, biometrics, tokens, or certificates. Effective authentication mechanisms help prevent unauthorized access and maintain the confidentiality and integrity of information systems.",
+      "security_goal": "Access to a system using stolen or guessed credentials, or through exploiting a vulnerability in the system",
+      "id": "S-6",
+      "Threat_T": "Extraction of AWS Lambda",
+      "security_description_threat": "Access to a system using stolen or guessed credentials, or through exploiting a vulnerability in the system",
+      "Sid": [
+        "SN-R-6"
+      ],
+      "Threat": "Extraction of AWS Lambda",
+      "affected_security_goal": "Confidentiality of AWS Lambda",
+      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
+      "Threat_id": "Th-5",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards is mandatory and this may lead to penalties.",
+      "Did": [
+        "DS-2"
+      ]
+    },
+    {
+      "security_control": "Availability",
+      "security_control_description": "Availability ensures that systems and resources are accessible and operational when needed. It involves protecting against failures, attacks, and disasters that could disrupt access or functionality. This includes maintaining redundant systems, implementing failover mechanisms, and conducting regular backups to ensure data and services remain available.",
+      "security_goal": "Unavailability of services cause user inconvience",
+      "id": "S-7",
+      "Threat_T": "Blocking AWS App Mesh",
+      "security_description_threat": "Unavailability of services cause user inconvience",
+      "Sid": [
+        "SN-R-1"
+      ],
+      "Threat": "Blocking AWS App Mesh",
+      "affected_security_goal": "Availability of AWS App Mesh",
+      "damage_scenario_copy": "Unreliable operation, data loss, data breaches, disruption functionality",
+      "Threat_id": "Th-1",
+      "damage_scenario": "Unreliable operation, data loss, data breaches, disruption functionality",
+      "consequence": "Serious",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
+      "consequence_reasoning": "It will create a significant data loss, downtime, business disruption, increased cost negatively impact on organisation",
+      "Did": [
+        "DS-1"
       ]
     },
     {
       "security_control": "Authorization",
-      "security_control_description": "Authorization is the process of granting access to resources based on a user's identity and the permissions associated with that identity. It helps ensure that only authorized users can access specific resources, preventing unauthorized access and potential data breaches. The authorization mechanism typically involves verifying the user's credentials, determining their access level, and granting or denying access based on pre-defined rules and policies. It helps establish a secure and controlled environment by restricting access to only those who have the necessary permissions, reducing the risk of unauthorized access and the potential compromise of sensitive data.",
-      "security_goal": "Access control mechanisms shall prevent unauthorized access",
-      "id": "S-7",
-      "Threat_T": "Extraction of Simple Storage Service",
-      "security_description_threat": "Access control mechanisms shall prevent unauthorized access",
-      "Sid": [
-        "SN-R-9"
-      ],
-      "Threat": "Extraction of Simple Storage Service",
-      "affected_security_goal": "Confidentiality of Simple Storage Service",
-      "damage_scenario_copy": "Data loss, Manipulation of data",
-      "Threat_id": "Th-8",
-      "damage_scenario": "Data loss, Manipulation of data",
-      "consequence": "Moderate",
-      "consequence_DS": "Manipulation of data Stored in AWS s3 will adversely affect functionality",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
-      "Did": [
-        "DS-5"
-      ]
-    },
-    {
-      "security_control": "Preventive",
-      "security_control_description": "Preventive controls are proactive measures designed to prevent security incidents from occurring in the first place. These controls focus on identifying and mitigating vulnerabilities, preventing unauthorized access, and ensuring the integrity of information systems.",
-      "security_goal": "EBS snapshots shall not be publicly restorable",
+      "security_control_description": "Authorization is the process of determining whether a user should be allowed to access a resource. It is typically implemented using a combination of authentication and access control mechanisms. Authentication verifies the identity of a user, while access control determines what resources the user is allowed to access.",
+      "security_goal": "Employ robust access controls to block unauthorized users or applications from accessing or modifying data stored in S3 Glacier. ",
       "id": "S-8",
-      "Threat_T": "Extraction of EC2",
-      "security_description_threat": "EBS snapshots shall not be publicly restorable",
+      "Threat_T": "Blocking Amazon S3 Glacier",
+      "security_description_threat": "Employ robust access controls to block unauthorized users or applications from accessing or modifying data stored in S3 Glacier. ",
       "Sid": [
         "SN-R-11"
       ],
-      "Threat": "Extraction of EC2",
-      "affected_security_goal": "Confidentiality of EC2",
-      "damage_scenario_copy": "Loss of data",
+      "Threat": "Blocking Amazon S3 Glacier",
+      "affected_security_goal": "Availability of Amazon S3 Glacier",
+      "damage_scenario_copy": "Loss of customer trust",
       "Threat_id": "Th-10",
-      "damage_scenario": "Loss of data",
+      "damage_scenario": "Loss of customer trust",
       "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
       "Did": [
-        "DS-6"
+        "DS-4"
       ]
     },
     {
-      "security_control": "Network segmentation",
-      "security_control_description": "Network segmentation involves dividing a network into smaller, isolated segments or subnets. Each segment is assigned a unique network address and access is restricted between segments using firewalls, routers, or other security devices. By isolating different parts of the network, segmentation can limit the spread of threats and improve overall security. For example, public-facing servers can be isolated from internal systems, reducing the risk of external attacks reaching critical data.",
-      "security_goal": "Amazon EC2 shall be configured to use VPC endpoints that are created for the Amazon EC2 service",
+      "security_control": "Data Integrity",
+      "security_control_description": "Data integrity ensures that data is complete, consistent, and accurate throughout its lifecycle. It involves protecting data from unauthorized modification, destruction, or disclosure. This control encompasses measures to ensure the validity, authenticity, and trustworthiness of data stored in systems and databases.",
+      "security_goal": "Enable checksums, hash functions, or other data integrity checks to detect any unauthorized modifications to the data stored in S3 Glacier",
       "id": "S-9",
-      "Threat_T": "Blocking EC2",
-      "security_description_threat": "Amazon EC2 shall be configured to use VPC endpoints that are created for the Amazon EC2 service",
+      "Threat_T": "Manipulation of Amazon S3 Glacier",
+      "security_description_threat": "Enable checksums, hash functions, or other data integrity checks to detect any unauthorized modifications to the data stored in S3 Glacier",
       "Sid": [
-        "SN-R-12"
+        "SN-R-10"
       ],
-      "Threat": "Blocking EC2",
-      "affected_security_goal": "Availability of EC2",
-      "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-12",
-      "damage_scenario": "Loss of customer trust",
+      "Threat": "Manipulation of Amazon S3 Glacier",
+      "affected_security_goal": "Integrity of Amazon S3 Glacier",
+      "damage_scenario_copy": "Manipulation of data",
+      "Threat_id": "Th-9",
+      "damage_scenario": "Manipulation of data",
       "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
-      "Did": [
-        "DS-4"
-      ]
-    },
-    {
-      "security_control": "Restrictive Access",
-      "security_control_description": "Restrictive access is a security control that limits access to a system, resources, or data to only those individuals who have been authorized to do so. This is done to protect sensitive information from unauthorized access and to maintain the integrity of the system.",
-      "security_goal": "VPC default security groups shall not allow inbound or outbound traffic",
-      "id": "S-10",
-      "Threat_T": "Extraction of EC2",
-      "security_description_threat": "VPC default security groups shall not allow inbound or outbound traffic",
-      "Sid": [
-        "SN-R-16"
-      ],
-      "Threat": "Extraction of EC2",
-      "affected_security_goal": "Confidentiality of EC2",
-      "damage_scenario_copy": "Loss of data",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Loss of data",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "security_control": "Logging",
-      "security_control_description": "Logging involves recording and storing events and activities that occur within a system or network. It plays a crucial role in security by providing a historical record of actions, allowing for incident investigation, regulatory compliance, and security analysis. Logs can contain information such as user activities, system configurations, network traffic, and security events. They serve as an important tool for detecting and responding to security incidents, identifying anomalous behavior, and conducting security audits.",
-      "security_goal": "VPC flow logging shall be enabled in all VPCs",
-      "id": "S-11",
-      "Threat_T": "Manipulation of EC2",
-      "security_description_threat": "VPC flow logging shall be enabled in all VPCs",
-      "Sid": [
-        "SN-R-17"
-      ],
-      "Threat": "Manipulation of EC2",
-      "affected_security_goal": "Integrity of EC2",
-      "damage_scenario_copy": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "Threat_id": "Th-11",
-      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
+      "consequence_DS": "Attackers may tamper with or manipulate checksums and hash values associated with archives to disguise unauthorized modifications",
+      "consequence_reasoning": "Organizations often implement backup and redundancy measures for critical data",
       "Did": [
         "DS-7"
-      ]
-    },
-    {
-      "security_control": "Network redundancy",
-      "security_control_description": "Network redundancy involves implementing multiple network paths or network elements to ensure continuous network connectivity and minimize the risk of downtime. It helps prevent disruptions and enables partial or full recovery of network services in case of component failures, infrastructure events, or other types of outages. By diversifying network paths and utilizing backup systems, network redundancy reduces the impact of network failures, enhances fault tolerance, and improves overall network reliability and availability.",
-      "security_goal": "Both VPN tunnels for an AWS Site-to-Site VPN connection shall be up",
-      "id": "S-12",
-      "Threat_T": "Manipulation of EC2",
-      "security_description_threat": "Both VPN tunnels for an AWS Site-to-Site VPN connection shall be up",
-      "Sid": [
-        "SN-R-18"
-      ],
-      "Threat": "Manipulation of EC2",
-      "affected_security_goal": "Integrity of EC2",
-      "damage_scenario_copy": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "Threat_id": "Th-11",
-      "damage_scenario": "Degradation, Disruption, or Loss of Functionality, or Unreliable Operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Functionality is a key user requirement, and the loss of functionality will lead to a loss of customer trust with contracting partners.",
-      "Did": [
-        "DS-7"
-      ]
-    },
-    {
-      "security_control": "Network ACLs",
-      "security_control_description": "Network Access Control Lists (ACLs) are a set of rules that define which network traffic is allowed to enter or leave a network. ACLs can be used to control access to specific hosts, networks, or services. They can also be used to restrict traffic based on source or destination IP address, port number, or protocol.",
-      "security_goal": "Network ACLs shall not allow ingress from 0.0.0.0/0 to port 22 or port 3389",
-      "id": "S-13",
-      "Threat_T": "Extraction of EC2",
-      "security_description_threat": "Network ACLs shall not allow ingress from 0.0.0.0/0 to port 22 or port 3389",
-      "Sid": [
-        "SN-R-19"
-      ],
-      "Threat": "Extraction of EC2",
-      "affected_security_goal": "Confidentiality of EC2",
-      "damage_scenario_copy": "Loss of data",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Loss of data",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "security_control": "Network Access Control",
-      "security_control_description": "Network Access Control (NAC) is a security control that identifies, authorizes, and enforces access to the network based on pre-defined policies. It verifies the identity of devices, users, and applications attempting to connect to the network and grants access only to those that meet the specified security criteria. NAC systems typically use a combination of authentication, authorization, and accounting (AAA) protocols to enforce access control policies and provide centralized management and visibility into network access.",
-      "security_goal": "Security groups shall only allow unrestricted incoming traffic for authorized ports",
-      "id": "S-14",
-      "Threat_T": "Extraction of EC2",
-      "security_description_threat": "Security groups shall only allow unrestricted incoming traffic for authorized ports",
-      "Sid": [
-        "SN-R-20"
-      ],
-      "Threat": "Extraction of EC2",
-      "affected_security_goal": "Confidentiality of EC2",
-      "damage_scenario_copy": "Loss of data",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Loss of data",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "security_control": "Data Retention",
-      "security_control_description": "Data retention involves establishing and implementing policies and procedures for the secure storage and disposal of sensitive data. This includes determining the appropriate retention period for different types of data based on business needs, legal and regulatory requirements, and privacy concerns. The control also includes measures to ensure the secure disposal of data when it is no longer needed, such as through encryption, deletion, or physical destruction.",
-      "security_goal": "Stopped EC2 instances shall be removed after a specified time period",
-      "id": "S-15",
-      "Threat_T": "Blocking EC2",
-      "security_description_threat": "Stopped EC2 instances shall be removed after a specified time period",
-      "Sid": [
-        "SN-R-25"
-      ],
-      "Threat": "Blocking EC2",
-      "affected_security_goal": "Availability of EC2",
-      "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-12",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
-      "Did": [
-        "DS-4"
-      ]
-    },
-    {
-      "security_control": "Network Configuration",
-      "security_control_description": "Network Configuration is the process of setting up and configuring the network devices and services to ensure secure network communication. It involves configuring network parameters such as IP addresses, routing protocols, firewalls, intrusion detection systems (IDS), and access control lists (ACLs). Network Configuration also includes implementing security measures such as network segmentation, virtual LANs (VLANs), and encryption.",
-      "security_goal": "Unused Network Access Control Lists shall be removed",
-      "id": "S-16",
-      "Threat_T": "Blocking EC2",
-      "security_description_threat": "Unused Network Access Control Lists shall be removed",
-      "Sid": [
-        "SN-R-26"
-      ],
-      "Threat": "Blocking EC2",
-      "affected_security_goal": "Availability of EC2",
-      "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-12",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
-      "Did": [
-        "DS-4"
-      ]
-    },
-    {
-      "security_control": "Network Security",
-      "security_control_description": "Network Security safeguards the confidentiality, integrity, and availability of network resources and assets by implementing controls to protect against unauthorized access, damage, or disruption. It involves measures such as firewalls, intrusion detection and prevention systems, access control lists, network segmentation, and encryption to secure network infrastructure, connections, and data in transit.",
-      "security_goal": "EC2 instances shall not have a public IPv4 address",
-      "id": "S-17",
-      "Threat_T": "Extraction of EC2",
-      "security_description_threat": "EC2 instances shall not have a public IPv4 address",
-      "Sid": [
-        "SN-R-28"
-      ],
-      "Threat": "Extraction of EC2",
-      "affected_security_goal": "Confidentiality of EC2",
-      "damage_scenario_copy": "Loss of data",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Loss of data",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
-      "Did": [
-        "DS-6"
       ]
     }
   ],
