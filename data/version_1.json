@@ -138,10 +138,10 @@
       "id": "Th-1",
       "Access": 0,
       "Equipment": 0,
-      "Expertise": 3,
-      "Knowledge": 3,
+      "Expertise": 0,
+      "Knowledge": 0,
       "Time": 0,
-      "Sum": "6",
+      "Sum": "0",
       "Threat": "Blocking AWS App Mesh",
       "Attack_Potential": "Beyond High",
       "Threat_i": "Blocking AWS App Mesh"
