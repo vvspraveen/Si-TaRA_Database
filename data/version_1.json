@@ -899,7 +899,8 @@
       "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
       "Did": [
         "DS-3"
-      ]
+      ],
+      "selectedRequirement": "EISA-COM-132 - Traffic Flow Policy (EISA-PSA-003 - Database Management System) - Protocol Restrictions"
     },
     {
       "security_control": "Encryption",
