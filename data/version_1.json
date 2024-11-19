@@ -772,7 +772,11 @@
       "security_control": "Access control",
       "security_control_description": "Access control is a security control that restricts access to resources based on the identity of the user or system requesting access. This control ensures that only authorized users or systems can access specific resources, such as files, applications, or databases. Access control can be implemented using a variety of mechanisms, such as passwords, biometrics, and tokens.",
       "security_goal": "Data can be accessed and maniplated  by unauthorized individuals if proper security measures are not in place. It can leads to compromise of integrity",
-      "id": "S-2"
+      "id": "S-2",
+      "Sid": [
+        "SN-R-2"
+      ],
+      "selectedRequirement": "EISA-CPL-201 - Penetration Testing (EISA-PIS-200 - Bosch Product) - Independent Penetration Test Agent or Team"
     },
     {
       "security_control": "Encryption",
@@ -794,7 +798,8 @@
       "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
       "Did": [
         "DS-1"
-      ]
+      ],
+      "selectedRequirement": "EISA-ACC-104 - Access to Networks (EISA-PIS-166 - IT Systems with Security Deficiencies) - Access to Networks"
     },
     {
       "security_control": "Monitoring",
