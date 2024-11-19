@@ -1,792 +1,514 @@
 {
   "assumption": [
     {
-      "assumption": "Connected devices follow robust security measures",
-      "assumption_comment": "Updated antivirus software, firewalls, and other security features on devices shall be done by the users.",
-      "id": "Asm-1"
-    },
-    {
-      "assumption": "Physical access to networking equipment is restricted",
-      "assumption_comment": "Physical Security",
-      "id": "Asm-2"
-    },
-    {
-      "assumption": "Connectivity between Gateway and Internet is always available",
-      "assumption_comment": "Service should be available",
-      "id": "Asm-3"
-    },
-    {
-      "assumption": "Physical Security of the Gateway, NILM, MMUE and Access Point is the responsibility of the Customer",
-      "assumption_comment": "Customer's responsibility",
-      "id": "Asm-4"
-    },
-    {
-      "assumption": "Routers and connected devices are regularly updated with the latest firmware and software patches",
-      "assumption_comment": "Outdated firmware can expose vulnerabilities that attackers may exploit",
-      "id": "Asm-5"
-    },
-    {
       "assumption": "All the debug interfaces like JTAG shall be disabled in hardware in production.",
       "assumption_comment": " ",
-      "id": "Asm-6"
+      "id": "Asm-1"
     },
     {
       "assumption": "Tamper protection shall be implemented to prevent reading memory by direct physical access. ",
       "assumption_comment": "Board level mitigations should be done",
-      "id": "Asm-7"
+      "id": "Asm-2"
+    },
+    {
+      "assumption": "Access to all unused physical interfaces in micro-controller are blocked.",
+      "assumption_comment": "NFC Interfaces",
+      "id": "Asm-3"
+    },
+    {
+      "assumption": "Attacker does not have physical access to the device",
+      "assumption_comment": "NFC Interface",
+      "id": "Asm-4"
     }
   ],
   "misuse": [
     {
-      "muc_description": "Access the Master gateway through the WiFi Hotspot",
-      "muc_comment": "WiFi Access Point not planned in phase I. Not to be considered for analysis.",
-      "id": "MUC-1"
-    },
-    {
-      "muc_description": "WiFi may be misused to sniff (eavesdrop) the communication between the device and paired mobile device",
-      "muc_comment": "Insecure external interfaces",
-      "id": "MUC-2"
-    },
-    {
-      "muc_description": "WiFi may be misused to consume the memory of the device by dumping large files",
-      "muc_comment": "Maxing out limited on-board persistent memory",
-      "id": "MUC-3"
-    },
-    {
-      "muc_description": "Malicious  malware can be introduced to the router making the network compromise",
-      "muc_comment": "These rogue entities can conduct various attacks, compromise security, and spread within the network.",
-      "id": "MUC-4"
-    },
-    {
-      "muc_description": "WiFi may be misused to load undesirable content on the device (by an adversary or malicious service person)",
-      "muc_comment": "Insider threats",
-      "id": "MUC-5"
-    },
-    {
-      "muc_description": "Attackers may set up rogue Wi-Fi access points with names similar to legitimate networks",
-      "muc_comment": "Evil Twin Attacks",
-      "id": "MUC-6"
-    },
-    {
-      "muc_description": "Disrupting the connectivity between the device and the network",
-      "muc_comment": "WiFi network",
-      "id": "MUC-7"
-    },
-    {
-      "muc_description": "Manipulation of Wireless Access Point configuration",
-      "muc_comment": "Configuration file of WiFi AP",
-      "id": "MUC-8"
-    },
-    {
-      "muc_description": "Reading sensitive data by sniffing WiFi",
-      "muc_comment": "WiFi Interface",
-      "id": "MUC-9"
-    },
-    {
       "muc_description": "Accessing or manipulating data through JTAG",
       "muc_comment": "JTAG Interface",
-      "id": "MUC-10"
+      "id": "MUC-1"
     },
     {
       "muc_description": "An attacker manipulates the Flash content via a manipulation of an offline update container (via low level programming, e.g. JTAG or hardware adapter).",
       "muc_comment": "JTAG Interface",
-      "id": "MUC-11"
+      "id": "MUC-2"
     },
     {
       "muc_description": "Any device can connect over JTAG to get debug information or change some memory at runtime",
       "muc_comment": "Memory dump",
-      "id": "MUC-12"
+      "id": "MUC-3"
     },
     {
       "muc_description": "Open board and connect hardware debugger and access in authorized manner (through JTAG)",
       "muc_comment": "JTAG",
-      "id": "MUC-13"
+      "id": "MUC-4"
+    },
+    {
+      "muc_description": "NFC may be misused to sniff (evesdrop) the communication between the devices",
+      "muc_comment": "Insecure external interfaces",
+      "id": "MUC-5"
+    },
+    {
+      "muc_description": "Cloning and misuse of NFC Card",
+      "muc_comment": "NFC Card ",
+      "id": "MUC-6"
+    },
+    {
+      "muc_description": "Cloning NFC Tags",
+      "muc_comment": "NFC Tags",
+      "id": "MUC-7"
+    },
+    {
+      "muc_description": "Entering into programming mode without authentication ",
+      "muc_comment": "NFC Reader",
+      "id": "MUC-8"
+    },
+    {
+      "muc_description": "Manipulation of parameters to affect the quality through NFC or UART",
+      "muc_comment": "On-board NFC Reader, UART Interface",
+      "id": "MUC-9"
     }
   ],
   "damageScenario": [
-    {
-      "damage_scenario": "Degradation or loss of functionality ",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "id": "DS-1"
-    },
-    {
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
-      "id": "DS-2"
-    },
-    {
-      "damage_scenario": "Legal non-compliance",
-      "consequence": "Serious",
-      "consequence_DS": "Compliance to legal requirements may be affected",
-      "consequence_reasoning": "Compliance to international and national legal requirements and standards such as GDPR is mandatory and this may lead to penalties",
-      "id": "DS-3"
-    },
-    {
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
-      "id": "DS-4"
-    },
     {
       "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "consequence": "Moderate",
       "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
       "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "id": "DS-5"
+      "id": "DS-1"
     },
     {
       "damage_scenario": "Misuse or manipulation affecting Bosch",
       "consequence": "Negligible",
       "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
       "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
-      "id": "DS-6"
+      "id": "DS-2"
     },
     {
       "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
       "consequence": "Moderate",
       "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
       "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "id": "DS-7"
+      "id": "DS-3"
+    },
+    {
+      "damage_scenario": "Legal non-compliance",
+      "consequence": "Serious",
+      "consequence_DS": "Compliance to legal requirements may be affected",
+      "consequence_reasoning": "Compliance to international and national legal requirements and standards such as GDPR is mandatory and this may lead to penalties.",
+      "id": "DS-4"
     }
   ],
   "SecGoals": [
     {
-      "Asset_description": "WiFi Interface",
-      "Objective": "Confidentiality",
-      "objective_description": "The data communication between the device and the WiFi network is confidential and must not be exposed.",
-      "id": "A-1"
-    },
-    {
-      "Asset_description": "WiFi Interface",
-      "Objective": "Integrity",
-      "objective_description": "The data communication between WiFi and the device must not be manipulated.",
-      "id": "A-2"
-    },
-    {
-      "Asset_description": "WiFi Interface",
-      "Objective": "Availability",
-      "objective_description": "The WiFi Interface must be available to enable data communication between the network and device.",
-      "id": "A-3"
-    },
-    {
-      "Asset_description": "WiFi module",
-      "Objective": "Confidentiality",
-      "objective_description": "Strict access control should be implemented both physically to protect from unauthorized access.",
-      "id": "A-4"
-    },
-    {
-      "Asset_description": "WiFi module",
-      "Objective": "Availability",
-      "objective_description": "WiFi module should always be available to provide WiFi connectivity among devices.",
-      "id": "A-5"
-    },
-    {
-      "Asset_description": "WiFi Access Point",
-      "Objective": "Confidentiality",
-      "objective_description": "It is required that the configuration information sent from the user to the access point must not be exposed.",
-      "id": "A-6"
-    },
-    {
-      "Asset_description": "WiFi Access Point",
-      "Objective": "Integrity",
-      "objective_description": "It is required that the configuration information sent from the user to the access point must not be tampered. Loss of integrity will impact the functionality of the system.",
-      "id": "A-7"
-    },
-    {
-      "Asset_description": "WiFi Access Point",
-      "Objective": "Availability",
-      "objective_description": "It is required that the WiFi access point is always up and made available to the user whenever required for configuration. Loss of availability will lead to Denial-of-service",
-      "id": "A-8"
-    },
-    {
-      "Asset_description": "WiFi Router",
-      "Objective": "Availability",
-      "objective_description": "WiFi Router should be protected from denial of service attacks",
-      "id": "A-9"
-    },
-    {
       "Asset_description": "JTAG Interface",
       "Objective": "Confidentiality",
       "objective_description": "Unauthorized individuals may exploit the JTAG interface to extract sensitive information from the device, potentially compromising the confidentiality of critical system data. The JTAG interface could be used by attackers to manipulate firmware or hardware settings, leading to altered device behavior, system instability, or insertion of malicious code, thereby compromising the integrity of the device. Attackers might block or disrupt legitimate JTAG interface access, hindering essential maintenance, debugging, or updating processes, which could lead to system downtime.",
-      "id": "A-10"
+      "id": "A-1"
     },
     {
       "Asset_description": "JTAG Interface",
       "Objective": "Integrity",
       "objective_description": " ",
-      "id": "A-11"
+      "id": "A-2"
     },
     {
       "Asset_description": "JTAG Interface",
       "Objective": "Availability",
       "objective_description": " ",
-      "id": "A-12"
+      "id": "A-3"
+    },
+    {
+      "Asset_description": "NFC Tags",
+      "Objective": "Confidentiality",
+      "objective_description": "Confidentiality - NFC Card contains sensitive information like UID which should not be exposed.\n",
+      "id": "A-4"
+    },
+    {
+      "Asset_description": "NFC Tags",
+      "Objective": "Integrity",
+      "objective_description": "Integrity - NFC Card contains sensitive information like UID which should not be manipulated. ",
+      "id": "A-5"
+    },
+    {
+      "Asset_description": "NFC communication",
+      "Objective": "Availability",
+      "objective_description": "Availability - NFC communication shall be protected by DDoS attack to prevent blocking or loss of fuctionality.",
+      "id": "A-6"
+    },
+    {
+      "Asset_description": "NFC communication",
+      "Objective": "Integrity",
+      "objective_description": "Integrity - NFC Communication responible for sending the data, so it should not be manipulated",
+      "id": "A-7"
+    },
+    {
+      "Asset_description": "NFC Reader",
+      "Objective": "Confidentiality",
+      "objective_description": "Confidentiality - Confidentiality mechanism needs to be strong, should not be easily bypassed and protected against NFC known attacks.\n",
+      "id": "A-8"
+    },
+    {
+      "Asset_description": "NFC Reader",
+      "Objective": "Availability",
+      "objective_description": "Availability - NFC Reader should be available to take the input from NFC tag",
+      "id": "A-9"
     }
   ],
   "ThreatDSs": [
     {
-      "Threat": "Extraction of WiFi Interface",
-      "affected_security_goal": "Confidentiality of WiFi Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
-      "id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
-      "Did": [
-        "DS-2"
-      ]
-    },
-    {
-      "Threat": "Manipulation of WiFi Interface",
-      "affected_security_goal": "Integrity of WiFi Interface",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
-      "id": "Th-2",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-1"
-      ]
-    },
-    {
-      "Threat": "Blocking WiFi Interface",
-      "affected_security_goal": "Availability of WiFi Interface",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
-      "id": "Th-3",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-1"
-      ]
-    },
-    {
-      "Threat": "Extraction of WiFi module",
-      "affected_security_goal": "Confidentiality of WiFi module",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
-      "id": "Th-4",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
-      "Did": [
-        "DS-2"
-      ]
-    },
-    {
-      "Threat": "Blocking WiFi module",
-      "affected_security_goal": "Availability of WiFi module",
-      "damage_scenario_copy": "Legal non-compliance",
-      "id": "Th-5",
-      "damage_scenario": "Legal non-compliance",
-      "consequence": "Serious",
-      "consequence_DS": "Compliance to legal requirements may be affected",
-      "consequence_reasoning": "Compliance to international and national legal requirements and standards such as GDPR is mandatory and this may lead to penalties",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "Threat": "Extraction of WiFi Access Point",
-      "affected_security_goal": "Confidentiality of WiFi Access Point",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
-      "id": "Th-6",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
-      "Did": [
-        "DS-2"
-      ]
-    },
-    {
-      "Threat": "Manipulation of WiFi Access Point",
-      "affected_security_goal": "Integrity of WiFi Access Point",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
-      "id": "Th-7",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-1"
-      ]
-    },
-    {
-      "Threat": "Blocking WiFi Access Point",
-      "affected_security_goal": "Availability of WiFi Access Point",
-      "damage_scenario_copy": "Loss of customer trust",
-      "id": "Th-8",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
-      "Did": [
-        "DS-4"
-      ]
-    },
-    {
-      "Threat": "Blocking WiFi Router",
-      "affected_security_goal": "Availability of WiFi Router",
-      "damage_scenario_copy": "Loss of customer trust",
-      "id": "Th-9",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
-      "Did": [
-        "DS-4"
-      ]
-    },
-    {
       "Threat": "Extraction of JTAG Interface",
       "affected_security_goal": "Confidentiality of JTAG Interface",
       "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "id": "Th-10",
+      "id": "Th-1",
       "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
       "consequence": "Moderate",
       "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
       "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
       "Did": [
-        "DS-7"
+        "DS-3"
       ]
     },
     {
       "Threat": "Manipulation of JTAG Interface",
       "affected_security_goal": "Integrity of JTAG Interface",
       "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "id": "Th-11",
+      "id": "Th-2",
       "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "consequence": "Moderate",
       "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
       "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
       "Did": [
-        "DS-5"
+        "DS-1"
       ]
     },
     {
       "Threat": "Blocking JTAG Interface",
       "affected_security_goal": "Availability of JTAG Interface",
       "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
-      "id": "Th-12",
+      "id": "Th-3",
       "damage_scenario": "Misuse or manipulation affecting Bosch",
       "consequence": "Negligible",
       "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
       "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
       "Did": [
-        "DS-6"
+        "DS-2"
+      ]
+    },
+    {
+      "Threat": "Extraction of NFC Tags",
+      "affected_security_goal": "Confidentiality of NFC Tags",
+      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "id": "Th-4",
+      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
+      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
+      "Threat": "Manipulation of NFC Tags",
+      "affected_security_goal": "Integrity of NFC Tags",
+      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
+      "id": "Th-5",
+      "damage_scenario": "Misuse or manipulation affecting Bosch",
+      "consequence": "Negligible",
+      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
+      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
+      "Did": [
+        "DS-2"
+      ]
+    },
+    {
+      "Threat": "Blocking NFC communication",
+      "affected_security_goal": "Availability of NFC communication",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
+      "id": "Th-6",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
+      "Did": [
+        "DS-1"
+      ]
+    },
+    {
+      "Threat": "Manipulation of NFC Communication",
+      "affected_security_goal": "Integrity of NFC communication",
+      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
+      "id": "Th-7",
+      "damage_scenario": "Misuse or manipulation affecting Bosch",
+      "consequence": "Negligible",
+      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
+      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
+      "Did": [
+        "DS-2"
+      ]
+    },
+    {
+      "Threat": "Extraction of NFC Reader",
+      "affected_security_goal": "Confidentiality of NFC Reader",
+      "damage_scenario_copy": "Legal non-compliance",
+      "id": "Th-8",
+      "damage_scenario": "Legal non-compliance",
+      "consequence": "Serious",
+      "consequence_DS": "Compliance to legal requirements may be affected",
+      "consequence_reasoning": "Compliance to international and national legal requirements and standards such as GDPR is mandatory and this may lead to penalties.",
+      "Did": [
+        "DS-4"
+      ]
+    },
+    {
+      "Threat": "Blocking NFC Reader",
+      "affected_security_goal": "Availability of NFC Reader",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
+      "id": "Th-9",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
+      "Did": [
+        "DS-1"
       ]
     }
   ],
   "ThreatEvaluation_AP": [
     {
-      "Threat": "Extraction of WiFi Interface",
       "id": "Th-1",
-      "Access": "0",
-      "Equipment": "4",
-      "Expertise": "3",
-      "Time": "1",
-      "Knowledge": "0",
-      "Sum": "8",
-      "Attack_Potential": "Beyond High"
-    },
-    {
-      "Threat": "Manipulation of WiFi Interface",
-      "id": "Th-2",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "3",
-      "Time": "0",
-      "Knowledge": "0",
-      "Sum": "3",
-      "Attack_Potential": "Beyond High"
-    },
-    {
-      "Threat": "Blocking WiFi Interface",
-      "id": "Th-3",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "0",
-      "Time": "0",
-      "Knowledge": "0",
-      "Sum": "0",
-      "Attack_Potential": "Beyond High"
-    },
-    {
-      "Threat": "Extraction of WiFi module",
-      "id": "Th-4",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "3",
-      "Time": "1",
-      "Knowledge": "0",
-      "Sum": "4",
-      "Attack_Potential": "Beyond High"
-    },
-    {
-      "Threat": "Blocking WiFi module",
-      "id": "Th-5",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "3",
-      "Time": "0",
-      "Knowledge": "0",
-      "Sum": "3",
-      "Attack_Potential": "Beyond High"
-    },
-    {
-      "Threat": "Extraction of WiFi Access Point",
-      "id": "Th-6",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "3",
-      "Time": "0",
-      "Knowledge": "0",
-      "Sum": "3",
-      "Attack_Potential": "Beyond High"
-    },
-    {
-      "Threat": "Manipulation of WiFi Access Point",
-      "id": "Th-7",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "3",
-      "Time": "0",
-      "Knowledge": "0",
-      "Sum": "3",
-      "Attack_Potential": "Beyond High"
-    },
-    {
-      "Threat": "Blocking WiFi Access Point",
-      "id": "Th-8",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "3",
-      "Time": "0",
-      "Knowledge": "0",
-      "Sum": "3",
-      "Attack_Potential": "Beyond High"
-    },
-    {
-      "Threat": "Blocking WiFi Router",
-      "id": "Th-9",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "0",
-      "Time": "0",
-      "Knowledge": "0",
-      "Sum": "0",
-      "Attack_Potential": "Beyond High"
-    },
-    {
-      "Threat": "Extraction of JTAG Interface",
-      "id": "Th-10",
       "Access": "5",
       "Equipment": "0",
       "Expertise": "3",
-      "Time": "1",
       "Knowledge": "3",
+      "Time": "1",
       "Sum": "12",
+      "Threat": "Extraction of JTAG Interface",
       "Attack_Potential": "High"
     },
     {
-      "Threat": "Manipulation of JTAG Interface",
-      "id": "Th-11",
+      "id": "Th-2",
       "Access": "2",
       "Equipment": "0",
       "Expertise": "3",
-      "Time": "1",
       "Knowledge": "3",
+      "Time": "1",
       "Sum": "9",
+      "Threat": "Manipulation of JTAG Interface",
       "Attack_Potential": "Beyond High"
     },
     {
-      "Threat": "Blocking JTAG Interface",
-      "id": "Th-12",
+      "id": "Th-3",
       "Access": "0",
       "Equipment": "0",
       "Expertise": "3",
-      "Time": "0",
       "Knowledge": "0",
+      "Time": "0",
       "Sum": "3",
+      "Threat": "Blocking JTAG Interface",
       "Attack_Potential": "Beyond High"
+    },
+    {
+      "id": "Th-4",
+      "Access": "0",
+      "Equipment": "3",
+      "Expertise": "3",
+      "Knowledge": "0",
+      "Time": "0",
+      "Sum": "6",
+      "Threat": "Extraction of NFC Tags",
+      "Attack_Potential": "Beyond High"
+    },
+    {
+      "id": "Th-5",
+      "Access": "0",
+      "Equipment": "0",
+      "Expertise": "0",
+      "Knowledge": "0",
+      "Time": "0",
+      "Sum": "0",
+      "Threat": "Manipulation of NFC Tags",
+      "Attack_Potential": "Beyond High"
+    },
+    {
+      "id": "Th-6",
+      "Access": "0",
+      "Equipment": "0",
+      "Expertise": "0",
+      "Knowledge": "0",
+      "Time": "0",
+      "Sum": "0",
+      "Threat": "Blocking NFC Communication",
+      "Attack_Potential": "Beyond High"
+    },
+    {
+      "id": "Th-7",
+      "Access": "5",
+      "Equipment": "4",
+      "Expertise": "6",
+      "Knowledge": "3",
+      "Time": "3",
+      "Sum": "21",
+      "Threat": "Manipulation of NFC Communication",
+      "Attack_Potential": "Enhanced Basic"
+    },
+    {
+      "id": "Th-8",
+      "Access": "2",
+      "Equipment": "4",
+      "Expertise": "6",
+      "Knowledge": "3",
+      "Time": "5",
+      "Sum": "20",
+      "Threat": "Extraction of NFC Reader",
+      "Attack_Potential": "Enhanced Basic"
+    },
+    {
+      "id": "Th-9",
+      "Access": "2",
+      "Equipment": "4",
+      "Expertise": "6",
+      "Knowledge": "3",
+      "Time": "5",
+      "Sum": "20",
+      "Threat": "Blocking NFC Reader",
+      "Attack_Potential": "Enhanced Basic"
     }
   ],
   "threatDamageAssociations": [
     {
       "threatId": "Th-1",
-      "threat": "Extraction of WiFi Interface",
-      "damageScenarioId": "DS-2",
-      "damageScenario": "Disclosure of IP or Proprietary Data ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-2",
-      "threat": "Manipulation of WiFi Interface",
-      "damageScenarioId": "DS-1",
-      "damageScenario": "Degradation or loss of functionality ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-3",
-      "threat": "Blocking WiFi Interface",
-      "damageScenarioId": "DS-1",
-      "damageScenario": "Degradation or loss of functionality ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-4",
-      "threat": "Extraction of WiFi module",
-      "damageScenarioId": "DS-2",
-      "damageScenario": "Disclosure of IP or Proprietary Data ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-5",
-      "threat": "Blocking WiFi module",
-      "damageScenarioId": "DS-3",
-      "damageScenario": "Legal non-compliance",
-      "cons": "Serious"
-    },
-    {
-      "threatId": "Th-6",
-      "threat": "Extraction of WiFi Access Point",
-      "damageScenarioId": "DS-2",
-      "damageScenario": "Disclosure of IP or Proprietary Data ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-7",
-      "threat": "Manipulation of WiFi Access Point",
-      "damageScenarioId": "DS-1",
-      "damageScenario": "Degradation or loss of functionality ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-8",
-      "threat": "Blocking WiFi Access Point",
-      "damageScenarioId": "DS-4",
-      "damageScenario": "Loss of customer trust",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-9",
-      "threat": "Blocking WiFi Router",
-      "damageScenarioId": "DS-4",
-      "damageScenario": "Loss of customer trust",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-10",
       "threat": "Extraction of JTAG Interface",
-      "damageScenarioId": "DS-7",
+      "damageScenarioId": "DS-3",
       "damageScenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
       "cons": "Moderate"
     },
     {
-      "threatId": "Th-11",
+      "threatId": "Th-2",
       "threat": "Manipulation of JTAG Interface",
-      "damageScenarioId": "DS-5",
+      "damageScenarioId": "DS-1",
       "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "cons": "Moderate"
     },
     {
-      "threatId": "Th-12",
+      "threatId": "Th-3",
       "threat": "Blocking JTAG Interface",
-      "damageScenarioId": "DS-6",
+      "damageScenarioId": "DS-2",
       "damageScenario": "Misuse or manipulation affecting Bosch",
       "cons": "Negligible"
+    },
+    {
+      "threatId": "Th-4",
+      "threat": "Extraction of NFC Tags",
+      "damageScenarioId": "DS-3",
+      "damageScenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-5",
+      "threat": "Manipulation of NFC Tags",
+      "damageScenarioId": "DS-2",
+      "damageScenario": "Misuse or manipulation affecting Bosch",
+      "cons": "Negligible"
+    },
+    {
+      "threatId": "Th-6",
+      "threat": "Blocking NFC communication",
+      "damageScenarioId": "DS-1",
+      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-7",
+      "threat": "Manipulation of NFC Communication",
+      "damageScenarioId": "DS-2",
+      "damageScenario": "Misuse or manipulation affecting Bosch",
+      "cons": "Negligible"
+    },
+    {
+      "threatId": "Th-8",
+      "threat": "Extraction of NFC Reader",
+      "damageScenarioId": "DS-4",
+      "damageScenario": "Legal non-compliance",
+      "cons": "Serious"
+    },
+    {
+      "threatId": "Th-9",
+      "threat": "Blocking NFC Reader",
+      "damageScenarioId": "DS-1",
+      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "cons": "Moderate"
     }
   ],
   "updatedAssociations": [
     {
       "threatId": "Th-1",
-      "threat": "Extraction of WiFi Interface",
-      "damageScenarioId": "DS-2",
-      "damageScenario": "Disclosure of IP or Proprietary Data ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-2",
-      "threat": "Manipulation of WiFi Interface",
-      "damageScenarioId": "DS-1",
-      "damageScenario": "Degradation or loss of functionality ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-3",
-      "threat": "Blocking WiFi Interface",
-      "damageScenarioId": "DS-1",
-      "damageScenario": "Degradation or loss of functionality ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-4",
-      "threat": "Extraction of WiFi module",
-      "damageScenarioId": "DS-2",
-      "damageScenario": "Disclosure of IP or Proprietary Data ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-5",
-      "threat": "Blocking WiFi module",
-      "damageScenarioId": "DS-3",
-      "damageScenario": "Legal non-compliance",
-      "cons": "Serious"
-    },
-    {
-      "threatId": "Th-6",
-      "threat": "Extraction of WiFi Access Point",
-      "damageScenarioId": "DS-2",
-      "damageScenario": "Disclosure of IP or Proprietary Data ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-7",
-      "threat": "Manipulation of WiFi Access Point",
-      "damageScenarioId": "DS-1",
-      "damageScenario": "Degradation or loss of functionality ",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-8",
-      "threat": "Blocking WiFi Access Point",
-      "damageScenarioId": "DS-4",
-      "damageScenario": "Loss of customer trust",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-9",
-      "threat": "Blocking WiFi Router",
-      "damageScenarioId": "DS-4",
-      "damageScenario": "Loss of customer trust",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-10",
       "threat": "Extraction of JTAG Interface",
-      "damageScenarioId": "DS-7",
+      "damageScenarioId": "DS-3",
       "damageScenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
       "cons": "Moderate"
     },
     {
-      "threatId": "Th-11",
+      "threatId": "Th-2",
       "threat": "Manipulation of JTAG Interface",
-      "damageScenarioId": "DS-5",
+      "damageScenarioId": "DS-1",
       "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "cons": "Moderate"
     },
     {
-      "threatId": "Th-12",
+      "threatId": "Th-3",
       "threat": "Blocking JTAG Interface",
-      "damageScenarioId": "DS-6",
+      "damageScenarioId": "DS-2",
       "damageScenario": "Misuse or manipulation affecting Bosch",
       "cons": "Negligible"
+    },
+    {
+      "threatId": "Th-4",
+      "threat": "Extraction of NFC Tags",
+      "damageScenarioId": "DS-3",
+      "damageScenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-5",
+      "threat": "Manipulation of NFC Tags",
+      "damageScenarioId": "DS-2",
+      "damageScenario": "Misuse or manipulation affecting Bosch",
+      "cons": "Negligible"
+    },
+    {
+      "threatId": "Th-6",
+      "threat": "Blocking NFC communication",
+      "damageScenarioId": "DS-1",
+      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-7",
+      "threat": "Manipulation of NFC Communication",
+      "damageScenarioId": "DS-2",
+      "damageScenario": "Misuse or manipulation affecting Bosch",
+      "cons": "Negligible"
+    },
+    {
+      "threatId": "Th-8",
+      "threat": "Extraction of NFC Reader",
+      "damageScenarioId": "DS-4",
+      "damageScenario": "Legal non-compliance",
+      "cons": "Serious"
+    },
+    {
+      "threatId": "Th-9",
+      "threat": "Blocking NFC Reader",
+      "damageScenarioId": "DS-1",
+      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "cons": "Moderate"
     }
   ],
   "RiskAssessment": [
     {
       "id": "R-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "D_id": "DS-2",
-      "consequence": "Moderate",
-      "Threat": "Extraction of WiFi Interface",
-      "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
-    },
-    {
-      "id": "R-2",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "D_id": "DS-1",
-      "consequence": "Moderate",
-      "Threat": "Manipulation of WiFi Interface",
-      "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
-    },
-    {
-      "id": "R-3",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "D_id": "DS-1",
-      "consequence": "Moderate",
-      "Threat": "Blocking WiFi Interface",
-      "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
-    },
-    {
-      "id": "R-4",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "D_id": "DS-2",
-      "consequence": "Moderate",
-      "Threat": "Extraction of WiFi module",
-      "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
-    },
-    {
-      "id": "R-5",
-      "damage_scenario": "Legal non-compliance",
-      "D_id": "DS-3",
-      "consequence": "Serious",
-      "Threat": "Blocking WiFi module",
-      "risk": "Very High",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
-    },
-    {
-      "id": "R-6",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "D_id": "DS-2",
-      "consequence": "Moderate",
-      "Threat": "Extraction of WiFi Access Point",
-      "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
-    },
-    {
-      "id": "R-7",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "D_id": "DS-1",
-      "consequence": "Moderate",
-      "Threat": "Manipulation of WiFi Access Point",
-      "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
-    },
-    {
-      "id": "R-8",
-      "damage_scenario": "Loss of customer trust",
-      "D_id": "DS-4",
-      "consequence": "Moderate",
-      "Threat": "Blocking WiFi Access Point",
-      "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
-    },
-    {
-      "id": "R-9",
-      "damage_scenario": "Loss of customer trust",
-      "D_id": "DS-4",
-      "consequence": "Moderate",
-      "Threat": "Blocking WiFi Router",
-      "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
-    },
-    {
-      "id": "R-10",
       "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "D_id": "DS-7",
+      "D_id": "DS-3",
       "consequence": "Moderate",
       "Threat": "Extraction of JTAG Interface",
       "risk": "Low",
@@ -794,9 +516,9 @@
       "risk_of_d": "Medium"
     },
     {
-      "id": "R-11",
+      "id": "R-2",
       "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "D_id": "DS-5",
+      "D_id": "DS-1",
       "consequence": "Moderate",
       "Threat": "Manipulation of JTAG Interface",
       "risk": "Low",
@@ -804,677 +526,577 @@
       "risk_of_d": "Low"
     },
     {
-      "id": "R-12",
+      "id": "R-3",
       "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "D_id": "DS-6",
+      "D_id": "DS-2",
       "consequence": "Negligible",
       "Threat": "Blocking JTAG Interface",
       "risk": "Very Low",
       "attackPotential": "Beyond High",
       "risk_of_d": "Low"
+    },
+    {
+      "id": "R-4",
+      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "D_id": "DS-3",
+      "consequence": "Moderate",
+      "Threat": "Extraction of NFC Tags",
+      "risk": "Low",
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
+    },
+    {
+      "id": "R-5",
+      "damage_scenario": "Misuse or manipulation affecting Bosch",
+      "D_id": "DS-2",
+      "consequence": "Negligible",
+      "Threat": "Manipulation of NFC Tags",
+      "risk": "Very Low",
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
+    },
+    {
+      "id": "R-6",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "D_id": "DS-1",
+      "consequence": "Moderate",
+      "Threat": "Blocking NFC communication",
+      "risk": "Low",
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
+    },
+    {
+      "id": "R-7",
+      "damage_scenario": "Misuse or manipulation affecting Bosch",
+      "D_id": "DS-2",
+      "consequence": "Negligible",
+      "Threat": "Manipulation of NFC Communication",
+      "risk": "Very Low",
+      "attackPotential": "Enhanced Basic",
+      "risk_of_d": "Medium"
+    },
+    {
+      "id": "R-8",
+      "damage_scenario": "Legal non-compliance",
+      "D_id": "DS-4",
+      "consequence": "Serious",
+      "Threat": "Extraction of NFC Reader",
+      "risk": "Very High",
+      "attackPotential": "Enhanced Basic",
+      "risk_of_d": "High"
+    },
+    {
+      "id": "R-9",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "D_id": "DS-1",
+      "consequence": "Moderate",
+      "Threat": "Blocking NFC Reader",
+      "risk": "Low",
+      "attackPotential": "Enhanced Basic",
+      "risk_of_d": "High"
     }
   ],
   "SecurityNeeds": [
     {
-      "Threat_T": "Extraction of WiFi Interface",
-      "security_description_threat": "Network Intrusion Detection Systems (NIDS) shall be deployed at the network perimeter to detect known attacks in the network traffic.",
-      "id": "SN-R-1",
-      "Threat": "Extraction of WiFi Interface",
-      "affected_security_goal": "Confidentiality of WiFi Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
-      "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
-      "Did": [
-        "DS-2"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of WiFi module",
-      "security_description_threat": "Communication between the WiFi interface and its device employ two-way authentication mechanism to prevent spoofing on WiFi.",
-      "id": "SN-R-2",
-      "Threat": "Extraction of WiFi module",
-      "affected_security_goal": "Confidentiality of WiFi module",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
-      "Threat_id": "Th-4",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
-      "Did": [
-        "DS-2"
-      ]
-    },
-    {
-      "Threat_T": "Blocking WiFi Interface",
-      "security_description_threat": "Employ advanced anomaly detection mechanisms to identify abnormal traffic patterns indicative of a potential DoS attack",
-      "id": "SN-R-3",
-      "Threat": "Blocking WiFi Interface",
-      "affected_security_goal": "Availability of WiFi Interface",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
-      "Threat_id": "Th-3",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-1"
-      ]
-    },
-    {
-      "Threat_T": "Manipulation of WiFi Interface",
-      "security_description_threat": "Firmware shall be protected against manipulation",
-      "id": "SN-R-4",
-      "Threat": "Manipulation of WiFi Interface",
-      "affected_security_goal": "Integrity of WiFi Interface",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
-      "Threat_id": "Th-2",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-1"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of WiFi Access Point",
-      "security_description_threat": "Communication through WiFi/LAN shall employ industry standard and strong encryption suites to prevent crypt-analysis attacks",
-      "id": "SN-R-5",
-      "Threat": "Extraction of WiFi Access Point",
-      "affected_security_goal": "Confidentiality of WiFi Access Point",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
-      "Threat_id": "Th-6",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
-      "Did": [
-        "DS-2"
-      ]
-    },
-    {
-      "Threat_T": "Manipulation of WiFi Access Point",
-      "security_description_threat": "WiFi Access Point or Ethernet LAN Switch/Router shall be protected against known WiFi and Ethernet LAN attacks",
-      "id": "SN-R-6",
-      "Threat": "Manipulation of WiFi Access Point",
-      "affected_security_goal": "Integrity of WiFi Access Point",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
-      "Threat_id": "Th-7",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-1"
-      ]
-    },
-    {
-      "Threat_T": "Blocking WiFi Access Point",
-      "security_description_threat": "The system shall protect the WiFi access point from Denial-of-service attack",
-      "id": "SN-R-7",
-      "Threat": "Blocking WiFi Access Point",
-      "affected_security_goal": "Availability of WiFi Access Point",
-      "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-8",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
-      "Did": [
-        "DS-4"
-      ]
-    },
-    {
-      "Threat_T": "Blocking WiFi Router",
-      "security_description_threat": "Configure firewalls to filter incoming and outgoing traffic. Create rules that block or limit traffic from known malicious sources",
-      "id": "SN-R-8",
-      "Threat": "Blocking WiFi Router",
-      "affected_security_goal": "Availability of WiFi Router",
-      "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-9",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
-      "Did": [
-        "DS-4"
-      ]
-    },
-    {
-      "Threat_T": "Blocking WiFi Module",
-      "security_description_threat": "Real-time monitoring tools to detect and respond to unusual spikes in Wi-Fi module activity",
-      "id": "SN-R-9",
-      "Threat": "Blocking WiFi module",
-      "affected_security_goal": "Availability of WiFi module",
-      "damage_scenario_copy": "Legal non-compliance",
-      "Threat_id": "Th-5",
-      "damage_scenario": "Legal non-compliance",
-      "consequence": "Serious",
-      "consequence_DS": "Compliance to legal requirements may be affected",
-      "consequence_reasoning": "Compliance to international and national legal requirements and standards such as GDPR is mandatory and this may lead to penalties",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
       "Threat_T": "Extraction of JTAG Interface",
       "security_description_threat": "JTAG interface shall be disabled during EOL process if not required in field.",
-      "id": "SN-R-10",
+      "id": "SN-R-1",
       "Threat": "Extraction of JTAG Interface",
       "affected_security_goal": "Confidentiality of JTAG Interface",
       "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-10",
+      "Threat_id": "Th-1",
       "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
       "consequence": "Moderate",
       "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
       "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
       "Did": [
-        "DS-7"
+        "DS-3"
       ]
     },
     {
       "Threat_T": "Extraction of JTAG Interface",
       "security_description_threat": "JTAG configuration data shall be stored in memory locations which are protected against unauthorized read and write accesses. ",
-      "id": "SN-R-11",
+      "id": "SN-R-2",
       "Threat": "Extraction of JTAG Interface",
       "affected_security_goal": "Confidentiality of JTAG Interface",
       "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-7"
-      ]
-    },
-    {
-      "Threat_T": "Blocking JTAG Interface",
-      "security_description_threat": "If JTAG interface is not required it shall be removed",
-      "id": "SN-R-12",
-      "Threat": "Blocking JTAG Interface",
-      "affected_security_goal": "Availability of JTAG Interface",
-      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
-      "Threat_id": "Th-12",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "Threat_T": "Manipulation of JTAG Interface",
-      "security_description_threat": "Runtime manipulation of the JATG configuration data shall also be protected.",
-      "id": "SN-R-13",
-      "Threat": "Manipulation of JTAG Interface",
-      "affected_security_goal": "Integrity of JTAG Interface",
-      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "Threat_id": "Th-11",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-5"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of JTAG Interface",
-      "security_description_threat": "If JTAG interface is required it shall be protected using authentication mechanism",
-      "id": "SN-R-14",
-      "Threat": "Extraction of JTAG Interface",
-      "affected_security_goal": "Confidentiality of JTAG Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-7"
-      ]
-    },
-    {
-      "Threat_T": "Blocking JTAG Interface",
-      "security_description_threat": "JTAG port shall be closed if not used",
-      "id": "SN-R-15",
-      "Threat": "Blocking JTAG Interface",
-      "affected_security_goal": "Availability of JTAG Interface",
-      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
-      "Threat_id": "Th-12",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of JTAG Interface",
-      "security_description_threat": "JTAG port shall be disabled or protected from physical access",
-      "id": "SN-R-16",
-      "Threat": "Extraction of JTAG Interface",
-      "affected_security_goal": "Confidentiality of JTAG Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-7"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of JTAG Interface",
-      "security_description_threat": "JTAG data transmissions shall be encrypted",
-      "id": "SN-R-17",
-      "Threat": "Extraction of JTAG Interface",
-      "affected_security_goal": "Confidentiality of JTAG Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-10",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-7"
-      ]
-    }
-  ],
-  "assetaddition": [
-    {
-      "Asset_description": "WiFi Interface",
-      "Objective": "Confidentiality",
-      "objective_description": "The data communication between the device and the WiFi network is confidential and must not be exposed.",
-      "id": "AA-1"
-    },
-    {
-      "Asset_description": "WiFi Interface",
-      "Objective": "Integrity",
-      "objective_description": "The data communication between WiFi and the device must not be manipulated.",
-      "id": "AA-2"
-    },
-    {
-      "Asset_description": "WiFi Interface",
-      "Objective": "Availability",
-      "objective_description": "The WiFi Interface must be available to enable data communication between the network and device.",
-      "id": "AA-3"
-    },
-    {
-      "Asset_description": "WiFi module",
-      "Objective": "Confidentiality",
-      "objective_description": "Strict access control should be implemented both physically to protect from unauthorized access.",
-      "id": "AA-4"
-    },
-    {
-      "Asset_description": "WiFi module",
-      "Objective": "Availability",
-      "objective_description": "WiFi module should always be available to provide WiFi connectivity among devices.",
-      "id": "AA-5"
-    },
-    {
-      "Asset_description": "WiFi Access Point",
-      "Objective": "Confidentiality",
-      "objective_description": "It is required that the configuration information sent from the user to the access point must not be exposed.",
-      "id": "AA-6"
-    },
-    {
-      "Asset_description": "WiFi Access Point",
-      "Objective": "Integrity",
-      "objective_description": "It is required that the configuration information sent from the user to the access point must not be tampered. Loss of integrity will impact the functionality of the system.",
-      "id": "AA-7"
-    },
-    {
-      "Asset_description": "WiFi Access Point",
-      "Objective": "Availability",
-      "objective_description": "It is required that the WiFi access point is always up and made available to the user whenever required for configuration. Loss of availability will lead to Denial-of-service",
-      "id": "AA-8"
-    },
-    {
-      "Asset_description": "WiFi Router",
-      "Objective": "Availability",
-      "objective_description": "WiFi Router should be protected from denial of service attacks",
-      "id": "AA-9"
-    },
-    {
-      "Asset_description": "JTAG Interface",
-      "Objective": "Confidentiality",
-      "objective_description": "Unauthorized individuals may exploit the JTAG interface to extract sensitive information from the device, potentially compromising the confidentiality of critical system data. The JTAG interface could be used by attackers to manipulate firmware or hardware settings, leading to altered device behavior, system instability, or insertion of malicious code, thereby compromising the integrity of the device. Attackers might block or disrupt legitimate JTAG interface access, hindering essential maintenance, debugging, or updating processes, which could lead to system downtime.",
-      "id": "AA-10"
-    },
-    {
-      "Asset_description": "JTAG Interface",
-      "Objective": "Integrity",
-      "objective_description": " ",
-      "id": "AA-11"
-    },
-    {
-      "Asset_description": "JTAG Interface",
-      "Objective": "Availability",
-      "objective_description": " ",
-      "id": "AA-12"
-    }
-  ],
-  "SecControls": [
-    {
-      "security_control": "Detection",
-      "security_control_description": "Detection is the identification of the occurrence of a security event. This includes identifying the source of the event, the affected resource(s), and the extent of the damage. Detection can be achieved through a variety of methods, including:\n\n* **Security logs:** Security logs provide a record of all events that have occurred on a system, including successful and failed login attempts, file modifications, and system errors.\n* **Intrusion detection systems (IDSs):** IDSs monitor network traffic for suspicious activity that may indicate an attack is taking place.\n* **Security information and event management (SIEM) systems:** SIEMs aggregate and correlate data from multiple sources, such as security logs and IDS alerts, to provide a comprehensive view of the security posture of an organization.",
-      "security_goal": "Network Intrusion Detection Systems (NIDS) shall be deployed at the network perimeter to detect known attacks in the network traffic.",
-      "id": "S-1",
-      "Threat_T": "Extraction of WiFi Interface",
-      "security_description_threat": "Network Intrusion Detection Systems (NIDS) shall be deployed at the network perimeter to detect known attacks in the network traffic.",
-      "Sid": [
-        "SN-R-1"
-      ],
-      "Threat": "Extraction of WiFi Interface",
-      "affected_security_goal": "Confidentiality of WiFi Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
       "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
+      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
       "consequence": "Moderate",
       "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
-      "Did": [
-        "DS-2"
-      ]
-    },
-    {
-      "security_control": "Anomaly Detection",
-      "security_control_description": "Anomaly Detection involves the use of techniques and algorithms to identify anomalous patterns or deviations from expected behavior within a system or network. These techniques analyze data and activity logs, searching for deviations or irregularities that may indicate potential threats or suspicious activities. By identifying these anomalies, security teams can proactively detect potential security breaches, investigate the cause of the anomaly, and take appropriate corrective actions to mitigate risks.",
-      "security_goal": "Employ advanced anomaly detection mechanisms to identify abnormal traffic patterns indicative of a potential DoS attack",
-      "id": "S-2",
-      "Threat_T": "Blocking WiFi Interface",
-      "security_description_threat": "Employ advanced anomaly detection mechanisms to identify abnormal traffic patterns indicative of a potential DoS attack",
-      "Sid": [
-        "SN-R-3"
-      ],
-      "Threat": "Blocking WiFi Interface",
-      "affected_security_goal": "Availability of WiFi Interface",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
-      "Threat_id": "Th-3",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-1"
-      ]
-    },
-    {
-      "security_control": "Integrity.",
-      "security_control_description": "Integrity ensures that information and systems remain complete and unaltered throughout their entire lifecycle. It involves protecting data from unauthorized modification, destruction, or disclosure. This security control includes measures such as data authenticity checks, digital signatures, access controls, and data backup and recovery plans.",
-      "security_goal": "Firmware shall be protected against manipulation",
-      "id": "S-3",
-      "Threat_T": "Manipulation of WiFi Interface",
-      "security_description_threat": "Firmware shall be protected against manipulation",
-      "Sid": [
-        "SN-R-4"
-      ],
-      "Threat": "Manipulation of WiFi Interface",
-      "affected_security_goal": "Integrity of WiFi Interface",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
-      "Threat_id": "Th-2",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-1"
-      ]
-    },
-    {
-      "security_control": "Encryption",
-      "security_control_description": "Encryption involves transforming plaintext into ciphertext to protect the confidentiality of sensitive data. It utilizes algorithms to encrypt data, rendering it unreadable without the proper decryption key. Encryption is employed to safeguard data in transit or at rest, ensuring that only authorized individuals can access and interpret it.",
-      "security_goal": "Communication through WiFi/LAN shall employ industry standard and strong encryption suietes to prevent crypt-analaysis attacks",
-      "id": "S-4"
-    },
-    {
-      "security_control": "Network Segmentation",
-      "security_control_description": "Network Segmentation refers to the practice of dividing a computer network into smaller, isolated subnetworks called segments. This helps to improve security by limiting the spread of threats and data breaches within the network. By segmenting the network into smaller, more manageable sections, it reduces the attack surface and makes it more difficult for unauthorized users to access sensitive data or systems.",
-      "security_goal": "WiFi Access Point or Ethernet LAN Switch/Router shall be protected against known WiFi and Ethernet LAN attacks",
-      "id": "S-5",
-      "Threat_T": "Manipulation of WiFi Access Point",
-      "security_description_threat": "WiFi Access Point or Ethernet LAN Switch/Router shall be protected against known WiFi and Ethernet LAN attacks",
-      "Sid": [
-        "SN-R-6"
-      ],
-      "Threat": "Manipulation of WiFi Access Point",
-      "affected_security_goal": "Integrity of WiFi Access Point",
-      "damage_scenario_copy": "Degradation or loss of functionality ",
-      "Threat_id": "Th-7",
-      "damage_scenario": "Degradation or loss of functionality ",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time\nFunctionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-1"
-      ]
-    },
-    {
-      "security_control": "Network Intrusion Prevention System (NIPS)",
-      "security_control_description": "Network Intrusion Prevention Systems (NIPS) are security solutions that actively monitor network traffic for malicious activity and take action to block or prevent threats from entering the network. NIPS use a variety of techniques, such as signature-based detection, anomaly detection, and deep packet inspection, to identify and block malicious traffic. NIPS are important security controls for protecting networks from a wide range of threats, including viruses, malware, botnets, and denial-of-service attacks.",
-      "security_goal": "The system shall protect the WiFi access point from Denial-of-service attack",
-      "id": "S-6",
-      "Threat_T": "Blocking WiFi Access Point",
-      "security_description_threat": "The system shall protect the WiFi access point from Denial-of-service attack",
-      "Sid": [
-        "SN-R-7"
-      ],
-      "Threat": "Blocking WiFi Access Point",
-      "affected_security_goal": "Availability of WiFi Access Point",
-      "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-8",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
-      "Did": [
-        "DS-4"
-      ]
-    },
-    {
-      "security_control": "Firewall",
-      "security_control_description": "A firewall is a network security device that monitors and controls incoming and outgoing network traffic based on predetermined security rules. It establishes a barrier between trusted and untrusted networks, protecting internal networks from external threats while allowing authorized traffic to flow through. Firewalls can operate in various modes, such as packet filtering, stateful inspection, and deep packet inspection, to enforce security policies and prevent unauthorized access to protected systems and resources.",
-      "security_goal": "Configure firewalls to filter incoming and outgoing traffic. Create rules that block or limit traffic from known malicious sources",
-      "id": "S-7",
-      "Threat_T": "Blocking WiFi Router",
-      "security_description_threat": "Configure firewalls to filter incoming and outgoing traffic. Create rules that block or limit traffic from known malicious sources",
-      "Sid": [
-        "SN-R-8"
-      ],
-      "Threat": "Blocking WiFi Router",
-      "affected_security_goal": "Availability of WiFi Router",
-      "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-9",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company",
-      "Did": [
-        "DS-4"
-      ]
-    },
-    {
-      "security_control": "Intrusion Detection System (IDS)",
-      "security_control_description": "An Intrusion Detection System (IDS) is a security tool that monitors network traffic to identify and log unauthorized attempts to access the network or its devices. It can detect and alert on security breaches, such as malware infections, denial-of-service attacks, and unauthorized access attempts, by analyzing network traffic patterns and looking for malicious activities or behaviors that deviate from normal network traffic.",
-      "security_goal": "Real-time monitoring tools to detect and respond to unusual spikes in Wi-Fi module activity",
-      "id": "S-8",
-      "Threat_T": "Blocking WiFi Module",
-      "security_description_threat": "Real-time monitoring tools to detect and respond to unusual spikes in Wi-Fi module activity",
-      "Sid": [
-        "SN-R-9"
-      ],
-      "Threat": "Blocking WiFi module",
-      "affected_security_goal": "Availability of WiFi module",
-      "damage_scenario_copy": "Legal non-compliance",
-      "Threat_id": "Th-5",
-      "damage_scenario": "Legal non-compliance",
-      "consequence": "Serious",
-      "consequence_DS": "Compliance to legal requirements may be affected",
-      "consequence_reasoning": "Compliance to international and national legal requirements and standards such as GDPR is mandatory and this may lead to penalties",
+      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
       "Did": [
         "DS-3"
       ]
     },
     {
-      "security_control": "Two-way Authentication",
-      "security_control_description": "Two-way authentication is a security mechanism that requires two authentication factors to verify the identity of a user. The first factor is typically something the user knows, such as a password or PIN, while the second factor is something the user has, such as a mobile phone or smart card.",
-      "security_goal": "Communication between the WiFi interface and its device employ two-way authentication mechanism to prevent spoofing on WiFi.",
-      "id": "S-9",
-      "Threat_T": "Extraction of WiFi module",
-      "security_description_threat": "Communication between the WiFi interface and its device employ two-way authentication mechanism to prevent spoofing on WiFi.",
-      "Sid": [
-        "SN-R-2"
-      ],
-      "Threat": "Extraction of WiFi module",
-      "affected_security_goal": "Confidentiality of WiFi module",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data ",
-      "Threat_id": "Th-4",
-      "damage_scenario": "Disclosure of IP or Proprietary Data ",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Potential financial cost of damage decides the consequence rating",
+      "Threat_T": "Blocking JTAG Interface",
+      "security_description_threat": "If JTAG interface is not required it shall be removed",
+      "id": "SN-R-3",
+      "Threat": "Blocking JTAG Interface",
+      "affected_security_goal": "Availability of JTAG Interface",
+      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
+      "Threat_id": "Th-3",
+      "damage_scenario": "Misuse or manipulation affecting Bosch",
+      "consequence": "Negligible",
+      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
+      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
       "Did": [
         "DS-2"
       ]
     },
     {
-      "security_control": "Physical Security.",
-      "security_control_description": "Physical security measures protect physical assets and resources from unauthorized access, damage, or theft. These measures include:\n* Physical barriers (e.g., fences, gates)\n* Access control systems (e.g., key cards, biometrics)\n* Surveillance systems (e.g., cameras, motion detectors)\n* Environmental controls (e.g., fire suppression, HVAC)\n* Visitor management protocols",
-      "security_goal": "JTAG port shall be disabled or protected from physical access",
-      "id": "S-10",
+      "Threat_T": "Manipulation of JTAG Interface",
+      "security_description_threat": "Runtime manipulation of the JATG configuration data shall also be protected.",
+      "id": "SN-R-4",
+      "Threat": "Manipulation of JTAG Interface",
+      "affected_security_goal": "Integrity of JTAG Interface",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
+      "Threat_id": "Th-2",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
+      "Did": [
+        "DS-1"
+      ]
+    },
+    {
       "Threat_T": "Extraction of JTAG Interface",
-      "security_description_threat": "JTAG port shall be disabled or protected from physical access",
-      "Sid": [
-        "SN-R-16"
-      ],
+      "security_description_threat": "If JTAG interface is required it shall be protected using authentication mechanism",
+      "id": "SN-R-5",
       "Threat": "Extraction of JTAG Interface",
       "affected_security_goal": "Confidentiality of JTAG Interface",
       "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-10",
+      "Threat_id": "Th-1",
       "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
       "consequence": "Moderate",
       "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
       "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
       "Did": [
-        "DS-7"
+        "DS-3"
+      ]
+    },
+    {
+      "Threat_T": "Blocking JTAG Interface",
+      "security_description_threat": "JTAG port shall be closed if not used",
+      "id": "SN-R-6",
+      "Threat": "Blocking JTAG Interface",
+      "affected_security_goal": "Availability of JTAG Interface",
+      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
+      "Threat_id": "Th-3",
+      "damage_scenario": "Misuse or manipulation affecting Bosch",
+      "consequence": "Negligible",
+      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
+      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
+      "Did": [
+        "DS-2"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of JTAG Interface",
+      "security_description_threat": "JTAG port shall be disabled or protected from physical access",
+      "id": "SN-R-7",
+      "Threat": "Extraction of JTAG Interface",
+      "affected_security_goal": "Confidentiality of JTAG Interface",
+      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat_id": "Th-1",
+      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
+      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of JTAG Interface",
+      "security_description_threat": "JTAG data transmissions shall be encrypted",
+      "id": "SN-R-8",
+      "Threat": "Extraction of JTAG Interface",
+      "affected_security_goal": "Confidentiality of JTAG Interface",
+      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat_id": "Th-1",
+      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
+      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of NFC Tags",
+      "security_description_threat": "NFC Tags shall implement cryptographic mechanisms, including secure authentication to prevent unauthorized extraction",
+      "id": "SN-R-9",
+      "Threat": "Extraction of NFC Tags",
+      "affected_security_goal": "Confidentiality of NFC Tags",
+      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat_id": "Th-4",
+      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
+      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
+      "Threat_T": "Manipulation of NFC Tags",
+      "security_description_threat": "NFC tags shall employ integrity checks to detect and prevent manipulation attempts",
+      "id": "SN-R-10",
+      "Threat": "Manipulation of NFC Tags",
+      "affected_security_goal": "Integrity of NFC Tags",
+      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
+      "Threat_id": "Th-5",
+      "damage_scenario": "Misuse or manipulation affecting Bosch",
+      "consequence": "Negligible",
+      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
+      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
+      "Did": [
+        "DS-2"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of NFC Reader",
+      "security_description_threat": "NFC Readers shall implement secure authentication mechanisms and physical controls to prevent unauthorized access and extraction",
+      "id": "SN-R-11",
+      "Threat": "Extraction of NFC Reader",
+      "affected_security_goal": "Confidentiality of NFC Reader",
+      "damage_scenario_copy": "Legal non-compliance",
+      "Threat_id": "Th-8",
+      "damage_scenario": "Legal non-compliance",
+      "consequence": "Serious",
+      "consequence_DS": "Compliance to legal requirements may be affected",
+      "consequence_reasoning": "Compliance to international and national legal requirements and standards such as GDPR is mandatory and this may lead to penalties.",
+      "Did": [
+        "DS-4"
+      ]
+    },
+    {
+      "Threat_T": "Manipulation of NFC Communication",
+      "security_description_threat": "NFC communication shall employ cryptographic mechanisms, such as digital signatures,encryption protocol to detect and prevent unauthorized manipulation",
+      "id": "SN-R-12",
+      "Threat": "Manipulation of NFC Communication",
+      "affected_security_goal": "Integrity of NFC communication",
+      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
+      "Threat_id": "Th-7",
+      "damage_scenario": "Misuse or manipulation affecting Bosch",
+      "consequence": "Negligible",
+      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
+      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
+      "Did": [
+        "DS-2"
+      ]
+    },
+    {
+      "Threat_T": "Blocking NFC communication",
+      "security_description_threat": "Sensitive information like UID in NFC Card shall be protected against reading out using encryption mechanims ",
+      "id": "SN-R-13",
+      "Threat": "Blocking NFC communication",
+      "affected_security_goal": "Availability of NFC communication",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
+      "Threat_id": "Th-6",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
+      "Did": [
+        "DS-1"
+      ]
+    },
+    {
+      "Threat_T": "Blocking NFC Reader",
+      "security_description_threat": "The NFC Card shall be safeguarded through the implementation of security measures, including tamper-evident and tamper-resistant features, to enhance protection against unauthorized access or tampering or blocking",
+      "id": "SN-R-14",
+      "Threat": "Blocking NFC Reader",
+      "affected_security_goal": "Availability of NFC Reader",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
+      "Threat_id": "Th-9",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
+      "Did": [
+        "DS-1"
+      ]
+    }
+  ],
+  "assetaddition": [
+    {
+      "Asset_description": "JTAG Interface",
+      "Objective": "Confidentiality",
+      "objective_description": "Unauthorized individuals may exploit the JTAG interface to extract sensitive information from the device, potentially compromising the confidentiality of critical system data. The JTAG interface could be used by attackers to manipulate firmware or hardware settings, leading to altered device behavior, system instability, or insertion of malicious code, thereby compromising the integrity of the device. Attackers might block or disrupt legitimate JTAG interface access, hindering essential maintenance, debugging, or updating processes, which could lead to system downtime.",
+      "id": "AA-1"
+    },
+    {
+      "Asset_description": "JTAG Interface",
+      "Objective": "Integrity",
+      "objective_description": " ",
+      "id": "AA-2"
+    },
+    {
+      "Asset_description": "JTAG Interface",
+      "Objective": "Availability",
+      "objective_description": " ",
+      "id": "AA-3"
+    },
+    {
+      "Asset_description": "NFC Tags",
+      "Objective": "Confidentiality",
+      "objective_description": "Confidentiality - NFC Card contains sensitive information like UID which should not be exposed.\n",
+      "id": "AA-4"
+    },
+    {
+      "Asset_description": "NFC Tags",
+      "Objective": "Integrity",
+      "objective_description": "Integrity - NFC Card contains sensitive information like UID which should not be manipulated. ",
+      "id": "AA-5"
+    },
+    {
+      "Asset_description": "NFC communication",
+      "Objective": "Availability",
+      "objective_description": "Availability - NFC communication shall be protected by DDoS attack to prevent blocking or loss of fuctionality.",
+      "id": "AA-6"
+    },
+    {
+      "Asset_description": "NFC communication",
+      "Objective": "Integrity",
+      "objective_description": "Integrity - NFC Communication responible for sending the data, so it should not be manipulated",
+      "id": "AA-7"
+    },
+    {
+      "Asset_description": "NFC Reader",
+      "Objective": "Confidentiality",
+      "objective_description": "Confidentiality - Confidentiality mechanism needs to be strong, should not be easily bypassed and protected against NFC known attacks.\n",
+      "id": "AA-8"
+    },
+    {
+      "Asset_description": "NFC Reader",
+      "Objective": "Availability",
+      "objective_description": "Availability - NFC Reader should be available to take the input from NFC tag",
+      "id": "AA-9"
+    }
+  ],
+  "SecControls": [
+    {
+      "security_control": "Physical Security.",
+      "security_control_description": "Physical security measures protect physical assets and resources from unauthorized access, damage, or theft. These measures include:\n* Physical barriers (e.g., fences, gates)\n* Access control systems (e.g., key cards, biometrics)\n* Surveillance systems (e.g., cameras, motion detectors)\n* Environmental controls (e.g., fire suppression, HVAC)\n* Visitor management protocols",
+      "security_goal": "JTAG port shall be disabled or protected from physical access",
+      "id": "S-1",
+      "Threat_T": "Extraction of JTAG Interface",
+      "security_description_threat": "JTAG port shall be disabled or protected from physical access",
+      "Sid": [
+        "SN-R-7"
+      ],
+      "Threat": "Extraction of JTAG Interface",
+      "affected_security_goal": "Confidentiality of JTAG Interface",
+      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat_id": "Th-1",
+      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
+      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
+      "security_control": "Encryption",
+      "security_control_description": "Encryption is the process of transforming information into a form that is unintelligible without knowledge of a secret key. It is used to protect sensitive data from unauthorized access, such as when it is being transmitted over a network or stored in a database. Encryption can also be used to ensure data integrity by preventing unauthorized changes to the data.",
+      "security_goal": "JTAG data transmissions shall be encrypted",
+      "id": "S-2",
+      "Threat_T": "Extraction of JTAG Interface",
+      "security_description_threat": "JTAG data transmissions shall be encrypted",
+      "Sid": [
+        "SN-R-8"
+      ],
+      "Threat": "Extraction of JTAG Interface",
+      "affected_security_goal": "Confidentiality of JTAG Interface",
+      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat_id": "Th-1",
+      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
+      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "Did": [
+        "DS-3"
       ]
     },
     {
       "security_control": "Disabling",
       "security_control_description": "Disabling refers to the removal of functionality or the ability to use a system, component, or feature. It is often implemented as a security measure to prevent unauthorized access or operation, protect sensitive data, or comply with regulatory requirements. By disabling specific functions or features, the attack surface can be reduced and the risk of exploitation can be minimized. Disabling can be applied to various aspects of the IT system, including user accounts, software, hardware, or network services.",
       "security_goal": "JTAG interface shall be disabled during EOL process if not required in field.",
-      "id": "S-11",
+      "id": "S-3",
       "Threat_T": "Extraction of JTAG Interface",
       "security_description_threat": "JTAG interface shall be disabled during EOL process if not required in field.",
       "Sid": [
-        "SN-R-10"
+        "SN-R-1"
       ],
       "Threat": "Extraction of JTAG Interface",
       "affected_security_goal": "Confidentiality of JTAG Interface",
       "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-10",
+      "Threat_id": "Th-1",
       "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
       "consequence": "Moderate",
       "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
       "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
       "Did": [
-        "DS-7"
+        "DS-3"
       ]
     },
     {
       "security_control": "Access Control",
       "security_control_description": "Access control is a security measure that restricts access to a system or resource to only authorized individuals, processes, or devices. It involves identifying, authenticating, and authorizing users and their associated access privileges, such as reading, writing, modifying, or deleting data. Access control systems typically use techniques like passwords, biometrics, tokens, or role-based access control to verify user identities and enforce access permissions. This security control ensures that only authorized users have access to sensitive information or critical systems, preventing unauthorized access and protecting against data breaches, system compromise, and malicious activities.",
       "security_goal": "JTAG configuration data shall be stored in memory locations which are protected against unauthorized read and write accesses. ",
-      "id": "S-12",
+      "id": "S-4",
       "Threat_T": "Extraction of JTAG Interface",
       "security_description_threat": "JTAG configuration data shall be stored in memory locations which are protected against unauthorized read and write accesses. ",
       "Sid": [
-        "SN-R-11"
+        "SN-R-2"
       ],
       "Threat": "Extraction of JTAG Interface",
       "affected_security_goal": "Confidentiality of JTAG Interface",
       "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-10",
+      "Threat_id": "Th-1",
       "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
       "consequence": "Moderate",
       "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
       "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
       "Did": [
-        "DS-7"
+        "DS-3"
       ]
     },
     {
       "security_control": "Mitigation",
       "security_control_description": "Mitigation is a set of actions taken to reduce the impact of a security vulnerability or threat. These actions can include:\n\n- Implementing security patches and updates\n- Configuring systems and applications to minimize vulnerabilities\n- Installing antivirus and anti-malware software\n- Implementing firewalls and intrusion detection systems\n- Establishing and enforcing security policies and procedures\n- Educating users on security risks and best practices",
       "security_goal": "If JTAG interface is not required it shall be removed",
-      "id": "S-13",
+      "id": "S-5",
       "Threat_T": "Blocking JTAG Interface",
       "security_description_threat": "If JTAG interface is not required it shall be removed",
       "Sid": [
-        "SN-R-12"
+        "SN-R-3"
       ],
       "Threat": "Blocking JTAG Interface",
       "affected_security_goal": "Availability of JTAG Interface",
       "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
-      "Threat_id": "Th-12",
+      "Threat_id": "Th-3",
       "damage_scenario": "Misuse or manipulation affecting Bosch",
       "consequence": "Negligible",
       "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
       "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
       "Did": [
-        "DS-6"
+        "DS-2"
       ]
     },
     {
       "security_control": "Integrity",
       "security_control_description": "Integrity is a security control that ensures the accuracy and completeness of data and information. It prevents unauthorized modification, deletion, or creation of data, maintaining its integrity and ensuring that it is reliable and trustworthy. Integrity controls include measures like data validation, access controls, data backup and recovery, and tamper-proofing mechanisms to protect against malicious or unintentional data manipulation.",
       "security_goal": "Runtime manipulation of the JATG configuration data shall also be protected.",
-      "id": "S-14",
+      "id": "S-6",
       "Threat_T": "Manipulation of JTAG Interface",
       "security_description_threat": "Runtime manipulation of the JATG configuration data shall also be protected.",
       "Sid": [
-        "SN-R-13"
+        "SN-R-4"
       ],
       "Threat": "Manipulation of JTAG Interface",
       "affected_security_goal": "Integrity of JTAG Interface",
       "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "Threat_id": "Th-11",
+      "Threat_id": "Th-2",
       "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "consequence": "Moderate",
       "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
       "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
       "Did": [
-        "DS-5"
+        "DS-1"
       ]
     },
     {
       "security_control": "Change Management",
       "security_control_description": "Change management is a process that helps organizations identify, track, and control changes to their IT environment. This includes changes to hardware, software, network infrastructure, and applications. Effective change management is essential for maintaining the stability and security of IT systems. Without it, organizations can experience unplanned outages, data loss, and security breaches.\n\nThe change management process typically involves the following steps:\n\n1. Identifying and documenting proposed changes\n2. Assessing the impact of the changes\n3. Approving or rejecting the changes\n4. Implementing the changes\n5. Monitoring the changes and making any necessary adjustments\n\nChange management is a critical part of any IT security program. By following a formalized change management process, organizations can help to reduce the risk of unplanned outages, data loss, and security breaches.",
       "security_goal": "JTAG port shall be closed if not used",
-      "id": "S-15",
+      "id": "S-7",
       "Threat_T": "Blocking JTAG Interface",
       "security_description_threat": "JTAG port shall be closed if not used",
       "Sid": [
-        "SN-R-15"
+        "SN-R-6"
       ],
       "Threat": "Blocking JTAG Interface",
       "affected_security_goal": "Availability of JTAG Interface",
       "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
-      "Threat_id": "Th-12",
+      "Threat_id": "Th-3",
       "damage_scenario": "Misuse or manipulation affecting Bosch",
       "consequence": "Negligible",
       "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
       "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
       "Did": [
-        "DS-6"
+        "DS-2"
+      ]
+    },
+    {
+      "security_control": "Cryptographic mechanisms.",
+      "security_control_description": "Cryptographic mechanisms protect the confidentiality, integrity, and authenticity of sensitive information by encrypting it. Encryption transforms data into an unintelligible format that can only be decrypted by authorized parties who possess the appropriate cryptographic keys. Common cryptographic mechanisms include symmetric encryption, asymmetric encryption, and hashing functions.",
+      "security_goal": "NFC Tags shall implement cryptographic mechanisms, including secure authentication to prevent unauthorized extraction",
+      "id": "S-8",
+      "Threat_T": "Extraction of NFC Tags",
+      "security_description_threat": "NFC Tags shall implement cryptographic mechanisms, including secure authentication to prevent unauthorized extraction",
+      "Sid": [
+        "SN-R-9"
+      ],
+      "Threat": "Extraction of NFC Tags",
+      "affected_security_goal": "Confidentiality of NFC Tags",
+      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat_id": "Th-4",
+      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
+      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
+      "security_control": "Integrity checks (for NFC tags) - Data validation",
+      "security_control_description": "NFC (Near-Field Communication) tags are used for short-range wireless communication. Integrity checks ensure that NFC data remains unaltered and has not been tampered with. Data validation involves verifying the authenticity and correctness of data on NFC tags by checking for errors, inconsistencies, or malicious alterations. This can be achieved through techniques such as digital signatures or checksums.",
+      "security_goal": "NFC tags shall employ integrity checks to detect and prevent manipulation attempts",
+      "id": "S-9",
+      "Threat_T": "Manipulation of NFC Tags",
+      "security_description_threat": "NFC tags shall employ integrity checks to detect and prevent manipulation attempts",
+      "Sid": [
+        "SN-R-10"
+      ],
+      "Threat": "Manipulation of NFC Tags",
+      "affected_security_goal": "Integrity of NFC Tags",
+      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
+      "Threat_id": "Th-5",
+      "damage_scenario": "Misuse or manipulation affecting Bosch",
+      "consequence": "Negligible",
+      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
+      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
+      "Did": [
+        "DS-2"
+      ]
+    },
+    {
+      "security_control": "Cryptography",
+      "security_control_description": "Cryptography is the practice of using techniques to ensure secure communication in the presence of adversarial behavior. It leverages mathematical algorithms to transform data into an unintelligible format, making it difficult for unauthorized parties to access or comprehend. This process involves two key functions: encryption and decryption. Encryption converts readable data into ciphertext, while decryption reconverts it back to its original form. Cryptography plays a vital role in protecting sensitive information, such as personal data, financial transactions, and confidential communication.",
+      "security_goal": "NFC communication shall employ cryptographic mechanisms, such as digital signatures,encryption protocol to detect and prevent unauthorized manipulation",
+      "id": "S-10",
+      "Threat_T": "Manipulation of NFC Communication",
+      "security_description_threat": "NFC communication shall employ cryptographic mechanisms, such as digital signatures,encryption protocol to detect and prevent unauthorized manipulation",
+      "Sid": [
+        "SN-R-12"
+      ],
+      "Threat": "Manipulation of NFC Communication",
+      "affected_security_goal": "Integrity of NFC communication",
+      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
+      "Threat_id": "Th-7",
+      "damage_scenario": "Misuse or manipulation affecting Bosch",
+      "consequence": "Negligible",
+      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
+      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
+      "Did": [
+        "DS-2"
       ]
     }
   ],
