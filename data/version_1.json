@@ -899,7 +899,8 @@
       "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
       "Did": [
         "DS-3"
-      ]
+      ],
+      "selectedRequirement": "EISA-ACC-301 - Management of Authentication Secrets (EISA-PSA-004 - Mobile Application) - Password Rules"
     },
     {
       "security_control": "Encryption",
@@ -921,7 +922,8 @@
       "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
       "Did": [
         "DS-3"
-      ]
+      ],
+      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Separate Account for Privileged Access"
     },
     {
       "security_control": "Disabling",
@@ -943,7 +945,8 @@
       "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
       "Did": [
         "DS-3"
-      ]
+      ],
+      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Review of Privileged Accounts"
     },
     {
       "security_control": "Access Control",
@@ -965,7 +968,8 @@
       "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
       "Did": [
         "DS-3"
-      ]
+      ],
+      "selectedRequirement": "EISA-CRY-106 - Certificate Handling (EISA-PSA-003 - Database Management System) - Certificate Handling"
     },
     {
       "security_control": "Mitigation",
@@ -987,7 +991,8 @@
       "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
       "Did": [
         "DS-2"
-      ]
+      ],
+      "selectedRequirement": "EISA-ACC-301 - Management of Authentication Secrets (EISA-PSA-004 - Mobile Application) - Password Rules"
     },
     {
       "security_control": "Integrity",
@@ -1009,7 +1014,8 @@
       "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
       "Did": [
         "DS-1"
-      ]
+      ],
+      "selectedRequirement": "EISA-CPL-201 - Penetration Testing (EISA-PSA-004 - Mobile Application) - Penetration Testing"
     },
     {
       "security_control": "Change Management",
@@ -1031,7 +1037,8 @@
       "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
       "Did": [
         "DS-2"
-      ]
+      ],
+      "selectedRequirement": "EISA-ACC-301 - Management of Authentication Secrets (EISA-PSA-004 - Mobile Application) - Password Lifetime"
     },
     {
       "security_control": "Cryptographic mechanisms.",
