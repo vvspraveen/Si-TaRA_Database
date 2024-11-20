@@ -237,51 +237,47 @@
   "ThreatEvaluation_AP": [
     {
       "id": "Th-1",
-      "Access": "0",
-      "Equipment": "9",
-      "Expertise": "9",
-      "Knowledge": "7",
-      "Time": "99",
-      "Sum": "124",
+      "Access": 0,
+      "Equipment": 0,
+      "Expertise": 3,
+      "Knowledge": 3,
+      "Time": 0,
+      "Sum": "6",
       "Threat": "Blocking AWS App Mesh",
-      "Attack_Potential": "Basic",
-      "Threat_i": "Blocking AWS App Mesh"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-2",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "6",
-      "Knowledge": "7",
-      "Time": "2",
-      "Sum": "15",
+      "Access": 3,
+      "Equipment": 0,
+      "Expertise": 2,
+      "Knowledge": 2,
+      "Time": 1,
+      "Sum": "8",
       "Threat": "Extraction of Amazon Athena",
-      "Attack_Potential": "Moderate",
-      "Threat_i": "Extraction of Amazon Athena"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-3",
-      "Access": "0",
-      "Equipment": "4",
-      "Expertise": "6",
-      "Knowledge": "3",
-      "Time": "2",
+      "Access": 0,
+      "Equipment": 4,
+      "Expertise": 6,
+      "Knowledge": 3,
+      "Time": 2,
       "Sum": "15",
       "Threat": "Manipulation of Amazon Athena",
-      "Attack_Potential": "Moderate",
-      "Threat_i": "Manipulation of Amazon Athena"
+      "Attack_Potential": "Moderate"
     },
     {
       "id": "Th-4",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "0",
-      "Knowledge": "3",
-      "Time": "0",
+      "Access": 0,
+      "Equipment": 0,
+      "Expertise": 0,
+      "Knowledge": 3,
+      "Time": 0,
       "Sum": "3",
       "Threat": "Blocking Amazon Athena",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Blocking Amazon Athena"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-5",
@@ -292,8 +288,7 @@
       "Time": "0",
       "Sum": "3",
       "Threat": "Extraction of Elastic Kubernetes Service ",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Extraction of Elastic Kubernetes Service "
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-6",
@@ -304,8 +299,7 @@
       "Time": "1",
       "Sum": "10",
       "Threat": "Manipulation of Elastic Kubernetes \nService",
-      "Attack_Potential": "High",
-      "Threat_i": "Manipulation of Elastic Kubernetes \nService"
+      "Attack_Potential": "High"
     },
     {
       "id": "Th-7",
@@ -316,8 +310,7 @@
       "Time": "1",
       "Sum": "4",
       "Threat": "Blocking Elastic Kubernetes Service ",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Blocking Elastic Kubernetes Service "
+      "Attack_Potential": "Beyond High"
     }
   ],
   "threatDamageAssociations": [
@@ -430,8 +423,8 @@
       "consequence": "Serious",
       "Threat": "Blocking AWS App Mesh",
       "risk": "Very High",
-      "attackPotential": "Basic",
-      "risk_of_d": "Very High"
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
     },
     {
       "id": "R-2",
@@ -440,8 +433,8 @@
       "consequence": "Serious",
       "Threat": "Extraction of Amazon Athena",
       "risk": "Very High",
-      "attackPotential": "Moderate",
-      "risk_of_d": "High"
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
     },
     {
       "id": "R-3",
