@@ -300,36 +300,36 @@
   "ThreatEvaluation_AP": [
     {
       "id": "Th-1",
-      "Access": "7",
-      "Equipment": "7",
-      "Expertise": "6",
-      "Knowledge": "0",
-      "Time": "2",
+      "Access": 7,
+      "Equipment": 7,
+      "Expertise": 6,
+      "Knowledge": 0,
+      "Time": 2,
       "Sum": "22",
       "Threat": "Extraction of AWS Cloud Map",
       "Attack_Potential": "Enhanced Basic"
     },
     {
       "id": "Th-2",
-      "Access": "0",
-      "Equipment": "3",
-      "Expertise": "3",
-      "Knowledge": "0",
-      "Time": "3",
+      "Access": 0,
+      "Equipment": 3,
+      "Expertise": 3,
+      "Knowledge": 0,
+      "Time": 3,
       "Sum": "9",
       "Threat": "Manipulation of AWS Cloud Map",
       "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-3",
-      "Access": "8",
-      "Equipment": "7",
-      "Expertise": "8",
-      "Knowledge": "11",
-      "Time": "5",
-      "Sum": "39",
+      "Access": 0,
+      "Equipment": 0,
+      "Expertise": 8,
+      "Knowledge": 3,
+      "Time": 2,
+      "Sum": "13",
       "Threat": "Blocking AWS Cloud Map",
-      "Attack_Potential": "Basic"
+      "Attack_Potential": "High"
     },
     {
       "id": "Th-4",
@@ -556,8 +556,8 @@
       "consequence": "Moderate",
       "Threat": "Blocking AWS Cloud Map",
       "risk": "Low",
-      "attackPotential": "Basic",
-      "risk_of_d": "High"
+      "attackPotential": "High",
+      "risk_of_d": "Medium"
     },
     {
       "id": "R-4",
