@@ -1,282 +1,254 @@
 {
   "assumption": [
     {
+      "assumption": "Cloud webserver and services comes inside the trust boundary.",
+      "assumption_comment": "The trust boundary of the cloud infrastructure and specifies that the cloud webserver and services are included within it",
+      "id": "Asm-1"
+    },
+    {
       "assumption": "Security and availability of the cloud (including the database, the service, the infrastructure, the platform, etc.) is the responsibility of the cloud service provider (CSP) / data center",
       "assumption_comment": "As per Bosch guidelines, the cloud on-boarding team (BSI) is responsible for ensuring this and it must be informed of any security needs concerned with configuration of Cloud Infrastructure",
-      "id": "Asm-1"
+      "id": "Asm-2"
     },
     {
       "assumption": "The underlying infrastructure supporting AWS EKS clusters are securely configured and resilient against potential threats.",
       "assumption_comment": "EKS cluster configuration",
-      "id": "Asm-2"
+      "id": "Asm-3"
     },
     {
       "assumption": "EKS worker nodes are regularly updated and patched to mitigate known vulnerabilities",
       "assumption_comment": "Patch management process",
-      "id": "Asm-3"
-    },
-    {
-      "assumption": "Users will access AWS Lightsail only with authorized credentials",
-      "assumption_comment": "When users access AWS Lightsail with authorized \ncredentials, it helps to prevent unauthorized access to sensitive data and systems, which can help to mitigate the risk of data theft and other security incidents.",
       "id": "Asm-4"
-    },
-    {
-      "assumption": "Ensure that the service is accessible and functional at all times, even in the face of hardware failures",
-      "assumption_comment": "High availability is essential for ensuring that \napplications and websites remain accessible and functional to users, even in the face of unexpected disruption.",
-      "id": "Asm-5"
-    },
-    {
-      "assumption": "Proper access controls are in place, restricting access to Lightsail instances only to authorized personnel.",
-      "assumption_comment": "Regularly review is done ensuring that only necessary individuals have access to Lightsail resources.",
-      "id": "Asm-6"
     }
   ],
   "misuse": [
     {
+      "muc_description": "Attacker is able to gain access to the mesh and manipulate the communication between the microservices, potentially leading to unauthorized access to sensitive data or disruption of service",
+      "muc_comment": "It's the consequence of data breaches and the need for proper security measure to protect sensitive information.",
+      "id": "MUC-1"
+    },
+    {
       "muc_description": "Unauthorized attempts to access data stored in buckets, or efforts to exploit Athena in order to circumvent security controls and gain access to sensitive data, represent a misuse scenario within the system.",
       "muc_comment": "Accessing data stored in Athena buckets without proper permission is a violation of security best practices and may result in unauthorized access to sensitive information.",
-      "id": "MUC-1"
+      "id": "MUC-2"
     },
     {
       "muc_description": "Attacker gains unauthorized access to a pod in a cluster to compromise other resources in the cluster or the underlying infrastructure.",
       "muc_comment": "Unauthorized access to a pod",
-      "id": "MUC-2"
+      "id": "MUC-3"
     },
     {
       "muc_description": "Attackers can perform DoS attacks against Amazon EKS clusters by deploying a large number of pods or sending excessive requests to the Kubernetes API server, leading to resource exhaustion",
       "muc_comment": "Denial-of-Service (DoS) Attacks",
-      "id": "MUC-3"
+      "id": "MUC-4"
     },
     {
       "muc_description": "Attackers could misuse Amazon EKS by deploying container images with known vulnerabilities or malicious code, which could be exploited to compromise the security of the underlying infrastructure",
       "muc_comment": "Container Image Vulnerabilities",
-      "id": "MUC-4"
+      "id": "MUC-5"
     },
     {
       "muc_description": "MitM attacks within Amazon EKS clusters by intercepting and tampering with network traffic between pods or between pods and external services.",
       "muc_comment": "Man-in-the-Middle (MitM) Attacks",
-      "id": "MUC-5"
-    },
-    {
-      "muc_description": "An attacker gains unauthorized access to a Lightsail instance by exploiting weak credentials or misconfigured access controls.",
-      "muc_comment": "Enforce strong password policies, implement multi-factor authentication, and regularly review and update access controls.",
       "id": "MUC-6"
-    },
-    {
-      "muc_description": "An attacker launches a DoS attack on a Lightsail instance, overwhelming it with traffic and causing it to become unavailable.",
-      "muc_comment": "Denial of Service (DoS) Attack",
-      "id": "MUC-7"
-    },
-    {
-      "muc_description": "An attacker gains access to a Lightsail instance and maliciously modifies or deletes data stored on the instance.",
-      "muc_comment": "Data Tampering",
-      "id": "MUC-8"
     }
   ],
   "damageScenario": [
+    {
+      "damage_scenario": "Unreliable operation, data loss, data breaches, disruption functionality",
+      "consequence": "Serious",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
+      "consequence_reasoning": "It will create a significant data loss, downtime, business disruption, increased cost negatively impact on organisation",
+      "id": "DS-1"
+    },
     {
       "damage_scenario": "Loss of data privacy or legal non-compliance",
       "consequence": "Serious",
       "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
       "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
-      "id": "DS-1"
+      "id": "DS-2"
     },
     {
       "damage_scenario": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
       "consequence": "Moderate",
       "consequence_DS": "Attacks are intentional acts of harm, such as viruses, malware, or phishing attempts, that aim to gain unauthorized access or cause harm",
       "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partner",
-      "id": "DS-2"
+      "id": "DS-3"
     },
     {
       "damage_scenario": "Loss of customer trust",
       "consequence": "Moderate",
       "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
       "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
-      "id": "DS-3"
+      "id": "DS-4"
     },
     {
       "damage_scenario": "Disclosure of Personally Identifiable Information",
       "consequence": "Moderate",
       "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
       "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
-      "id": "DS-4"
+      "id": "DS-5"
     },
     {
       "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "consequence": "Moderate",
       "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
       "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
-      "id": "DS-5"
-    },
-    {
-      "damage_scenario": "Data loss, Network issues, financial loss",
-      "consequence": "Moderate",
-      "consequence_DS": "Accessing resources without authorization may lead to \nfinancial loss.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
       "id": "DS-6"
     }
   ],
   "SecGoals": [
     {
+      "Asset_description": "AWS App Mesh",
+      "Objective": "Availability",
+      "objective_description": "Ensuring that data and systems are accessible and usable when needed. ",
+      "id": "A-1"
+    },
+    {
       "Asset_description": "Amazon Athena",
       "Objective": "Confidentiality",
       "objective_description": "Protecting sensitive information from unauthorized access or disclosure ",
-      "id": "A-1"
+      "id": "A-2"
     },
     {
       "Asset_description": "Amazon Athena",
       "Objective": "Integrity",
       "objective_description": "Ensure that it cannot be modified without authorization.",
-      "id": "A-2"
+      "id": "A-3"
     },
     {
       "Asset_description": "Amazon Athena",
       "Objective": "Availability",
       "objective_description": "Ensure that it cannot be disrupted",
-      "id": "A-3"
+      "id": "A-4"
     },
     {
       "Asset_description": "Elastic Kubernetes Service",
       "Objective": "Confidentiality",
       "objective_description": "Confidentiality - The Kubernetes cluster's data should not be exposed",
-      "id": "A-4"
+      "id": "A-5"
     },
     {
       "Asset_description": "Elastic Kubernetes Service",
       "Objective": "Integrity",
       "objective_description": "Integrity - The worker nodes running the containers should not be tampered with",
-      "id": "A-5"
+      "id": "A-6"
     },
     {
       "Asset_description": "Elastic Kubernetes Service",
       "Objective": "Availability",
       "objective_description": "Availability - The containers assigned to the worker nodes should be run without interruption",
-      "id": "A-6"
-    },
-    {
-      "Asset_description": "AWS Lightsail",
-      "Objective": "Confidentiality",
-      "objective_description": "An attacker intercepts and eavesdrops on unencrypted network traffic to and from a Lightsail instance",
       "id": "A-7"
-    },
-    {
-      "Asset_description": "AWS Lightsail",
-      "Objective": "Availability",
-      "objective_description": "An attacker launches a DoS attack on a Lightsail instance, overwhelming it with traffic and causing it to become unavailable.",
-      "id": "A-8"
     }
   ],
   "ThreatDSs": [
     {
+      "Threat": "Blocking AWS App Mesh",
+      "affected_security_goal": "Availability of AWS App Mesh",
+      "damage_scenario_copy": "Unreliable operation, data loss, data breaches, disruption functionality",
+      "id": "Th-1",
+      "damage_scenario": "Unreliable operation, data loss, data breaches, disruption functionality",
+      "consequence": "Serious",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
+      "consequence_reasoning": "It will create a significant data loss, downtime, business disruption, increased cost negatively impact on organisation",
+      "Did": [
+        "DS-1"
+      ]
+    },
+    {
       "Threat": "Extraction of Amazon Athena",
       "affected_security_goal": "Confidentiality of Amazon Athena",
       "damage_scenario_copy": "Loss of data privacy or legal non-compliance",
-      "id": "Th-1",
+      "id": "Th-2",
       "damage_scenario": "Loss of data privacy or legal non-compliance",
       "consequence": "Serious",
       "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
       "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
       "Did": [
-        "DS-1"
+        "DS-2"
       ]
     },
     {
       "Threat": "Manipulation of Amazon Athena",
       "affected_security_goal": "Integrity of Amazon Athena",
       "damage_scenario_copy": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
-      "id": "Th-2",
+      "id": "Th-3",
       "damage_scenario": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
       "consequence": "Moderate",
       "consequence_DS": "Attacks are intentional acts of harm, such as viruses, malware, or phishing attempts, that aim to gain unauthorized access or cause harm",
       "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partner",
       "Did": [
-        "DS-2"
+        "DS-3"
       ]
     },
     {
       "Threat": "Blocking Amazon Athena",
       "affected_security_goal": "Availability of Amazon Athena",
       "damage_scenario_copy": "Loss of customer trust",
-      "id": "Th-3",
+      "id": "Th-4",
       "damage_scenario": "Loss of customer trust",
       "consequence": "Moderate",
       "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
       "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
       "Did": [
-        "DS-3"
+        "DS-4"
       ]
     },
     {
       "Threat": "Extraction of Elastic Kubernetes Service ",
       "affected_security_goal": "Confidentiality of Elastic Kubernetes Service",
       "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
-      "id": "Th-4",
+      "id": "Th-5",
       "damage_scenario": "Disclosure of Personally Identifiable Information",
       "consequence": "Moderate",
       "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
       "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
       "Did": [
-        "DS-4"
+        "DS-5"
       ]
     },
     {
       "Threat": "Manipulation of Elastic Kubernetes \nService",
       "affected_security_goal": "Integrity of Elastic Kubernetes Service",
       "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "id": "Th-5",
+      "id": "Th-6",
       "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "consequence": "Moderate",
       "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
       "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
       "Did": [
-        "DS-5"
+        "DS-6"
       ]
     },
     {
       "Threat": "Blocking Elastic Kubernetes Service ",
       "affected_security_goal": "Availability of Elastic Kubernetes Service",
       "damage_scenario_copy": "Loss of customer trust",
-      "id": "Th-6",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "Threat": "Extraction of AWS Lightsail",
-      "affected_security_goal": "Confidentiality of AWS Lightsail",
-      "damage_scenario_copy": "Data loss, Network issues, financial loss",
       "id": "Th-7",
-      "damage_scenario": "Data loss, Network issues, financial loss",
-      "consequence": "Moderate",
-      "consequence_DS": "Accessing resources without authorization may lead to \nfinancial loss.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "Threat": "Blocking  AWS Lightsail",
-      "affected_security_goal": "Availability of AWS Lightsail",
-      "damage_scenario_copy": "Loss of Customer trust",
-      "id": "Th-8",
       "damage_scenario": "Loss of customer trust",
       "consequence": "Moderate",
       "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
       "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
       "Did": [
-        "DS-3"
+        "DS-4"
       ]
     }
   ],
   "ThreatEvaluation_AP": [
     {
-      "Threat": "Extraction of Amazon Athena",
+      "Threat": "Blocking AWS App Mesh",
       "id": "Th-1",
+      "Access": 0,
+      "Equipment": 0,
+      "Expertise": 3,
+      "Time": 0,
+      "Knowledge": 3,
+      "Sum": "6",
+      "Attack_Potential": "Beyond High"
+    },
+    {
+      "Threat": "Extraction of Amazon Athena",
+      "id": "Th-2",
       "Access": 3,
       "Equipment": 0,
       "Expertise": 2,
@@ -287,7 +259,7 @@
     },
     {
       "Threat": "Manipulation of Amazon Athena",
-      "id": "Th-2",
+      "id": "Th-3",
       "Access": 0,
       "Equipment": 4,
       "Expertise": 6,
@@ -298,7 +270,7 @@
     },
     {
       "Threat": "Blocking Amazon Athena",
-      "id": "Th-3",
+      "id": "Th-4",
       "Access": 0,
       "Equipment": 0,
       "Expertise": 0,
@@ -309,7 +281,7 @@
     },
     {
       "Threat": "Extraction of Elastic Kubernetes Service ",
-      "id": "Th-4",
+      "id": "Th-5",
       "Access": "0",
       "Equipment": "0",
       "Expertise": "3",
@@ -320,12 +292,12 @@
     },
     {
       "Threat": "Manipulation of Elastic Kubernetes \nService",
-      "id": "Th-5",
+      "id": "Th-6",
       "Attack_Potential": "Unknown"
     },
     {
       "Threat": "Blocking Elastic Kubernetes Service ",
-      "id": "Th-6",
+      "id": "Th-7",
       "Access": "0",
       "Equipment": "0",
       "Expertise": "0",
@@ -333,78 +305,55 @@
       "Knowledge": "3",
       "Sum": "4",
       "Attack_Potential": "Beyond High"
-    },
-    {
-      "Threat": "Extraction of AWS Lightsail",
-      "id": "Th-7",
-      "Access": 0,
-      "Equipment": 0,
-      "Expertise": 3,
-      "Time": 1,
-      "Knowledge": 3,
-      "Sum": "7",
-      "Attack_Potential": "Beyond High"
-    },
-    {
-      "Threat": "Blocking  AWS Lightsail",
-      "id": "Th-8",
-      "Attack_Potential": "Unknown"
     }
   ],
   "threatDamageAssociations": [
     {
       "threatId": "Th-1",
-      "threat": "Extraction of Amazon Athena",
+      "threat": "Blocking AWS App Mesh",
       "damageScenarioId": "DS-1",
-      "damageScenario": "Loss of data privacy or legal non-compliance",
+      "damageScenario": "Unreliable operation, data loss, data breaches, disruption functionality",
       "cons": "Serious"
     },
     {
       "threatId": "Th-2",
-      "threat": "Manipulation of Amazon Athena",
+      "threat": "Extraction of Amazon Athena",
       "damageScenarioId": "DS-2",
+      "damageScenario": "Loss of data privacy or legal non-compliance",
+      "cons": "Serious"
+    },
+    {
+      "threatId": "Th-3",
+      "threat": "Manipulation of Amazon Athena",
+      "damageScenarioId": "DS-3",
       "damageScenario": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
       "cons": "Moderate"
     },
     {
-      "threatId": "Th-3",
-      "threat": "Blocking Amazon Athena",
-      "damageScenarioId": "DS-3",
-      "damageScenario": "Loss of customer trust",
-      "cons": "Moderate"
-    },
-    {
       "threatId": "Th-4",
-      "threat": "Extraction of Elastic Kubernetes Service ",
+      "threat": "Blocking Amazon Athena",
       "damageScenarioId": "DS-4",
-      "damageScenario": "Disclosure of Personally Identifiable Information",
+      "damageScenario": "Loss of customer trust",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-5",
-      "threat": "Manipulation of Elastic Kubernetes \nService",
+      "threat": "Extraction of Elastic Kubernetes Service ",
       "damageScenarioId": "DS-5",
-      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "damageScenario": "Disclosure of Personally Identifiable Information",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-6",
-      "threat": "Blocking Elastic Kubernetes Service ",
-      "damageScenarioId": "DS-3",
-      "damageScenario": "Loss of customer trust",
+      "threat": "Manipulation of Elastic Kubernetes \nService",
+      "damageScenarioId": "DS-6",
+      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-7",
-      "threat": "Extraction of AWS Lightsail",
-      "damageScenarioId": "DS-6",
-      "damageScenario": "Data loss, Network issues, financial loss",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-8",
-      "threat": "Blocking  AWS Lightsail",
-      "damageScenarioId": "DS-3",
+      "threat": "Blocking Elastic Kubernetes Service ",
+      "damageScenarioId": "DS-4",
       "damageScenario": "Loss of customer trust",
       "cons": "Moderate"
     }
@@ -412,57 +361,50 @@
   "updatedAssociations": [
     {
       "threatId": "Th-1",
-      "threat": "Extraction of Amazon Athena",
+      "threat": "Blocking AWS App Mesh",
       "damageScenarioId": "DS-1",
-      "damageScenario": "Loss of data privacy or legal non-compliance",
+      "damageScenario": "Unreliable operation, data loss, data breaches, disruption functionality",
       "cons": "Serious"
     },
     {
       "threatId": "Th-2",
-      "threat": "Manipulation of Amazon Athena",
+      "threat": "Extraction of Amazon Athena",
       "damageScenarioId": "DS-2",
+      "damageScenario": "Loss of data privacy or legal non-compliance",
+      "cons": "Serious"
+    },
+    {
+      "threatId": "Th-3",
+      "threat": "Manipulation of Amazon Athena",
+      "damageScenarioId": "DS-3",
       "damageScenario": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
       "cons": "Moderate"
     },
     {
-      "threatId": "Th-3",
-      "threat": "Blocking Amazon Athena",
-      "damageScenarioId": "DS-3",
-      "damageScenario": "Loss of customer trust",
-      "cons": "Moderate"
-    },
-    {
       "threatId": "Th-4",
-      "threat": "Extraction of Elastic Kubernetes Service ",
+      "threat": "Blocking Amazon Athena",
       "damageScenarioId": "DS-4",
-      "damageScenario": "Disclosure of Personally Identifiable Information",
+      "damageScenario": "Loss of customer trust",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-5",
-      "threat": "Manipulation of Elastic Kubernetes \nService",
+      "threat": "Extraction of Elastic Kubernetes Service ",
       "damageScenarioId": "DS-5",
-      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "damageScenario": "Disclosure of Personally Identifiable Information",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-6",
-      "threat": "Blocking Elastic Kubernetes Service ",
-      "damageScenarioId": "DS-3",
-      "damageScenario": "Loss of customer trust",
+      "threat": "Manipulation of Elastic Kubernetes \nService",
+      "damageScenarioId": "DS-6",
+      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-7",
-      "threat": "Extraction of AWS Lightsail",
-      "damageScenarioId": "DS-6",
-      "damageScenario": "Data loss, Network issues, financial loss",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-8",
-      "threat": "Blocking  AWS Lightsail",
-      "damageScenarioId": "DS-3",
+      "threat": "Blocking Elastic Kubernetes Service ",
+      "damageScenarioId": "DS-4",
       "damageScenario": "Loss of customer trust",
       "cons": "Moderate"
     }
@@ -470,8 +412,18 @@
   "RiskAssessment": [
     {
       "id": "R-1",
-      "damage_scenario": "Loss of data privacy or legal non-compliance",
+      "damage_scenario": "Unreliable operation, data loss, data breaches, disruption functionality",
       "D_id": "DS-1",
+      "consequence": "Serious",
+      "Threat": "Blocking AWS App Mesh",
+      "risk": "Very High",
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
+    },
+    {
+      "id": "R-2",
+      "damage_scenario": "Loss of data privacy or legal non-compliance",
+      "D_id": "DS-2",
       "consequence": "Serious",
       "Threat": "Extraction of Amazon Athena",
       "risk": "Very High",
@@ -479,9 +431,9 @@
       "risk_of_d": "Low"
     },
     {
-      "id": "R-2",
+      "id": "R-3",
       "damage_scenario": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
-      "D_id": "DS-2",
+      "D_id": "DS-3",
       "consequence": "Moderate",
       "Threat": "Manipulation of Amazon Athena",
       "risk": "Low",
@@ -489,29 +441,29 @@
       "risk_of_d": "Medium"
     },
     {
-      "id": "R-3",
-      "damage_scenario": "Loss of customer trust",
-      "D_id": "DS-3",
-      "consequence": "Moderate",
-      "Threat": "Blocking Amazon Athena",
-      "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
-    },
-    {
       "id": "R-4",
-      "damage_scenario": "Disclosure of Personally Identifiable Information",
+      "damage_scenario": "Loss of customer trust",
       "D_id": "DS-4",
       "consequence": "Moderate",
-      "Threat": "Extraction of Elastic Kubernetes Service ",
+      "Threat": "Blocking Amazon Athena",
       "risk": "Low",
       "attackPotential": "Beyond High",
       "risk_of_d": "Low"
     },
     {
       "id": "R-5",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
       "D_id": "DS-5",
+      "consequence": "Moderate",
+      "Threat": "Extraction of Elastic Kubernetes Service ",
+      "risk": "Low",
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
+    },
+    {
+      "id": "R-6",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "D_id": "DS-6",
       "consequence": "Moderate",
       "Threat": "Manipulation of Elastic Kubernetes \nService",
       "risk": "Low",
@@ -519,396 +471,317 @@
       "risk_of_d": "Invalid Attack Potential"
     },
     {
-      "id": "R-6",
+      "id": "R-7",
       "damage_scenario": "Loss of customer trust",
-      "D_id": "DS-3",
+      "D_id": "DS-4",
       "consequence": "Moderate",
       "Threat": "Blocking Elastic Kubernetes Service ",
       "risk": "Low",
       "attackPotential": "Beyond High",
       "risk_of_d": "Low"
-    },
-    {
-      "id": "R-7",
-      "damage_scenario": "Data loss, Network issues, financial loss",
-      "D_id": "DS-6",
-      "consequence": "Moderate",
-      "Threat": "Extraction of AWS Lightsail",
-      "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
-    },
-    {
-      "id": "R-8",
-      "damage_scenario": "Loss of customer trust",
-      "D_id": "DS-3",
-      "consequence": "Moderate",
-      "Threat": "Blocking  AWS Lightsail",
-      "risk": "Low",
-      "attackPotential": "Unknown",
-      "risk_of_d": "Invalid Attack Potential"
     }
   ],
   "SecurityNeeds": [
     {
-      "Threat_T": "Extraction of Amazon Athena",
-      "security_description_threat": "Proper configuration and secure setup are essential for the effective management of Athena or any similar service in diverse projects or environments.",
+      "Threat_T": "Blocking AWS App Mesh",
+      "security_description_threat": "Unavailability of services cause user inconvience",
       "id": "SN-R-1",
-      "Threat": "Extraction of Amazon Athena",
-      "affected_security_goal": "Confidentiality of Amazon Athena",
-      "damage_scenario_copy": "Loss of data privacy or legal non-compliance",
+      "Threat": "Blocking AWS App Mesh",
+      "affected_security_goal": "Availability of AWS App Mesh",
+      "damage_scenario_copy": "Unreliable operation, data loss, data breaches, disruption functionality",
       "Threat_id": "Th-1",
-      "damage_scenario": "Loss of data privacy or legal non-compliance",
+      "damage_scenario": "Unreliable operation, data loss, data breaches, disruption functionality",
       "consequence": "Serious",
       "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
-      "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
+      "consequence_reasoning": "It will create a significant data loss, downtime, business disruption, increased cost negatively impact on organisation",
       "Did": [
         "DS-1"
       ]
     },
     {
-      "Threat_T": "Manipulation of Amazon Athena",
-      "security_description_threat": "Data can be accessed and manipulated  by unauthorized individuals if proper security measures are not in place. It can leads to compromise of integrity",
+      "Threat_T": "Extraction of Amazon Athena",
+      "security_description_threat": "Proper configuration and secure setup are essential for the effective management of Athena or any similar service in diverse projects or environments.",
       "id": "SN-R-2",
-      "Threat": "Manipulation of Amazon Athena",
-      "affected_security_goal": "Integrity of Amazon Athena",
-      "damage_scenario_copy": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
+      "Threat": "Extraction of Amazon Athena",
+      "affected_security_goal": "Confidentiality of Amazon Athena",
+      "damage_scenario_copy": "Loss of data privacy or legal non-compliance",
       "Threat_id": "Th-2",
-      "damage_scenario": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
-      "consequence": "Moderate",
-      "consequence_DS": "Attacks are intentional acts of harm, such as viruses, malware, or phishing attempts, that aim to gain unauthorized access or cause harm",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partner",
+      "damage_scenario": "Loss of data privacy or legal non-compliance",
+      "consequence": "Serious",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
+      "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
       "Did": [
         "DS-2"
       ]
     },
     {
+      "Threat_T": "Manipulation of Amazon Athena",
+      "security_description_threat": "Data can be accessed and manipulated  by unauthorized individuals if proper security measures are not in place. It can leads to compromise of integrity",
+      "id": "SN-R-3",
+      "Threat": "Manipulation of Amazon Athena",
+      "affected_security_goal": "Integrity of Amazon Athena",
+      "damage_scenario_copy": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
+      "Threat_id": "Th-3",
+      "damage_scenario": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
+      "consequence": "Moderate",
+      "consequence_DS": "Attacks are intentional acts of harm, such as viruses, malware, or phishing attempts, that aim to gain unauthorized access or cause harm",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partner",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
       "Threat_T": "Extraction of Amazon Athena",
       "security_description_threat": "Encrypting workgroups at rest in Athena is a recommended security practice to safeguard sensitive information, ensuring confidentiality across diverse projects and implementations.",
-      "id": "SN-R-3",
+      "id": "SN-R-4",
       "Threat": "Extraction of Amazon Athena",
       "affected_security_goal": "Confidentiality of Amazon Athena",
       "damage_scenario_copy": "Loss of data privacy or legal non-compliance",
-      "Threat_id": "Th-1",
+      "Threat_id": "Th-2",
       "damage_scenario": "Loss of data privacy or legal non-compliance",
       "consequence": "Serious",
       "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
       "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
       "Did": [
-        "DS-1"
+        "DS-2"
       ]
     },
     {
       "Threat_T": "Blocking Amazon Athena",
       "security_description_threat": "Amazon Athena shall enforce monitoring mechanisms to ensure continuous monitoring of data access",
-      "id": "SN-R-4",
+      "id": "SN-R-5",
       "Threat": "Blocking Amazon Athena",
       "affected_security_goal": "Availability of Amazon Athena",
       "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-3",
+      "Threat_id": "Th-4",
       "damage_scenario": "Loss of customer trust",
       "consequence": "Moderate",
       "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
       "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of Elastic Kubernetes Service ",
-      "security_description_threat": "The system shall enforce robust access controls to mitigate unauthorized access ",
-      "id": "SN-R-5",
-      "Threat": "Extraction of Elastic Kubernetes Service ",
-      "affected_security_goal": "Confidentiality of Elastic Kubernetes Service",
-      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
-      "Threat_id": "Th-4",
-      "damage_scenario": "Disclosure of Personally Identifiable Information",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
-      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
       "Did": [
         "DS-4"
       ]
     },
     {
-      "Threat_T": "Manipulation of Elastic Kubernetes \nService",
-      "security_description_threat": "The container images of EKS shall have integrity checking mechanism",
+      "Threat_T": "Extraction of Elastic Kubernetes Service ",
+      "security_description_threat": "The system shall enforce robust access controls to mitigate unauthorized access ",
       "id": "SN-R-6",
-      "Threat": "Manipulation of Elastic Kubernetes \nService",
-      "affected_security_goal": "Integrity of Elastic Kubernetes Service",
-      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
+      "Threat": "Extraction of Elastic Kubernetes Service ",
+      "affected_security_goal": "Confidentiality of Elastic Kubernetes Service",
+      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
       "Threat_id": "Th-5",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
       "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
       "Did": [
         "DS-5"
       ]
     },
     {
-      "Threat_T": "Blocking Elastic Kubernetes Service ",
-      "security_description_threat": "The container orchestration system shall implement redundancy and failover mechanisms to mitigate denial of service (DoS) attacks and ensure the availability of applications running on worker nodes",
+      "Threat_T": "Manipulation of Elastic Kubernetes \nService",
+      "security_description_threat": "The container images of EKS shall have integrity checking mechanism",
       "id": "SN-R-7",
-      "Threat": "Blocking Elastic Kubernetes Service ",
-      "affected_security_goal": "Availability of Elastic Kubernetes Service",
-      "damage_scenario_copy": "Loss of customer trust",
+      "Threat": "Manipulation of Elastic Kubernetes \nService",
+      "affected_security_goal": "Integrity of Elastic Kubernetes Service",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
       "Threat_id": "Th-6",
-      "damage_scenario": "Loss of customer trust",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of AWS Lightsail",
-      "security_description_threat": "Strong password policies, implement multi-factor authentication, and regularly review shall be done.",
-      "id": "SN-R-8",
-      "Threat": "Extraction of AWS Lightsail",
-      "affected_security_goal": "Confidentiality of AWS Lightsail",
-      "damage_scenario_copy": "Data loss, Network issues, financial loss",
-      "Threat_id": "Th-7",
-      "damage_scenario": "Data loss, Network issues, financial loss",
-      "consequence": "Moderate",
-      "consequence_DS": "Accessing resources without authorization may lead to \nfinancial loss.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
       "Did": [
         "DS-6"
       ]
     },
     {
-      "Threat_T": "Blocking  AWS Lightsail",
-      "security_description_threat": "DoS protection mechanisms shall monitor for unusual traffic patterns.",
-      "id": "SN-R-9",
-      "Threat": "Blocking  AWS Lightsail",
-      "affected_security_goal": "Availability of AWS Lightsail",
-      "damage_scenario_copy": "Loss of Customer trust",
-      "Threat_id": "Th-8",
+      "Threat_T": "Blocking Elastic Kubernetes Service ",
+      "security_description_threat": "The container orchestration system shall implement redundancy and failover mechanisms to mitigate denial of service (DoS) attacks and ensure the availability of applications running on worker nodes",
+      "id": "SN-R-8",
+      "Threat": "Blocking Elastic Kubernetes Service ",
+      "affected_security_goal": "Availability of Elastic Kubernetes Service",
+      "damage_scenario_copy": "Loss of customer trust",
+      "Threat_id": "Th-7",
       "damage_scenario": "Loss of customer trust",
       "consequence": "Moderate",
       "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
       "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
       "Did": [
-        "DS-3"
+        "DS-4"
       ]
     }
   ],
   "assetaddition": [
     {
+      "Asset_description": "AWS App Mesh",
+      "Objective": "Availability",
+      "objective_description": "Ensuring that data and systems are accessible and usable when needed. ",
+      "id": "AA-1"
+    },
+    {
       "Asset_description": "Amazon Athena",
       "Objective": "Confidentiality",
       "objective_description": "Protecting sensitive information from unauthorized access or disclosure ",
-      "id": "AA-1"
+      "id": "AA-2"
     },
     {
       "Asset_description": "Amazon Athena",
       "Objective": "Integrity",
       "objective_description": "Ensure that it cannot be modified without authorization.",
-      "id": "AA-2"
+      "id": "AA-3"
     },
     {
       "Asset_description": "Amazon Athena",
       "Objective": "Availability",
       "objective_description": "Ensure that it cannot be disrupted",
-      "id": "AA-3"
+      "id": "AA-4"
     },
     {
       "Asset_description": "Elastic Kubernetes Service",
       "Objective": "Confidentiality",
       "objective_description": "Confidentiality - The Kubernetes cluster's data should not be exposed",
-      "id": "AA-4"
+      "id": "AA-5"
     },
     {
       "Asset_description": "Elastic Kubernetes Service",
       "Objective": "Integrity",
       "objective_description": "Integrity - The worker nodes running the containers should not be tampered with",
-      "id": "AA-5"
+      "id": "AA-6"
     },
     {
       "Asset_description": "Elastic Kubernetes Service",
       "Objective": "Availability",
       "objective_description": "Availability - The containers assigned to the worker nodes should be run without interruption",
-      "id": "AA-6"
-    },
-    {
-      "Asset_description": "AWS Lightsail",
-      "Objective": "Confidentiality",
-      "objective_description": "An attacker intercepts and eavesdrops on unencrypted network traffic to and from a Lightsail instance",
       "id": "AA-7"
-    },
-    {
-      "Asset_description": "AWS Lightsail",
-      "Objective": "Availability",
-      "objective_description": "An attacker launches a DoS attack on a Lightsail instance, overwhelming it with traffic and causing it to become unavailable.",
-      "id": "AA-8"
     }
   ],
   "SecControls": [
     {
+      "security_control": "Resilience",
+      "security_control_description": "Resilience ensures the ability of a system to recover from a failure and continue operating within an acceptable level of degradation. It includes the capability to detect, isolate, and recover from faults, while maintaining the availability and integrity of the system.",
+      "security_goal": "Enhance application resilience by employing a secure default retry strategy to increase the chances of request success.",
+      "id": "S-1",
+      "Sid": [
+        "SN-R-2"
+      ]
+    },
+    {
       "security_control": "Configuration Management",
       "security_control_description": "Configuration management is the process of establishing and maintaining consistency in the configuration of IT systems. It includes identifying, documenting, and controlling changes to hardware, software, and firmware, as well as ensuring that systems are configured in accordance with security policies and standards. Configuration management helps to prevent unauthorized changes to systems, reduces the risk of system failures, and facilitates troubleshooting and recovery.",
       "security_goal": "Proper configuration and secure setup are essential for the effective management of Athena or any similar service in diverse projects or environments.",
-      "id": "S-1",
+      "id": "S-2",
       "Threat_T": "Extraction of Amazon Athena",
       "security_description_threat": "Proper configuration and secure setup are essential for the effective management of Athena or any similar service in diverse projects or environments.",
       "Sid": [
-        "SN-R-1"
+        "SN-R-2"
       ],
       "Threat": "Extraction of Amazon Athena",
       "affected_security_goal": "Confidentiality of Amazon Athena",
       "damage_scenario_copy": "Loss of data privacy or legal non-compliance",
-      "Threat_id": "Th-1",
+      "Threat_id": "Th-2",
       "damage_scenario": "Loss of data privacy or legal non-compliance",
       "consequence": "Serious",
       "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
       "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
       "Did": [
-        "DS-1"
+        "DS-2"
       ]
     },
     {
       "security_control": "Access control",
       "security_control_description": "Access control is a security control that restricts access to resources based on the identity of the user or system requesting access. This control ensures that only authorized users or systems can access specific resources, such as files, applications, or databases. Access control can be implemented using a variety of mechanisms, such as passwords, biometrics, and tokens.",
       "security_goal": "Data can be accessed and maniplated  by unauthorized individuals if proper security measures are not in place. It can leads to compromise of integrity",
-      "id": "S-2",
+      "id": "S-3",
       "Sid": [
-        "SN-R-2"
-      ],
-      "selectedRequirement": "EISA-CPL-201 - Penetration Testing (EISA-PIS-200 - Bosch Product) - Independent Penetration Test Agent or Team"
+        "SN-R-1"
+      ]
     },
     {
       "security_control": "Encryption",
       "security_control_description": "Encryption transforms data into an unreadable format, rendering it unintelligible to unauthorized individuals. It protects sensitive information from unauthorized access, theft, or disclosure, whether at rest or in transit. By encrypting data, organizations can safeguard sensitive data such as personally identifiable information (PII), financial data, or intellectual property from unauthorized parties.",
       "security_goal": "Encrypting workgroups at rest in Athena is a recommended security practice to safeguard sensitive information, ensuring confidentiality across diverse projects and implementations.",
-      "id": "S-3",
+      "id": "S-4",
       "Threat_T": "Extraction of Amazon Athena",
       "security_description_threat": "Encrypting workgroups at rest in Athena is a recommended security practice to safeguard sensitive information, ensuring confidentiality across diverse projects and implementations.",
       "Sid": [
-        "SN-R-3"
+        "SN-R-4"
       ],
       "Threat": "Extraction of Amazon Athena",
       "affected_security_goal": "Confidentiality of Amazon Athena",
       "damage_scenario_copy": "Loss of data privacy or legal non-compliance",
-      "Threat_id": "Th-1",
+      "Threat_id": "Th-2",
       "damage_scenario": "Loss of data privacy or legal non-compliance",
       "consequence": "Serious",
       "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
       "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
       "Did": [
-        "DS-1"
-      ],
-      "selectedRequirement": "EISA-ACC-104 - Access to Networks (EISA-PIS-166 - IT Systems with Security Deficiencies) - Access to Networks"
+        "DS-2"
+      ]
     },
     {
       "security_control": "Monitoring",
       "security_control_description": "Monitoring is the continuous observation and analysis of events and data in information systems and networks to detect suspicious activities or potential security incidents. It involves the collection, analysis, and reporting of system activity, logs, and events to identify anomalies, unauthorized access attempts, and other security concerns. Monitoring enables organizations to detect and respond to security threats in a timely manner, mitigate risks, and maintain the integrity and availability of their systems and data.",
       "security_goal": "Amazon Athena shall enforce monitoring mechanisms to ensure continuous monitoring of data access",
-      "id": "S-4",
+      "id": "S-5",
       "Threat_T": "Blocking Amazon Athena",
       "security_description_threat": "Amazon Athena shall enforce monitoring mechanisms to ensure continuous monitoring of data access",
       "Sid": [
-        "SN-R-4"
+        "SN-R-5"
       ],
       "Threat": "Blocking Amazon Athena",
       "affected_security_goal": "Availability of Amazon Athena",
       "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-3",
+      "Threat_id": "Th-4",
       "damage_scenario": "Loss of customer trust",
       "consequence": "Moderate",
       "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
       "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
       "Did": [
-        "DS-3"
+        "DS-4"
       ]
     },
     {
       "security_control": "Integrity Checking",
       "security_control_description": "Integrity checking ensures that data and systems have not been modified or corrupted since their last authorized update. This involves using techniques such as checksums, hash functions, and digital signatures to verify the integrity of data and systems. Integrity checking helps protect against unauthorized modifications, data breaches, and other threats that could compromise the integrity of information and systems.",
       "security_goal": "The container images of EKS shall have integrity checking mechanism",
-      "id": "S-5",
+      "id": "S-6",
       "Threat_T": "Manipulation of Elastic Kubernetes \nService",
       "security_description_threat": "The container images of EKS shall have integrity checking mechanism",
       "Sid": [
-        "SN-R-6"
+        "SN-R-7"
       ],
       "Threat": "Manipulation of Elastic Kubernetes \nService",
       "affected_security_goal": "Integrity of Elastic Kubernetes Service",
       "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "Threat_id": "Th-5",
+      "Threat_id": "Th-6",
       "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
       "consequence": "Moderate",
       "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
       "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
       "Did": [
-        "DS-5"
+        "DS-6"
       ]
     },
     {
       "security_control": "Redundancy",
       "security_control_description": "Redundancy involves duplicating critical components or functions to ensure continued availability and resilience in the event of a failure. By having multiple redundant systems or components, organizations can maintain continuity of operations even if one or more components experience an outage. This approach helps mitigate risks associated with single points of failure and provides a backup or failover mechanism to keep services and applications running smoothly.",
       "security_goal": "The container orchestration system shall implement redundancy and failover mechanisms to mitigate denial of service (DoS) attacks and ensure the availability of applications running on worker nodes",
-      "id": "S-6",
+      "id": "S-7",
       "Threat_T": "Blocking Elastic Kubernetes Service ",
       "security_description_threat": "The container orchestration system shall implement redundancy and failover mechanisms to mitigate denial of service (DoS) attacks and ensure the availability of applications running on worker nodes",
       "Sid": [
-        "SN-R-7"
+        "SN-R-8"
       ],
       "Threat": "Blocking Elastic Kubernetes Service ",
       "affected_security_goal": "Availability of Elastic Kubernetes Service",
       "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-6",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "security_control": "Authentication",
-      "security_control_description": "Authentication verifies the identity of an entity, typically a user or system, attempting to access a resource. It involves confirming that the entity is who or what they claim to be. Authentication mechanisms include passwords, tokens, certificates, biometrics, and multi-factor authentication. By implementing robust authentication measures, organizations can reduce the risk of unauthorized access to sensitive data and resources.",
-      "security_goal": "Strong password policies, implement multi-factor authentication, and regularly review shall be done.",
-      "id": "S-7",
-      "Threat_T": "Extraction of AWS Lightsail",
-      "security_description_threat": "Strong password policies, implement multi-factor authentication, and regularly review shall be done.",
-      "Sid": [
-        "SN-R-8"
-      ],
-      "Threat": "Extraction of AWS Lightsail",
-      "affected_security_goal": "Confidentiality of AWS Lightsail",
-      "damage_scenario_copy": "Data loss, Network issues, financial loss",
       "Threat_id": "Th-7",
-      "damage_scenario": "Data loss, Network issues, financial loss",
-      "consequence": "Moderate",
-      "consequence_DS": "Accessing resources without authorization may lead to \nfinancial loss.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time.",
-      "Did": [
-        "DS-6"
-      ]
-    },
-    {
-      "security_control": "Intrusion Detection",
-      "security_control_description": "Intrusion Detection Systems (IDSs) monitor network traffic and system activities for suspicious or malicious behavior. They can detect and alert on a wide range of threats, including unauthorized access, malware infections, and denial-of-service attacks. IDSs can be deployed in various locations within a network, such as at network perimeters, on individual hosts, or within virtualized environments. They can also be configured to generate alerts, take automated actions, or provide detailed information for incident response and forensics.",
-      "security_goal": "DoS protection mechanisms shall monitor for unusual traffic patterns.",
-      "id": "S-8",
-      "Threat_T": "Blocking  AWS Lightsail",
-      "security_description_threat": "DoS protection mechanisms shall monitor for unusual traffic patterns.",
-      "Sid": [
-        "SN-R-9"
-      ],
-      "Threat": "Blocking  AWS Lightsail",
-      "affected_security_goal": "Availability of AWS Lightsail",
-      "damage_scenario_copy": "Loss of Customer trust",
-      "Threat_id": "Th-8",
       "damage_scenario": "Loss of customer trust",
       "consequence": "Moderate",
       "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
       "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
       "Did": [
-        "DS-3"
+        "DS-4"
       ]
     }
   ],
