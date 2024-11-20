@@ -864,7 +864,8 @@
       "security_control": "Detection",
       "security_control_description": "Detection involves monitoring and analyzing system activities to identify and respond to potential security incidents. By examining audit logs, network traffic, and other indicators of compromise, detection systems can raise alerts and notify administrators of potential threats. This enables organizations to quickly investigate and mitigate security events, minimizing damage and protecting sensitive data.",
       "security_goal": "Continuously monitoring and network activity  shall be implemented for suspicious behavior.",
-      "id": "S-4"
+      "id": "S-4",
+      "selectedRequirement": "EISA-ACC-301 - Management of Authentication Secrets (EISA-PIS-100 - IT System) - Password History"
     },
     {
       "security_control": "Integrity Checking",
@@ -886,7 +887,8 @@
       "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
       "Did": [
         "DS-5"
-      ]
+      ],
+      "selectedRequirement": "EISA-OPS-201 - Malware Protection (EISA-PIS-101 - Cloud Platform) - Scan Methods"
     },
     {
       "security_control": "Redundancy",
@@ -908,7 +910,8 @@
       "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
       "Did": [
         "DS-6"
-      ]
+      ],
+      "selectedRequirement": "EISA-CRY-106 - Certificate Handling (EISA-PIS-003 - Network) - Handling of Certificates"
     },
     {
       "security_control": "Least Privilege",
