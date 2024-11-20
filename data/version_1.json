@@ -236,81 +236,32 @@
   ],
   "ThreatEvaluation_AP": [
     {
-      "id": "Th-1",
-      "Access": 0,
-      "Equipment": 0,
-      "Expertise": 3,
-      "Knowledge": 3,
-      "Time": 0,
-      "Sum": "6",
       "Threat": "Blocking AWS App Mesh",
-      "Attack_Potential": "Beyond High"
+      "id": "Th-1"
     },
     {
-      "id": "Th-2",
-      "Access": 3,
-      "Equipment": 0,
-      "Expertise": 2,
-      "Knowledge": 2,
-      "Time": 1,
-      "Sum": "8",
       "Threat": "Extraction of Amazon Athena",
-      "Attack_Potential": "Beyond High"
+      "id": "Th-2"
     },
     {
-      "id": "Th-3",
-      "Access": 0,
-      "Equipment": 4,
-      "Expertise": 6,
-      "Knowledge": 3,
-      "Time": 2,
-      "Sum": "15",
       "Threat": "Manipulation of Amazon Athena",
-      "Attack_Potential": "Moderate"
+      "id": "Th-3"
     },
     {
-      "id": "Th-4",
-      "Access": 0,
-      "Equipment": 0,
-      "Expertise": 0,
-      "Knowledge": 3,
-      "Time": 0,
-      "Sum": "3",
       "Threat": "Blocking Amazon Athena",
-      "Attack_Potential": "Beyond High"
+      "id": "Th-4"
     },
     {
-      "id": "Th-5",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "3",
-      "Knowledge": "0",
-      "Time": "0",
-      "Sum": "3",
       "Threat": "Extraction of Elastic Kubernetes Service ",
-      "Attack_Potential": "Beyond High"
+      "id": "Th-5"
     },
     {
-      "id": "Th-6",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "6",
-      "Knowledge": "3",
-      "Time": "1",
-      "Sum": "10",
       "Threat": "Manipulation of Elastic Kubernetes \nService",
-      "Attack_Potential": "High"
+      "id": "Th-6"
     },
     {
-      "id": "Th-7",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "0",
-      "Knowledge": "3",
-      "Time": "1",
-      "Sum": "4",
       "Threat": "Blocking Elastic Kubernetes Service ",
-      "Attack_Potential": "Beyond High"
+      "id": "Th-7"
     }
   ],
   "threatDamageAssociations": [
@@ -423,8 +374,7 @@
       "consequence": "Serious",
       "Threat": "Blocking AWS App Mesh",
       "risk": "Very High",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
+      "risk_of_d": "Invalid Attack Potential"
     },
     {
       "id": "R-2",
@@ -433,8 +383,7 @@
       "consequence": "Serious",
       "Threat": "Extraction of Amazon Athena",
       "risk": "Very High",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
+      "risk_of_d": "Invalid Attack Potential"
     },
     {
       "id": "R-3",
@@ -443,8 +392,7 @@
       "consequence": "Moderate",
       "Threat": "Manipulation of Amazon Athena",
       "risk": "Low",
-      "attackPotential": "Moderate",
-      "risk_of_d": "Medium"
+      "risk_of_d": "Invalid Attack Potential"
     },
     {
       "id": "R-4",
@@ -453,8 +401,7 @@
       "consequence": "Moderate",
       "Threat": "Blocking Amazon Athena",
       "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
+      "risk_of_d": "Invalid Attack Potential"
     },
     {
       "id": "R-5",
@@ -463,8 +410,7 @@
       "consequence": "Moderate",
       "Threat": "Extraction of Elastic Kubernetes Service ",
       "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
+      "risk_of_d": "Invalid Attack Potential"
     },
     {
       "id": "R-6",
@@ -473,8 +419,7 @@
       "consequence": "Moderate",
       "Threat": "Manipulation of Elastic Kubernetes \nService",
       "risk": "Low",
-      "attackPotential": "High",
-      "risk_of_d": "Medium"
+      "risk_of_d": "Invalid Attack Potential"
     },
     {
       "id": "R-7",
@@ -483,8 +428,7 @@
       "consequence": "Moderate",
       "Threat": "Blocking Elastic Kubernetes Service ",
       "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
+      "risk_of_d": "Invalid Attack Potential"
     }
   ],
   "SecurityNeeds": [
@@ -666,123 +610,54 @@
       "security_control": "Resilience",
       "security_control_description": "Resilience ensures the ability of a system to recover from a failure and continue operating within an acceptable level of degradation. It includes the capability to detect, isolate, and recover from faults, while maintaining the availability and integrity of the system.",
       "security_goal": "Enhance application resilience by employing a secure default retry strategy to increase the chances of request success.",
-      "id": "S-1"
+      "id": "S-1",
+      "Sid": [
+        "SN-R-1"
+      ],
+      "selectedRequirement": "EISA-INC-101 - Incident Preparation (EISA-PSA-017 - IT Application) - Preparation Activities"
     },
     {
       "security_control": "Configuration Management",
       "security_control_description": "Configuration management is the process of establishing and maintaining consistency in the configuration of IT systems. It includes identifying, documenting, and controlling changes to hardware, software, and firmware, as well as ensuring that systems are configured in accordance with security policies and standards. Configuration management helps to prevent unauthorized changes to systems, reduces the risk of system failures, and facilitates troubleshooting and recovery.",
       "security_goal": "Proper configuration and secure setup are essential for the effective management of Athena or any similar service in diverse projects or environments.",
       "id": "S-2",
-      "Threat_T": "Extraction of Amazon Athena",
-      "security_description_threat": "Proper configuration and secure setup are essential for the effective management of Athena or any similar service in diverse projects or environments.",
       "Sid": [
         "SN-R-2"
       ],
-      "Threat": "Extraction of Amazon Athena",
-      "affected_security_goal": "Confidentiality of Amazon Athena",
-      "damage_scenario_copy": "Loss of data privacy or legal non-compliance",
-      "Threat_id": "Th-2",
-      "damage_scenario": "Loss of data privacy or legal non-compliance",
-      "consequence": "Serious",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
-      "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
-      "Did": [
-        "DS-2"
-      ]
+      "selectedRequirement": "EISA-CPL-201 - Penetration Testing (EISA-PIS-200 - Bosch Product) - Alignment with Bosch CERT"
     },
     {
       "security_control": "Access control",
       "security_control_description": "Access control is a security control that restricts access to resources based on the identity of the user or system requesting access. This control ensures that only authorized users or systems can access specific resources, such as files, applications, or databases. Access control can be implemented using a variety of mechanisms, such as passwords, biometrics, and tokens.",
       "security_goal": "Data can be accessed and maniplated  by unauthorized individuals if proper security measures are not in place. It can leads to compromise of integrity",
-      "id": "S-3"
+      "id": "S-3",
+      "Sid": [
+        "SN-R-3"
+      ]
     },
     {
       "security_control": "Encryption",
       "security_control_description": "Encryption transforms data into an unreadable format, rendering it unintelligible to unauthorized individuals. It protects sensitive information from unauthorized access, theft, or disclosure, whether at rest or in transit. By encrypting data, organizations can safeguard sensitive data such as personally identifiable information (PII), financial data, or intellectual property from unauthorized parties.",
       "security_goal": "Encrypting workgroups at rest in Athena is a recommended security practice to safeguard sensitive information, ensuring confidentiality across diverse projects and implementations.",
-      "id": "S-4",
-      "Threat_T": "Extraction of Amazon Athena",
-      "security_description_threat": "Encrypting workgroups at rest in Athena is a recommended security practice to safeguard sensitive information, ensuring confidentiality across diverse projects and implementations.",
-      "Sid": [
-        "SN-R-4"
-      ],
-      "Threat": "Extraction of Amazon Athena",
-      "affected_security_goal": "Confidentiality of Amazon Athena",
-      "damage_scenario_copy": "Loss of data privacy or legal non-compliance",
-      "Threat_id": "Th-2",
-      "damage_scenario": "Loss of data privacy or legal non-compliance",
-      "consequence": "Serious",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
-      "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
-      "Did": [
-        "DS-2"
-      ]
+      "id": "S-4"
     },
     {
       "security_control": "Monitoring",
       "security_control_description": "Monitoring is the continuous observation and analysis of events and data in information systems and networks to detect suspicious activities or potential security incidents. It involves the collection, analysis, and reporting of system activity, logs, and events to identify anomalies, unauthorized access attempts, and other security concerns. Monitoring enables organizations to detect and respond to security threats in a timely manner, mitigate risks, and maintain the integrity and availability of their systems and data.",
       "security_goal": "Amazon Athena shall enforce monitoring mechanisms to ensure continuous monitoring of data access",
-      "id": "S-5",
-      "Threat_T": "Blocking Amazon Athena",
-      "security_description_threat": "Amazon Athena shall enforce monitoring mechanisms to ensure continuous monitoring of data access",
-      "Sid": [
-        "SN-R-5"
-      ],
-      "Threat": "Blocking Amazon Athena",
-      "affected_security_goal": "Availability of Amazon Athena",
-      "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-4",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
-      "Did": [
-        "DS-4"
-      ]
+      "id": "S-5"
     },
     {
       "security_control": "Integrity Checking",
       "security_control_description": "Integrity checking ensures that data and systems have not been modified or corrupted since their last authorized update. This involves using techniques such as checksums, hash functions, and digital signatures to verify the integrity of data and systems. Integrity checking helps protect against unauthorized modifications, data breaches, and other threats that could compromise the integrity of information and systems.",
       "security_goal": "The container images of EKS shall have integrity checking mechanism",
-      "id": "S-6",
-      "Threat_T": "Manipulation of Elastic Kubernetes \nService",
-      "security_description_threat": "The container images of EKS shall have integrity checking mechanism",
-      "Sid": [
-        "SN-R-7"
-      ],
-      "Threat": "Manipulation of Elastic Kubernetes \nService",
-      "affected_security_goal": "Integrity of Elastic Kubernetes Service",
-      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "Threat_id": "Th-6",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
-      "Did": [
-        "DS-6"
-      ]
+      "id": "S-6"
     },
     {
       "security_control": "Redundancy",
       "security_control_description": "Redundancy involves duplicating critical components or functions to ensure continued availability and resilience in the event of a failure. By having multiple redundant systems or components, organizations can maintain continuity of operations even if one or more components experience an outage. This approach helps mitigate risks associated with single points of failure and provides a backup or failover mechanism to keep services and applications running smoothly.",
       "security_goal": "The container orchestration system shall implement redundancy and failover mechanisms to mitigate denial of service (DoS) attacks and ensure the availability of applications running on worker nodes",
-      "id": "S-7",
-      "Threat_T": "Blocking Elastic Kubernetes Service ",
-      "security_description_threat": "The container orchestration system shall implement redundancy and failover mechanisms to mitigate denial of service (DoS) attacks and ensure the availability of applications running on worker nodes",
-      "Sid": [
-        "SN-R-8"
-      ],
-      "Threat": "Blocking Elastic Kubernetes Service ",
-      "affected_security_goal": "Availability of Elastic Kubernetes Service",
-      "damage_scenario_copy": "Loss of customer trust",
-      "Threat_id": "Th-7",
-      "damage_scenario": "Loss of customer trust",
-      "consequence": "Moderate",
-      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
-      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
-      "Did": [
-        "DS-4"
-      ]
+      "id": "S-7"
     }
   ],
   "SecClaims": [],
