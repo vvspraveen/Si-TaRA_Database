@@ -844,28 +844,40 @@
       "security_control_description": "Identity and Access Management (IAM) is a security control that ensures that only authorized users are granted access to resources within a system. IAM involves the process of identifying users, authenticating their identities, and authorizing them to access specific resources based on their roles and permissions. IAM plays a critical role in protecting systems from unauthorized access and ensuring that sensitive information remains confidential and protected.",
       "security_goal": "Implement least privilege principles with IAM.",
       "id": "S-1",
-      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Separate Account for Privileged Access"
+      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Separate Account for Privileged Access",
+      "Sid": [
+        "SN-R-1"
+      ]
     },
     {
       "security_control": "Authentication",
       "security_control_description": "Authentication is the process of verifying a user's identity before allowing them access to a system or resource. It ensures that only authorized users can access the system and helps to protect against unauthorized access and data breaches. Authentication can be performed using a variety of methods, including passwords, biometrics, tokens, and certificates.",
       "security_goal": "Put measures in place to validate the authenticity of discovered services.",
       "id": "S-2",
-      "selectedRequirement": "EISA-COM-103 - Protection of the Application Layer  (EISA-PSA-004 - Mobile Application) - Session Authentication"
+      "selectedRequirement": "EISA-COM-103 - Protection of the Application Layer  (EISA-PSA-004 - Mobile Application) - Session Authentication",
+      "Sid": [
+        "SN-R-2"
+      ]
     },
     {
       "security_control": "Access control",
       "security_control_description": "Access control regulates who or what has permission to access specific resources within a system. \nIt ensures that only authorized users can access and use the resources they need to perform their job functions, while preventing unauthorized access to sensitive information and systems. \nAccess control mechanisms can include authentication, authorization, and access control lists (ACLs).",
       "security_goal": "Secure network configurations shall be implemented to prevent unauthorized access and MitM attacks.",
       "id": "S-3",
-      "selectedRequirement": "EISA-COM-132 - Traffic Flow Policy (EISA-PSA-014 - Mail Transfer Agent) - Policy Rule Lifecycle"
+      "selectedRequirement": "EISA-COM-132 - Traffic Flow Policy (EISA-PSA-014 - Mail Transfer Agent) - Policy Rule Lifecycle",
+      "Sid": [
+        "SN-R-3"
+      ]
     },
     {
       "security_control": "Detection",
       "security_control_description": "Detection involves monitoring and analyzing system activities to identify and respond to potential security incidents. By examining audit logs, network traffic, and other indicators of compromise, detection systems can raise alerts and notify administrators of potential threats. This enables organizations to quickly investigate and mitigate security events, minimizing damage and protecting sensitive data.",
       "security_goal": "Continuously monitoring and network activity  shall be implemented for suspicious behavior.",
       "id": "S-4",
-      "selectedRequirement": "EISA-ACC-301 - Management of Authentication Secrets (EISA-PIS-100 - IT System) - Password History"
+      "selectedRequirement": "EISA-ACC-301 - Management of Authentication Secrets (EISA-PIS-100 - IT System) - Password History",
+      "Sid": [
+        "SN-R-4"
+      ]
     },
     {
       "security_control": "Integrity Checking",
@@ -933,7 +945,8 @@
       "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards such as GDPR is mandatory and this may lead to penalties.",
       "Did": [
         "DS-4"
-      ]
+      ],
+      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Review of Privileged Accounts"
     },
     {
       "security_control": "Network hardening",
@@ -955,7 +968,8 @@
       "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
       "Did": [
         "DS-5"
-      ]
+      ],
+      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Review of Privileged Accounts"
     },
     {
       "security_control": "Monitoring",
@@ -977,7 +991,8 @@
       "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
       "Did": [
         "DS-6"
-      ]
+      ],
+      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Review of Privileged Accounts"
     }
   ],
   "SecClaims": [],
