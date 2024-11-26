@@ -1,1112 +1,677 @@
 {
   "assumption": [
     {
-      "assumption": "All the debug interfaces like JTAG shall be disabled in hardware in production.",
-      "assumption_comment": " ",
+      "assumption": "Security and availability of the cloud (including the database, the service, the infrastructure, the platform, etc.) is the responsibility of the cloud service provider (CSP) / data center",
+      "assumption_comment": "As per Bosch guidelines, the cloud on-boarding team (BSI) is responsible for ensuring this and it must be informed of any security needs concerned with configuration of Cloud Infrastructure",
       "id": "Asm-1"
     },
     {
-      "assumption": "Tamper protection shall be implemented to prevent reading memory by direct physical access. ",
-      "assumption_comment": "Board level mitigations should be done",
+      "assumption": "Cloud infrastructure is the responsibilty of the BSI team(cloud onboarding team) as per Bosch guidelines",
+      "assumption_comment": "The clear assignment of responsibility can also help to promote effective collaboration and communication within the organization, as well as helping to ensure that the right resources and expertise are available to support the cloud infrastructure. ",
       "id": "Asm-2"
     },
     {
-      "assumption": "Access to all unused physical interfaces in micro-controller are blocked.",
-      "assumption_comment": "NFC Interfaces",
+      "assumption": "Able to operate correctly and consistently, even in the presence of failures or errors, to ensure the protection of sensitive information and maintain the availability of critical resources.",
+      "assumption_comment": "The ability to operate correctly and consistently, even in the presence of failures or errors, is essential for ensuring the protection of sensitive information and maintaining the availability of critical resources",
       "id": "Asm-3"
     },
     {
-      "assumption": "Attacker does not have physical access to the device",
-      "assumption_comment": "NFC Interface",
+      "assumption": "The system must have redundancy and failover capabilities to ensure the availability of critical resources and prevent loss of sensitive information in case of any disruptions or failures in the AWS infrastructure",
+      "assumption_comment": "Emphasizes the need for redundancy and failover in the system to ensure its continued availability and prevent loss of sensitive information in case of disruptions or failures in the AWS infrastructure",
       "id": "Asm-4"
     }
   ],
   "misuse": [
     {
-      "muc_description": "Accessing or manipulating data through JTAG",
-      "muc_comment": "JTAG Interface",
+      "muc_description": "Unauthorized attempts to access data stored in buckets, or efforts to exploit Athena in order to circumvent security controls and gain access to sensitive data, represent a misuse scenario within the system.",
+      "muc_comment": "Accessing data stored in Athena buckets without proper permission is a violation of security best practices and may result in unauthorized access to sensitive information.",
       "id": "MUC-1"
     },
     {
-      "muc_description": "An attacker manipulates the Flash content via a manipulation of an offline update container (via low level programming, e.g. JTAG or hardware adapter).",
-      "muc_comment": "JTAG Interface",
+      "muc_description": "Manipulate the metadata or locations of the resources within the service.",
+      "muc_comment": "Security risk from unauthorised access to sensitive data",
       "id": "MUC-2"
-    },
-    {
-      "muc_description": "Any device can connect over JTAG to get debug information or change some memory at runtime",
-      "muc_comment": "Memory dump",
-      "id": "MUC-3"
-    },
-    {
-      "muc_description": "Open board and connect hardware debugger and access in authorized manner (through JTAG)",
-      "muc_comment": "JTAG",
-      "id": "MUC-4"
-    },
-    {
-      "muc_description": "NFC may be misused to sniff (evesdrop) the communication between the devices",
-      "muc_comment": "Insecure external interfaces",
-      "id": "MUC-5"
-    },
-    {
-      "muc_description": "Cloning and misuse of NFC Card",
-      "muc_comment": "NFC Card ",
-      "id": "MUC-6"
-    },
-    {
-      "muc_description": "Cloning NFC Tags",
-      "muc_comment": "NFC Tags",
-      "id": "MUC-7"
-    },
-    {
-      "muc_description": "Entering into programming mode without authentication ",
-      "muc_comment": "NFC Reader",
-      "id": "MUC-8"
-    },
-    {
-      "muc_description": "Manipulation of parameters to affect the quality through NFC or UART",
-      "muc_comment": "On-board NFC Reader, UART Interface",
-      "id": "MUC-9"
     }
   ],
   "damageScenario": [
     {
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
+      "damage_scenario": "Loss of data privacy or legal non-compliance",
+      "consequence": "Serious",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
+      "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
       "id": "DS-1"
     },
     {
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
+      "damage_scenario": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
+      "consequence": "Moderate",
+      "consequence_DS": "Attacks are intentional acts of harm, such as viruses, malware, or phishing attempts, that aim to gain unauthorized access or cause harm",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partner",
       "id": "DS-2"
     },
     {
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "damage_scenario": "Loss of customer trust",
       "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
       "id": "DS-3"
     },
     {
-      "damage_scenario": "Legal non-compliance",
+      "damage_scenario": "Data loss, data breaches, unauthorised access, disruption functionality",
       "consequence": "Serious",
-      "consequence_DS": "Compliance to legal requirements may be affected",
-      "consequence_reasoning": "Compliance to international and national legal requirements and standards such as GDPR is mandatory and this may lead to penalties.",
+      "consequence_DS": "The possibility of a decline in functionality or operation arises from the manipulation of either the data or the application itself.",
+      "consequence_reasoning": "It will create a significant data loss, downtime, business disruption, increased cost negatively impact on organisation",
       "id": "DS-4"
+    },
+    {
+      "damage_scenario": "Unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "Can cause damage due to data loss, operational disruption, and financial loss.",
+      "consequence_reasoning": "Attackers may modify data or inject malicious code into existing data to cause it to misbehave or become inaccessible",
+      "id": "DS-5"
+    },
+    {
+      "damage_scenario": "Outages of AWS Cloud Map",
+      "consequence": "Moderate",
+      "consequence_DS": "Can cause damage due to data loss, operational disruption, and financial loss.",
+      "consequence_reasoning": "Attackers may modify data or inject malicious code into existing data to cause it to misbehave or become inaccessible",
+      "id": "DS-6"
     }
   ],
   "SecGoals": [
     {
-      "Asset_description": "JTAG Interface",
+      "Asset_description": "Amazon Athena",
       "Objective": "Confidentiality",
-      "objective_description": "Unauthorized individuals may exploit the JTAG interface to extract sensitive information from the device, potentially compromising the confidentiality of critical system data. The JTAG interface could be used by attackers to manipulate firmware or hardware settings, leading to altered device behavior, system instability, or insertion of malicious code, thereby compromising the integrity of the device. Attackers might block or disrupt legitimate JTAG interface access, hindering essential maintenance, debugging, or updating processes, which could lead to system downtime.",
+      "objective_description": "Protecting sensitive information from unauthorized access or disclosure ",
       "id": "A-1"
     },
     {
-      "Asset_description": "JTAG Interface",
+      "Asset_description": "Amazon Athena",
       "Objective": "Integrity",
-      "objective_description": " ",
+      "objective_description": "Ensure that it cannot be modified without authorization.",
       "id": "A-2"
     },
     {
-      "Asset_description": "JTAG Interface",
+      "Asset_description": "Amazon Athena",
       "Objective": "Availability",
-      "objective_description": " ",
+      "objective_description": "Ensure that it cannot be disrupted",
       "id": "A-3"
     },
     {
-      "Asset_description": "NFC Tags",
+      "Asset_description": "AWS Cloud Map",
       "Objective": "Confidentiality",
-      "objective_description": "Confidentiality - NFC Card contains sensitive information like UID which should not be exposed.\n",
+      "objective_description": "Protecting sensitive information from unauthorized access or disclosure ",
       "id": "A-4"
     },
     {
-      "Asset_description": "NFC Tags",
+      "Asset_description": "AWS Cloud Map",
       "Objective": "Integrity",
-      "objective_description": "Integrity - NFC Card contains sensitive information like UID which should not be manipulated. ",
+      "objective_description": "Ensure that it cannot be modified without authorization.",
       "id": "A-5"
     },
     {
-      "Asset_description": "NFC communication",
+      "Asset_description": "AWS Cloud Map",
       "Objective": "Availability",
-      "objective_description": "Availability - NFC communication shall be protected by DDoS attack to prevent blocking or loss of fuctionality.",
+      "objective_description": "Ensuring that data and systems are accessible and usable when needed.",
       "id": "A-6"
-    },
-    {
-      "Asset_description": "NFC communication",
-      "Objective": "Integrity",
-      "objective_description": "Integrity - NFC Communication responible for sending the data, so it should not be manipulated",
-      "id": "A-7"
-    },
-    {
-      "Asset_description": "NFC Reader",
-      "Objective": "Confidentiality",
-      "objective_description": "Confidentiality - Confidentiality mechanism needs to be strong, should not be easily bypassed and protected against NFC known attacks.\n",
-      "id": "A-8"
-    },
-    {
-      "Asset_description": "NFC Reader",
-      "Objective": "Availability",
-      "objective_description": "Availability - NFC Reader should be available to take the input from NFC tag",
-      "id": "A-9"
     }
   ],
   "ThreatDSs": [
     {
-      "Threat": "Extraction of JTAG Interface",
-      "affected_security_goal": "Confidentiality of JTAG Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat": "Extraction of Amazon Athena",
+      "affected_security_goal": "Confidentiality of Amazon Athena",
+      "damage_scenario_copy": "Loss of data privacy or legal non-compliance",
       "id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "Threat": "Manipulation of JTAG Interface",
-      "affected_security_goal": "Integrity of JTAG Interface",
-      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "id": "Th-2",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-1"
-      ]
-    },
-    {
-      "Threat": "Blocking JTAG Interface",
-      "affected_security_goal": "Availability of JTAG Interface",
-      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
-      "id": "Th-3",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
-      "Did": [
-        "DS-2"
-      ]
-    },
-    {
-      "Threat": "Extraction of NFC Tags",
-      "affected_security_goal": "Confidentiality of NFC Tags",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "id": "Th-4",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "Threat": "Manipulation of NFC Tags",
-      "affected_security_goal": "Integrity of NFC Tags",
-      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
-      "id": "Th-5",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
-      "Did": [
-        "DS-2"
-      ]
-    },
-    {
-      "Threat": "Blocking NFC communication",
-      "affected_security_goal": "Availability of NFC communication",
-      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "id": "Th-6",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-1"
-      ]
-    },
-    {
-      "Threat": "Manipulation of NFC Communication",
-      "affected_security_goal": "Integrity of NFC communication",
-      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
-      "id": "Th-7",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
-      "Did": [
-        "DS-2"
-      ]
-    },
-    {
-      "Threat": "Extraction of NFC Reader",
-      "affected_security_goal": "Confidentiality of NFC Reader",
-      "damage_scenario_copy": "Legal non-compliance",
-      "id": "Th-8",
-      "damage_scenario": "Legal non-compliance",
+      "damage_scenario": "Loss of data privacy or legal non-compliance",
       "consequence": "Serious",
-      "consequence_DS": "Compliance to legal requirements may be affected",
-      "consequence_reasoning": "Compliance to international and national legal requirements and standards such as GDPR is mandatory and this may lead to penalties.",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
+      "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
+      "Did": [
+        "DS-1"
+      ]
+    },
+    {
+      "Threat": "Manipulation of Amazon Athena",
+      "affected_security_goal": "Integrity of Amazon Athena",
+      "damage_scenario_copy": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
+      "id": "Th-2",
+      "damage_scenario": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
+      "consequence": "Moderate",
+      "consequence_DS": "Attacks are intentional acts of harm, such as viruses, malware, or phishing attempts, that aim to gain unauthorized access or cause harm",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partner",
+      "Did": [
+        "DS-2"
+      ]
+    },
+    {
+      "Threat": "Blocking Amazon Athena",
+      "affected_security_goal": "Availability of Amazon Athena",
+      "damage_scenario_copy": "Loss of customer trust",
+      "id": "Th-3",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
+      "Threat": "Extraction of AWS Cloud Map",
+      "affected_security_goal": "Confidentiality of AWS Cloud Map",
+      "damage_scenario_copy": "Data loss, data breaches, unauthorised access, disruption functionality",
+      "id": "Th-4",
+      "damage_scenario": "Data loss, data breaches, unauthorised access, disruption functionality",
+      "consequence": "Serious",
+      "consequence_DS": "The possibility of a decline in functionality or operation arises from the manipulation of either the data or the application itself.",
+      "consequence_reasoning": "It will create a significant data loss, downtime, business disruption, increased cost negatively impact on organisation",
       "Did": [
         "DS-4"
       ]
     },
     {
-      "Threat": "Blocking NFC Reader",
-      "affected_security_goal": "Availability of NFC Reader",
-      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "id": "Th-9",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "Threat": "Manipulation of AWS Cloud Map",
+      "affected_security_goal": "Integrity of AWS Cloud Map",
+      "damage_scenario_copy": "Unreliable operation",
+      "id": "Th-5",
+      "damage_scenario": "Unreliable operation",
       "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
+      "consequence_DS": "Can cause damage due to data loss, operational disruption, and financial loss.",
+      "consequence_reasoning": "Attackers may modify data or inject malicious code into existing data to cause it to misbehave or become inaccessible",
       "Did": [
-        "DS-1"
+        "DS-5"
+      ]
+    },
+    {
+      "Threat": "Blocking AWS Cloud Map",
+      "affected_security_goal": "Availability of AWS Cloud Map",
+      "damage_scenario_copy": "Outages of AWS Cloud Map",
+      "id": "Th-6",
+      "damage_scenario": "Outages of AWS Cloud Map",
+      "consequence": "Moderate",
+      "consequence_DS": "Can cause damage due to data loss, operational disruption, and financial loss.",
+      "consequence_reasoning": "Attackers may modify data or inject malicious code into existing data to cause it to misbehave or become inaccessible",
+      "Did": [
+        "DS-6"
       ]
     }
   ],
   "ThreatEvaluation_AP": [
     {
       "id": "Th-1",
-      "Access": "5",
+      "Access": "0",
       "Equipment": "0",
-      "Expertise": "3",
-      "Knowledge": "3",
-      "Time": "1",
-      "Sum": "12",
-      "Threat": "Extraction of JTAG Interface",
-      "Attack_Potential": "High",
-      "Threat_i": "Extraction of JTAG Interface"
+      "Expertise": "6",
+      "Knowledge": "7",
+      "Time": "2",
+      "Sum": "15",
+      "Threat": "Extraction of Amazon Athena",
+      "Attack_Potential": "Moderate",
+      "Threat_i": "Extraction of Amazon Athena"
     },
     {
       "id": "Th-2",
-      "Access": "2",
-      "Equipment": "0",
-      "Expertise": "3",
+      "Access": "0",
+      "Equipment": "4",
+      "Expertise": "6",
       "Knowledge": "3",
-      "Time": "1",
-      "Sum": "9",
-      "Threat": "Manipulation of JTAG Interface",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Manipulation of JTAG Interface"
+      "Time": "2",
+      "Sum": "15",
+      "Threat": "Manipulation of Amazon Athena",
+      "Attack_Potential": "Moderate",
+      "Threat_i": "Manipulation of Amazon Athena"
     },
     {
       "id": "Th-3",
-      "Access": "99",
-      "Equipment": "99",
-      "Expertise": "9",
-      "Knowledge": "99",
-      "Time": "19",
-      "Sum": "325",
-      "Threat": "Blocking JTAG Interface",
-      "Attack_Potential": "Basic",
-      "Threat_i": "Blocking JTAG Interface"
+      "Access": "0",
+      "Equipment": "0",
+      "Expertise": "0",
+      "Knowledge": "3",
+      "Time": "0",
+      "Sum": "3",
+      "Threat": "Blocking Amazon Athena",
+      "Attack_Potential": "Beyond High",
+      "Threat_i": "Blocking Amazon Athena"
     },
     {
       "id": "Th-4",
+      "Access": "7",
+      "Equipment": "7",
+      "Expertise": "6",
+      "Knowledge": "0",
+      "Time": "2",
+      "Sum": "22",
+      "Threat": "Extraction of AWS Cloud Map",
+      "Attack_Potential": "Enhanced Basic",
+      "Threat_i": "Extraction of AWS Cloud Map"
+    },
+    {
+      "id": "Th-5",
       "Access": "0",
       "Equipment": "3",
       "Expertise": "3",
       "Knowledge": "0",
-      "Time": "0",
-      "Sum": "6",
-      "Threat": "Extraction of NFC Tags",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Extraction of NFC Tags"
-    },
-    {
-      "id": "Th-5",
-      "Access": "2",
-      "Equipment": "0",
-      "Expertise": "3",
-      "Knowledge": "3",
-      "Time": "1",
+      "Time": "3",
       "Sum": "9",
-      "Threat": "Manipulation of NFC Tags",
+      "Threat": "Manipulation of AWS Cloud Map",
       "Attack_Potential": "Beyond High",
-      "Threat_i": "Manipulation of NFC Tags"
+      "Threat_i": "Manipulation of AWS Cloud Map"
     },
     {
       "id": "Th-6",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "0",
-      "Knowledge": "0",
-      "Time": "0",
-      "Sum": "0",
-      "Threat": "Blocking NFC Communication",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Blocking NFC communication"
-    },
-    {
-      "id": "Th-7",
-      "Access": "5",
-      "Equipment": "4",
-      "Expertise": "6",
-      "Knowledge": "3",
-      "Time": "3",
-      "Sum": "21",
-      "Threat": "Manipulation of NFC Communication",
-      "Attack_Potential": "Enhanced Basic",
-      "Threat_i": "Manipulation of NFC Communication"
-    },
-    {
-      "id": "Th-8",
-      "Access": "5",
-      "Equipment": "4",
-      "Expertise": "6",
-      "Knowledge": "3",
-      "Time": "3",
-      "Sum": "21",
-      "Threat": "Extraction of NFC Reader",
-      "Attack_Potential": "Enhanced Basic",
-      "Threat_i": "Extraction of NFC Reader"
-    },
-    {
-      "id": "Th-9",
-      "Access": "5",
-      "Equipment": "4",
-      "Expertise": "6",
-      "Knowledge": "3",
-      "Time": "3",
-      "Sum": "21",
-      "Threat": "Blocking NFC Reader",
-      "Attack_Potential": "Enhanced Basic",
-      "Threat_i": "Blocking NFC Reader"
+      "Access": "8",
+      "Equipment": "7",
+      "Expertise": "8",
+      "Knowledge": "11",
+      "Time": "5",
+      "Sum": "39",
+      "Threat": "Blocking AWS Cloud Map",
+      "Attack_Potential": "Basic",
+      "Threat_i": "Blocking AWS Cloud Map"
     }
   ],
   "threatDamageAssociations": [
     {
       "threatId": "Th-1",
-      "threat": "Extraction of JTAG Interface",
-      "damageScenarioId": "DS-3",
-      "damageScenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "cons": "Moderate"
+      "threat": "Extraction of Amazon Athena",
+      "damageScenarioId": "DS-1",
+      "damageScenario": "Loss of data privacy or legal non-compliance",
+      "cons": "Serious"
     },
     {
       "threatId": "Th-2",
-      "threat": "Manipulation of JTAG Interface",
-      "damageScenarioId": "DS-1",
-      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "threat": "Manipulation of Amazon Athena",
+      "damageScenarioId": "DS-2",
+      "damageScenario": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-3",
-      "threat": "Blocking JTAG Interface",
-      "damageScenarioId": "DS-2",
-      "damageScenario": "Misuse or manipulation affecting Bosch",
-      "cons": "Negligible"
+      "threat": "Blocking Amazon Athena",
+      "damageScenarioId": "DS-3",
+      "damageScenario": "Loss of customer trust",
+      "cons": "Moderate"
     },
     {
       "threatId": "Th-4",
-      "threat": "Extraction of NFC Tags",
-      "damageScenarioId": "DS-3",
-      "damageScenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-5",
-      "threat": "Manipulation of NFC Tags",
-      "damageScenarioId": "DS-2",
-      "damageScenario": "Misuse or manipulation affecting Bosch",
-      "cons": "Negligible"
-    },
-    {
-      "threatId": "Th-6",
-      "threat": "Blocking NFC communication",
-      "damageScenarioId": "DS-1",
-      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-7",
-      "threat": "Manipulation of NFC Communication",
-      "damageScenarioId": "DS-2",
-      "damageScenario": "Misuse or manipulation affecting Bosch",
-      "cons": "Negligible"
-    },
-    {
-      "threatId": "Th-8",
-      "threat": "Extraction of NFC Reader",
+      "threat": "Extraction of AWS Cloud Map",
       "damageScenarioId": "DS-4",
-      "damageScenario": "Legal non-compliance",
+      "damageScenario": "Data loss, data breaches, unauthorised access, disruption functionality",
       "cons": "Serious"
     },
     {
-      "threatId": "Th-9",
-      "threat": "Blocking NFC Reader",
-      "damageScenarioId": "DS-1",
-      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "threatId": "Th-5",
+      "threat": "Manipulation of AWS Cloud Map",
+      "damageScenarioId": "DS-5",
+      "damageScenario": "Unreliable operation",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-6",
+      "threat": "Blocking AWS Cloud Map",
+      "damageScenarioId": "DS-6",
+      "damageScenario": "Outages of AWS Cloud Map",
       "cons": "Moderate"
     }
   ],
   "updatedAssociations": [
     {
       "threatId": "Th-1",
-      "threat": "Extraction of JTAG Interface",
-      "damageScenarioId": "DS-3",
-      "damageScenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "cons": "Moderate"
+      "threat": "Extraction of Amazon Athena",
+      "damageScenarioId": "DS-1",
+      "damageScenario": "Loss of data privacy or legal non-compliance",
+      "cons": "Serious"
     },
     {
       "threatId": "Th-2",
-      "threat": "Manipulation of JTAG Interface",
-      "damageScenarioId": "DS-1",
-      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "threat": "Manipulation of Amazon Athena",
+      "damageScenarioId": "DS-2",
+      "damageScenario": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
       "cons": "Moderate"
     },
     {
       "threatId": "Th-3",
-      "threat": "Blocking JTAG Interface",
-      "damageScenarioId": "DS-2",
-      "damageScenario": "Misuse or manipulation affecting Bosch",
-      "cons": "Negligible"
+      "threat": "Blocking Amazon Athena",
+      "damageScenarioId": "DS-3",
+      "damageScenario": "Loss of customer trust",
+      "cons": "Moderate"
     },
     {
       "threatId": "Th-4",
-      "threat": "Extraction of NFC Tags",
-      "damageScenarioId": "DS-3",
-      "damageScenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-5",
-      "threat": "Manipulation of NFC Tags",
-      "damageScenarioId": "DS-2",
-      "damageScenario": "Misuse or manipulation affecting Bosch",
-      "cons": "Negligible"
-    },
-    {
-      "threatId": "Th-6",
-      "threat": "Blocking NFC communication",
-      "damageScenarioId": "DS-1",
-      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "cons": "Moderate"
-    },
-    {
-      "threatId": "Th-7",
-      "threat": "Manipulation of NFC Communication",
-      "damageScenarioId": "DS-2",
-      "damageScenario": "Misuse or manipulation affecting Bosch",
-      "cons": "Negligible"
-    },
-    {
-      "threatId": "Th-8",
-      "threat": "Extraction of NFC Reader",
+      "threat": "Extraction of AWS Cloud Map",
       "damageScenarioId": "DS-4",
-      "damageScenario": "Legal non-compliance",
+      "damageScenario": "Data loss, data breaches, unauthorised access, disruption functionality",
       "cons": "Serious"
     },
     {
-      "threatId": "Th-9",
-      "threat": "Blocking NFC Reader",
-      "damageScenarioId": "DS-1",
-      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "threatId": "Th-5",
+      "threat": "Manipulation of AWS Cloud Map",
+      "damageScenarioId": "DS-5",
+      "damageScenario": "Unreliable operation",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-6",
+      "threat": "Blocking AWS Cloud Map",
+      "damageScenarioId": "DS-6",
+      "damageScenario": "Outages of AWS Cloud Map",
       "cons": "Moderate"
     }
   ],
   "RiskAssessment": [
     {
       "id": "R-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "D_id": "DS-3",
-      "consequence": "Moderate",
-      "Threat": "Extraction of JTAG Interface",
-      "risk": "Low",
-      "attackPotential": "High",
-      "risk_of_d": "Medium"
+      "damage_scenario": "Loss of data privacy or legal non-compliance",
+      "D_id": "DS-1",
+      "consequence": "Serious",
+      "Threat": "Extraction of Amazon Athena",
+      "risk": "Very High",
+      "attackPotential": "Moderate",
+      "risk_of_d": "High"
     },
     {
       "id": "R-2",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "D_id": "DS-1",
+      "damage_scenario": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
+      "D_id": "DS-2",
       "consequence": "Moderate",
-      "Threat": "Manipulation of JTAG Interface",
+      "Threat": "Manipulation of Amazon Athena",
       "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
+      "attackPotential": "Moderate",
+      "risk_of_d": "Medium"
     },
     {
       "id": "R-3",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "D_id": "DS-2",
-      "consequence": "Negligible",
-      "Threat": "Blocking JTAG Interface",
-      "risk": "Very Low",
-      "attackPotential": "Basic",
-      "risk_of_d": "Medium"
+      "damage_scenario": "Loss of customer trust",
+      "D_id": "DS-3",
+      "consequence": "Moderate",
+      "Threat": "Blocking Amazon Athena",
+      "risk": "Low",
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
     },
     {
       "id": "R-4",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "D_id": "DS-3",
-      "consequence": "Moderate",
-      "Threat": "Extraction of NFC Tags",
-      "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
-    },
-    {
-      "id": "R-5",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "D_id": "DS-2",
-      "consequence": "Negligible",
-      "Threat": "Manipulation of NFC Tags",
-      "risk": "Very Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
-    },
-    {
-      "id": "R-6",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "D_id": "DS-1",
-      "consequence": "Moderate",
-      "Threat": "Blocking NFC communication",
-      "risk": "Low",
-      "attackPotential": "Beyond High",
-      "risk_of_d": "Low"
-    },
-    {
-      "id": "R-7",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "D_id": "DS-2",
-      "consequence": "Negligible",
-      "Threat": "Manipulation of NFC Communication",
-      "risk": "Very Low",
-      "attackPotential": "Enhanced Basic",
-      "risk_of_d": "Medium"
-    },
-    {
-      "id": "R-8",
-      "damage_scenario": "Legal non-compliance",
+      "damage_scenario": "Data loss, data breaches, unauthorised access, disruption functionality",
       "D_id": "DS-4",
       "consequence": "Serious",
-      "Threat": "Extraction of NFC Reader",
+      "Threat": "Extraction of AWS Cloud Map",
       "risk": "Very High",
       "attackPotential": "Enhanced Basic",
       "risk_of_d": "High"
     },
     {
-      "id": "R-9",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "D_id": "DS-1",
+      "id": "R-5",
+      "damage_scenario": "Unreliable operation",
+      "D_id": "DS-5",
       "consequence": "Moderate",
-      "Threat": "Blocking NFC Reader",
+      "Threat": "Manipulation of AWS Cloud Map",
       "risk": "Low",
-      "attackPotential": "Enhanced Basic",
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
+    },
+    {
+      "id": "R-6",
+      "damage_scenario": "Outages of AWS Cloud Map",
+      "D_id": "DS-6",
+      "consequence": "Moderate",
+      "Threat": "Blocking AWS Cloud Map",
+      "risk": "Low",
+      "attackPotential": "Basic",
       "risk_of_d": "High"
     }
   ],
   "SecurityNeeds": [
     {
-      "Threat_T": "Extraction of JTAG Interface",
-      "security_description_threat": "JTAG interface shall be disabled during EOL process if not required in field.",
+      "Threat_T": "Extraction of Amazon Athena",
+      "security_description_threat": "Proper configuration and secure setup are essential for the effective management of Athena or any similar service in diverse projects or environments.",
       "id": "SN-R-1",
-      "Threat": "Extraction of JTAG Interface",
-      "affected_security_goal": "Confidentiality of JTAG Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat": "Extraction of Amazon Athena",
+      "affected_security_goal": "Confidentiality of Amazon Athena",
+      "damage_scenario_copy": "Loss of data privacy or legal non-compliance",
       "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of JTAG Interface",
-      "security_description_threat": "JTAG configuration data shall be stored in memory locations which are protected against unauthorized read and write accesses. ",
-      "id": "SN-R-2",
-      "Threat": "Extraction of JTAG Interface",
-      "affected_security_goal": "Confidentiality of JTAG Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "Threat_T": "Blocking JTAG Interface",
-      "security_description_threat": "If JTAG interface is not required it shall be removed",
-      "id": "SN-R-3",
-      "Threat": "Blocking JTAG Interface",
-      "affected_security_goal": "Availability of JTAG Interface",
-      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
-      "Threat_id": "Th-3",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
-      "Did": [
-        "DS-2"
-      ]
-    },
-    {
-      "Threat_T": "Manipulation of JTAG Interface",
-      "security_description_threat": "Runtime manipulation of the JATG configuration data shall also be protected.",
-      "id": "SN-R-4",
-      "Threat": "Manipulation of JTAG Interface",
-      "affected_security_goal": "Integrity of JTAG Interface",
-      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "Threat_id": "Th-2",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
+      "damage_scenario": "Loss of data privacy or legal non-compliance",
+      "consequence": "Serious",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
+      "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
       "Did": [
         "DS-1"
       ]
     },
     {
-      "Threat_T": "Extraction of JTAG Interface",
-      "security_description_threat": "If JTAG interface is required it shall be protected using authentication mechanism",
-      "id": "SN-R-5",
-      "Threat": "Extraction of JTAG Interface",
-      "affected_security_goal": "Confidentiality of JTAG Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat_T": "Manipulation of Amazon Athena",
+      "security_description_threat": "Data can be accessed and manipulated  by unauthorized individuals if proper security measures are not in place. It can leads to compromise of integrity",
+      "id": "SN-R-2",
+      "Threat": "Manipulation of Amazon Athena",
+      "affected_security_goal": "Integrity of Amazon Athena",
+      "damage_scenario_copy": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
+      "Threat_id": "Th-2",
+      "damage_scenario": "Malicious assaults and potential harm to both hardware and software constitute scenarios involving damage within the system.",
       "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "Threat_T": "Blocking JTAG Interface",
-      "security_description_threat": "JTAG port shall be closed if not used",
-      "id": "SN-R-6",
-      "Threat": "Blocking JTAG Interface",
-      "affected_security_goal": "Availability of JTAG Interface",
-      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
-      "Threat_id": "Th-3",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
+      "consequence_DS": "Attacks are intentional acts of harm, such as viruses, malware, or phishing attempts, that aim to gain unauthorized access or cause harm",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partner",
       "Did": [
         "DS-2"
       ]
     },
     {
-      "Threat_T": "Extraction of JTAG Interface",
-      "security_description_threat": "JTAG port shall be disabled or protected from physical access",
-      "id": "SN-R-7",
-      "Threat": "Extraction of JTAG Interface",
-      "affected_security_goal": "Confidentiality of JTAG Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat_T": "Extraction of Amazon Athena",
+      "security_description_threat": "Encrypting workgroups at rest in Athena is a recommended security practice to safeguard sensitive information, ensuring confidentiality across diverse projects and implementations.",
+      "id": "SN-R-3",
+      "Threat": "Extraction of Amazon Athena",
+      "affected_security_goal": "Confidentiality of Amazon Athena",
+      "damage_scenario_copy": "Loss of data privacy or legal non-compliance",
       "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of JTAG Interface",
-      "security_description_threat": "JTAG data transmissions shall be encrypted",
-      "id": "SN-R-8",
-      "Threat": "Extraction of JTAG Interface",
-      "affected_security_goal": "Confidentiality of JTAG Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of NFC Tags",
-      "security_description_threat": "NFC Tags shall implement cryptographic mechanisms, including secure authentication to prevent unauthorized extraction",
-      "id": "SN-R-9",
-      "Threat": "Extraction of NFC Tags",
-      "affected_security_goal": "Confidentiality of NFC Tags",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-4",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "Threat_T": "Manipulation of NFC Tags",
-      "security_description_threat": "NFC tags shall employ integrity checks to detect and prevent manipulation attempts",
-      "id": "SN-R-10",
-      "Threat": "Manipulation of NFC Tags",
-      "affected_security_goal": "Integrity of NFC Tags",
-      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
-      "Threat_id": "Th-5",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
-      "Did": [
-        "DS-2"
-      ]
-    },
-    {
-      "Threat_T": "Extraction of NFC Reader",
-      "security_description_threat": "NFC Readers shall implement secure authentication mechanisms and physical controls to prevent unauthorized access and extraction",
-      "id": "SN-R-11",
-      "Threat": "Extraction of NFC Reader",
-      "affected_security_goal": "Confidentiality of NFC Reader",
-      "damage_scenario_copy": "Legal non-compliance",
-      "Threat_id": "Th-8",
-      "damage_scenario": "Legal non-compliance",
+      "damage_scenario": "Loss of data privacy or legal non-compliance",
       "consequence": "Serious",
-      "consequence_DS": "Compliance to legal requirements may be affected",
-      "consequence_reasoning": "Compliance to international and national legal requirements and standards such as GDPR is mandatory and this may lead to penalties.",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
+      "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
+      "Did": [
+        "DS-1"
+      ]
+    },
+    {
+      "Threat_T": "Blocking Amazon Athena",
+      "security_description_threat": "Amazon Athena shall enforce monitoring mechanisms to ensure continuous monitoring of data access",
+      "id": "SN-R-4",
+      "Threat": "Blocking Amazon Athena",
+      "affected_security_goal": "Availability of Amazon Athena",
+      "damage_scenario_copy": "Loss of customer trust",
+      "Threat_id": "Th-3",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
+      "Did": [
+        "DS-3"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of AWS Cloud Map",
+      "security_description_threat": "Access to a system using stolen or guessed credentials, or through exploiting a vulnerability in the system",
+      "id": "SN-R-5",
+      "Threat": "Extraction of AWS Cloud Map",
+      "affected_security_goal": "Confidentiality of AWS Cloud Map",
+      "damage_scenario_copy": "Data loss, data breaches, unauthorised access, disruption functionality",
+      "Threat_id": "Th-4",
+      "damage_scenario": "Data loss, data breaches, unauthorised access, disruption functionality",
+      "consequence": "Serious",
+      "consequence_DS": "The possibility of a decline in functionality or operation arises from the manipulation of either the data or the application itself.",
+      "consequence_reasoning": "It will create a significant data loss, downtime, business disruption, increased cost negatively impact on organisation",
       "Did": [
         "DS-4"
       ]
     },
     {
-      "Threat_T": "Manipulation of NFC Communication",
-      "security_description_threat": "NFC communication shall employ cryptographic mechanisms, such as digital signatures,encryption protocol to detect and prevent unauthorized manipulation",
-      "id": "SN-R-12",
-      "Threat": "Manipulation of NFC Communication",
-      "affected_security_goal": "Integrity of NFC communication",
-      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
-      "Threat_id": "Th-7",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
+      "Threat_T": "Manipulation of AWS Cloud Map",
+      "security_description_threat": "Using IAM roles which block all permissions by default ",
+      "id": "SN-R-6",
+      "Threat": "Manipulation of AWS Cloud Map",
+      "affected_security_goal": "Integrity of AWS Cloud Map",
+      "damage_scenario_copy": "Unreliable operation",
+      "Threat_id": "Th-5",
+      "damage_scenario": "Unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "Can cause damage due to data loss, operational disruption, and financial loss.",
+      "consequence_reasoning": "Attackers may modify data or inject malicious code into existing data to cause it to misbehave or become inaccessible",
       "Did": [
-        "DS-2"
+        "DS-5"
       ]
     },
     {
-      "Threat_T": "Blocking NFC communication",
-      "security_description_threat": "Sensitive information like UID in NFC Card shall be protected against reading out using encryption mechanims ",
-      "id": "SN-R-13",
-      "Threat": "Blocking NFC communication",
-      "affected_security_goal": "Availability of NFC communication",
-      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
+      "Threat_T": "Blocking AWS Cloud Map",
+      "security_description_threat": "Unavailability of services cause user inconvience",
+      "id": "SN-R-7",
+      "Threat": "Blocking AWS Cloud Map",
+      "affected_security_goal": "Availability of AWS Cloud Map",
+      "damage_scenario_copy": "Outages of AWS Cloud Map",
       "Threat_id": "Th-6",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "damage_scenario": "Outages of AWS Cloud Map",
       "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
+      "consequence_DS": "Can cause damage due to data loss, operational disruption, and financial loss.",
+      "consequence_reasoning": "Attackers may modify data or inject malicious code into existing data to cause it to misbehave or become inaccessible",
       "Did": [
-        "DS-1"
-      ]
-    },
-    {
-      "Threat_T": "Blocking NFC Reader",
-      "security_description_threat": "The NFC Card shall be safeguarded through the implementation of security measures, including tamper-evident and tamper-resistant features, to enhance protection against unauthorized access or tampering or blocking",
-      "id": "SN-R-14",
-      "Threat": "Blocking NFC Reader",
-      "affected_security_goal": "Availability of NFC Reader",
-      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "Threat_id": "Th-9",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
-      "Did": [
-        "DS-1"
+        "DS-6"
       ]
     }
   ],
   "assetaddition": [
     {
-      "Asset_description": "JTAG Interface",
+      "Asset_description": "Amazon Athena",
       "Objective": "Confidentiality",
-      "objective_description": "Unauthorized individuals may exploit the JTAG interface to extract sensitive information from the device, potentially compromising the confidentiality of critical system data. The JTAG interface could be used by attackers to manipulate firmware or hardware settings, leading to altered device behavior, system instability, or insertion of malicious code, thereby compromising the integrity of the device. Attackers might block or disrupt legitimate JTAG interface access, hindering essential maintenance, debugging, or updating processes, which could lead to system downtime.",
+      "objective_description": "Protecting sensitive information from unauthorized access or disclosure ",
       "id": "AA-1"
     },
     {
-      "Asset_description": "JTAG Interface",
+      "Asset_description": "Amazon Athena",
       "Objective": "Integrity",
-      "objective_description": " ",
+      "objective_description": "Ensure that it cannot be modified without authorization.",
       "id": "AA-2"
     },
     {
-      "Asset_description": "JTAG Interface",
+      "Asset_description": "Amazon Athena",
       "Objective": "Availability",
-      "objective_description": " ",
+      "objective_description": "Ensure that it cannot be disrupted",
       "id": "AA-3"
     },
     {
-      "Asset_description": "NFC Tags",
+      "Asset_description": "AWS Cloud Map",
       "Objective": "Confidentiality",
-      "objective_description": "Confidentiality - NFC Card contains sensitive information like UID which should not be exposed.\n",
+      "objective_description": "Protecting sensitive information from unauthorized access or disclosure ",
       "id": "AA-4"
     },
     {
-      "Asset_description": "NFC Tags",
+      "Asset_description": "AWS Cloud Map",
       "Objective": "Integrity",
-      "objective_description": "Integrity - NFC Card contains sensitive information like UID which should not be manipulated. ",
+      "objective_description": "Ensure that it cannot be modified without authorization.",
       "id": "AA-5"
     },
     {
-      "Asset_description": "NFC communication",
+      "Asset_description": "AWS Cloud Map",
       "Objective": "Availability",
-      "objective_description": "Availability - NFC communication shall be protected by DDoS attack to prevent blocking or loss of fuctionality.",
+      "objective_description": "Ensuring that data and systems are accessible and usable when needed.",
       "id": "AA-6"
-    },
-    {
-      "Asset_description": "NFC communication",
-      "Objective": "Integrity",
-      "objective_description": "Integrity - NFC Communication responible for sending the data, so it should not be manipulated",
-      "id": "AA-7"
-    },
-    {
-      "Asset_description": "NFC Reader",
-      "Objective": "Confidentiality",
-      "objective_description": "Confidentiality - Confidentiality mechanism needs to be strong, should not be easily bypassed and protected against NFC known attacks.\n",
-      "id": "AA-8"
-    },
-    {
-      "Asset_description": "NFC Reader",
-      "Objective": "Availability",
-      "objective_description": "Availability - NFC Reader should be available to take the input from NFC tag",
-      "id": "AA-9"
     }
   ],
   "SecControls": [
     {
-      "security_control": "Physical Security.",
-      "security_control_description": "Physical security measures protect physical assets and resources from unauthorized access, damage, or theft. These measures include:\n* Physical barriers (e.g., fences, gates)\n* Access control systems (e.g., key cards, biometrics)\n* Surveillance systems (e.g., cameras, motion detectors)\n* Environmental controls (e.g., fire suppression, HVAC)\n* Visitor management protocols",
-      "security_goal": "JTAG port shall be disabled or protected from physical access",
+      "security_control": "Configuration Management",
+      "security_control_description": "Configuration management is the process of establishing and maintaining consistency in the configuration of IT systems. It includes identifying, documenting, and controlling changes to hardware, software, and firmware, as well as ensuring that systems are configured in accordance with security policies and standards. Configuration management helps to prevent unauthorized changes to systems, reduces the risk of system failures, and facilitates troubleshooting and recovery.",
+      "security_goal": "Proper configuration and secure setup are essential for the effective management of Athena or any similar service in diverse projects or environments.",
       "id": "S-1",
-      "Threat_T": "Extraction of JTAG Interface",
-      "security_description_threat": "JTAG port shall be disabled or protected from physical access",
-      "Sid": [
-        "SN-R-7"
-      ],
-      "Threat": "Extraction of JTAG Interface",
-      "affected_security_goal": "Confidentiality of JTAG Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-3"
-      ],
-      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Separate Account for Privileged Access"
-    },
-    {
-      "security_control": "Encryption",
-      "security_control_description": "Encryption is the process of transforming information into a form that is unintelligible without knowledge of a secret key. It is used to protect sensitive data from unauthorized access, such as when it is being transmitted over a network or stored in a database. Encryption can also be used to ensure data integrity by preventing unauthorized changes to the data.",
-      "security_goal": "JTAG data transmissions shall be encrypted",
-      "id": "S-2",
-      "Threat_T": "Extraction of JTAG Interface",
-      "security_description_threat": "JTAG data transmissions shall be encrypted",
-      "Sid": [
-        "SN-R-8"
-      ],
-      "Threat": "Extraction of JTAG Interface",
-      "affected_security_goal": "Confidentiality of JTAG Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "security_control": "Disabling",
-      "security_control_description": "Disabling refers to the removal of functionality or the ability to use a system, component, or feature. It is often implemented as a security measure to prevent unauthorized access or operation, protect sensitive data, or comply with regulatory requirements. By disabling specific functions or features, the attack surface can be reduced and the risk of exploitation can be minimized. Disabling can be applied to various aspects of the IT system, including user accounts, software, hardware, or network services.",
-      "security_goal": "JTAG interface shall be disabled during EOL process if not required in field.",
-      "id": "S-3",
-      "Threat_T": "Extraction of JTAG Interface",
-      "security_description_threat": "JTAG interface shall be disabled during EOL process if not required in field.",
+      "Threat_T": "Extraction of Amazon Athena",
+      "security_description_threat": "Proper configuration and secure setup are essential for the effective management of Athena or any similar service in diverse projects or environments.",
       "Sid": [
         "SN-R-1"
       ],
-      "Threat": "Extraction of JTAG Interface",
-      "affected_security_goal": "Confidentiality of JTAG Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat": "Extraction of Amazon Athena",
+      "affected_security_goal": "Confidentiality of Amazon Athena",
+      "damage_scenario_copy": "Loss of data privacy or legal non-compliance",
       "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "security_control": "Access Control",
-      "security_control_description": "Access control is a security measure that restricts access to a system or resource to only authorized individuals, processes, or devices. It involves identifying, authenticating, and authorizing users and their associated access privileges, such as reading, writing, modifying, or deleting data. Access control systems typically use techniques like passwords, biometrics, tokens, or role-based access control to verify user identities and enforce access permissions. This security control ensures that only authorized users have access to sensitive information or critical systems, preventing unauthorized access and protecting against data breaches, system compromise, and malicious activities.",
-      "security_goal": "JTAG configuration data shall be stored in memory locations which are protected against unauthorized read and write accesses. ",
-      "id": "S-4",
-      "Threat_T": "Extraction of JTAG Interface",
-      "security_description_threat": "JTAG configuration data shall be stored in memory locations which are protected against unauthorized read and write accesses. ",
-      "Sid": [
-        "SN-R-2"
-      ],
-      "Threat": "Extraction of JTAG Interface",
-      "affected_security_goal": "Confidentiality of JTAG Interface",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-1",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
-      "Did": [
-        "DS-3"
-      ]
-    },
-    {
-      "security_control": "Mitigation",
-      "security_control_description": "Mitigation is a set of actions taken to reduce the impact of a security vulnerability or threat. These actions can include:\n\n- Implementing security patches and updates\n- Configuring systems and applications to minimize vulnerabilities\n- Installing antivirus and anti-malware software\n- Implementing firewalls and intrusion detection systems\n- Establishing and enforcing security policies and procedures\n- Educating users on security risks and best practices",
-      "security_goal": "If JTAG interface is not required it shall be removed",
-      "id": "S-5",
-      "Threat_T": "Blocking JTAG Interface",
-      "security_description_threat": "If JTAG interface is not required it shall be removed",
-      "Sid": [
-        "SN-R-3"
-      ],
-      "Threat": "Blocking JTAG Interface",
-      "affected_security_goal": "Availability of JTAG Interface",
-      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
-      "Threat_id": "Th-3",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
-      "Did": [
-        "DS-2"
-      ]
-    },
-    {
-      "security_control": "Integrity",
-      "security_control_description": "Integrity is a security control that ensures the accuracy and completeness of data and information. It prevents unauthorized modification, deletion, or creation of data, maintaining its integrity and ensuring that it is reliable and trustworthy. Integrity controls include measures like data validation, access controls, data backup and recovery, and tamper-proofing mechanisms to protect against malicious or unintentional data manipulation.",
-      "security_goal": "Runtime manipulation of the JATG configuration data shall also be protected.",
-      "id": "S-6",
-      "Threat_T": "Manipulation of JTAG Interface",
-      "security_description_threat": "Runtime manipulation of the JATG configuration data shall also be protected.",
-      "Sid": [
-        "SN-R-4"
-      ],
-      "Threat": "Manipulation of JTAG Interface",
-      "affected_security_goal": "Integrity of JTAG Interface",
-      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
-      "Threat_id": "Th-2",
-      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
-      "consequence": "Moderate",
-      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself.",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time Functionality is key user requirement and loss of functionality will lead to loss of customer trust and contracting partners",
+      "damage_scenario": "Loss of data privacy or legal non-compliance",
+      "consequence": "Serious",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
+      "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
       "Did": [
         "DS-1"
       ]
     },
     {
-      "security_control": "Change Management",
-      "security_control_description": "Change management is a process that helps organizations identify, track, and control changes to their IT environment. This includes changes to hardware, software, network infrastructure, and applications. Effective change management is essential for maintaining the stability and security of IT systems. Without it, organizations can experience unplanned outages, data loss, and security breaches.\n\nThe change management process typically involves the following steps:\n\n1. Identifying and documenting proposed changes\n2. Assessing the impact of the changes\n3. Approving or rejecting the changes\n4. Implementing the changes\n5. Monitoring the changes and making any necessary adjustments\n\nChange management is a critical part of any IT security program. By following a formalized change management process, organizations can help to reduce the risk of unplanned outages, data loss, and security breaches.",
-      "security_goal": "JTAG port shall be closed if not used",
-      "id": "S-7",
-      "Threat_T": "Blocking JTAG Interface",
-      "security_description_threat": "JTAG port shall be closed if not used",
+      "security_control": "Access control",
+      "security_control_description": "Access control is a security control that restricts access to resources based on the identity of the user or system requesting access. This control ensures that only authorized users or systems can access specific resources, such as files, applications, or databases. Access control can be implemented using a variety of mechanisms, such as passwords, biometrics, and tokens.",
+      "security_goal": "Data can be accessed and maniplated  by unauthorized individuals if proper security measures are not in place. It can leads to compromise of integrity",
+      "id": "S-2",
       "Sid": [
-        "SN-R-6"
-      ],
-      "Threat": "Blocking JTAG Interface",
-      "affected_security_goal": "Availability of JTAG Interface",
-      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
-      "Threat_id": "Th-3",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
-      "Did": [
-        "DS-2"
+        "SN-R-2"
       ]
     },
     {
-      "security_control": "Cryptographic mechanisms.",
-      "security_control_description": "Cryptographic mechanisms protect the confidentiality, integrity, and authenticity of sensitive information by encrypting it. Encryption transforms data into an unintelligible format that can only be decrypted by authorized parties who possess the appropriate cryptographic keys. Common cryptographic mechanisms include symmetric encryption, asymmetric encryption, and hashing functions.",
-      "security_goal": "NFC Tags shall implement cryptographic mechanisms, including secure authentication to prevent unauthorized extraction",
-      "id": "S-8",
-      "Threat_T": "Extraction of NFC Tags",
-      "security_description_threat": "NFC Tags shall implement cryptographic mechanisms, including secure authentication to prevent unauthorized extraction",
+      "security_control": "Encryption",
+      "security_control_description": "Encryption transforms data into an unreadable format, rendering it unintelligible to unauthorized individuals. It protects sensitive information from unauthorized access, theft, or disclosure, whether at rest or in transit. By encrypting data, organizations can safeguard sensitive data such as personally identifiable information (PII), financial data, or intellectual property from unauthorized parties.",
+      "security_goal": "Encrypting workgroups at rest in Athena is a recommended security practice to safeguard sensitive information, ensuring confidentiality across diverse projects and implementations.",
+      "id": "S-3",
+      "Threat_T": "Extraction of Amazon Athena",
+      "security_description_threat": "Encrypting workgroups at rest in Athena is a recommended security practice to safeguard sensitive information, ensuring confidentiality across diverse projects and implementations.",
       "Sid": [
-        "SN-R-9"
+        "SN-R-3"
       ],
-      "Threat": "Extraction of NFC Tags",
-      "affected_security_goal": "Confidentiality of NFC Tags",
-      "damage_scenario_copy": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
-      "Threat_id": "Th-4",
-      "damage_scenario": "Disclosure of IP or Proprietary Data or sensitive Information, Unauthorized copying or cloning, Unauthorized use",
+      "Threat": "Extraction of Amazon Athena",
+      "affected_security_goal": "Confidentiality of Amazon Athena",
+      "damage_scenario_copy": "Loss of data privacy or legal non-compliance",
+      "Threat_id": "Th-1",
+      "damage_scenario": "Loss of data privacy or legal non-compliance",
+      "consequence": "Serious",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or application itself",
+      "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
+      "Did": [
+        "DS-1"
+      ]
+    },
+    {
+      "security_control": "Monitoring",
+      "security_control_description": "Monitoring is the continuous observation and analysis of events and data in information systems and networks to detect suspicious activities or potential security incidents. It involves the collection, analysis, and reporting of system activity, logs, and events to identify anomalies, unauthorized access attempts, and other security concerns. Monitoring enables organizations to detect and respond to security threats in a timely manner, mitigate risks, and maintain the integrity and availability of their systems and data.",
+      "security_goal": "Amazon Athena shall enforce monitoring mechanisms to ensure continuous monitoring of data access",
+      "id": "S-4",
+      "Threat_T": "Blocking Amazon Athena",
+      "security_description_threat": "Amazon Athena shall enforce monitoring mechanisms to ensure continuous monitoring of data access",
+      "Sid": [
+        "SN-R-4"
+      ],
+      "Threat": "Blocking Amazon Athena",
+      "affected_security_goal": "Availability of Amazon Athena",
+      "damage_scenario_copy": "Loss of customer trust",
+      "Threat_id": "Th-3",
+      "damage_scenario": "Loss of customer trust",
       "consequence": "Moderate",
-      "consequence_DS": "Unauthorized reading of firmware or update may lead to IP disclosure",
-      "consequence_reasoning": "Research effort expended in developing Bosch IP is lost.\nEngineering effort will be lost.\nIP differentiates Bosch from competition and provides competitive edge. Thus loss of IP diminishes the competitive edge.\nPotential financial cost of damage too decides the consequence rating.",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
       "Did": [
         "DS-3"
       ]
     },
     {
-      "security_control": "Integrity checks (for NFC tags) - Data validation",
-      "security_control_description": "NFC (Near-Field Communication) tags are used for short-range wireless communication. Integrity checks ensure that NFC data remains unaltered and has not been tampered with. Data validation involves verifying the authenticity and correctness of data on NFC tags by checking for errors, inconsistencies, or malicious alterations. This can be achieved through techniques such as digital signatures or checksums.",
-      "security_goal": "NFC tags shall employ integrity checks to detect and prevent manipulation attempts",
-      "id": "S-9",
-      "Threat_T": "Manipulation of NFC Tags",
-      "security_description_threat": "NFC tags shall employ integrity checks to detect and prevent manipulation attempts",
+      "security_control": "Identity and Access Management (IAM)",
+      "security_control_description": "Identity and Access Management (IAM) is a security control that ensures that only authorized users are granted access to resources within a system. IAM involves the process of identifying users, authenticating their identities, and authorizing them to access specific resources based on their roles and permissions. IAM plays a critical role in protecting systems from unauthorized access and ensuring that sensitive information remains confidential and protected.",
+      "security_goal": "Implement least privilege principles with IAM.",
+      "id": "S-5",
       "Sid": [
-        "SN-R-10"
-      ],
-      "Threat": "Manipulation of NFC Tags",
-      "affected_security_goal": "Integrity of NFC Tags",
-      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
-      "Threat_id": "Th-5",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
-      "Did": [
-        "DS-2"
+        "SN-R-3"
       ]
     },
     {
-      "security_control": "Cryptography",
-      "security_control_description": "Cryptography is the practice of using techniques to ensure secure communication in the presence of adversarial behavior. It leverages mathematical algorithms to transform data into an unintelligible format, making it difficult for unauthorized parties to access or comprehend. This process involves two key functions: encryption and decryption. Encryption converts readable data into ciphertext, while decryption reconverts it back to its original form. Cryptography plays a vital role in protecting sensitive information, such as personal data, financial transactions, and confidential communication.",
-      "security_goal": "NFC communication shall employ cryptographic mechanisms, such as digital signatures,encryption protocol to detect and prevent unauthorized manipulation",
-      "id": "S-10",
-      "Threat_T": "Manipulation of NFC Communication",
-      "security_description_threat": "NFC communication shall employ cryptographic mechanisms, such as digital signatures,encryption protocol to detect and prevent unauthorized manipulation",
+      "security_control": "Authentication",
+      "security_control_description": "Authentication is the process of verifying a user's identity before allowing them access to a system or resource. It ensures that only authorized users can access the system and helps to protect against unauthorized access and data breaches. Authentication can be performed using a variety of methods, including passwords, biometrics, tokens, and certificates.",
+      "security_goal": "Put measures in place to validate the authenticity of discovered services.",
+      "id": "S-6",
       "Sid": [
-        "SN-R-12"
-      ],
-      "Threat": "Manipulation of NFC Communication",
-      "affected_security_goal": "Integrity of NFC communication",
-      "damage_scenario_copy": "Misuse or manipulation affecting Bosch",
-      "Threat_id": "Th-7",
-      "damage_scenario": "Misuse or manipulation affecting Bosch",
-      "consequence": "Negligible",
-      "consequence_DS": "Manipulation of system data may lead to loss of revenue due to assertion of false claim",
-      "consequence_reasoning": "Services are affected but can be restored within a toleratable period of time",
-      "Did": [
-        "DS-2"
+        "SN-R-4"
+      ]
+    },
+    {
+      "security_control": "Detection",
+      "security_control_description": "Detection involves monitoring and analyzing system activities to identify and respond to potential security incidents. By examining audit logs, network traffic, and other indicators of compromise, detection systems can raise alerts and notify administrators of potential threats. This enables organizations to quickly investigate and mitigate security events, minimizing damage and protecting sensitive data.",
+      "security_goal": "Continuously monitoring and network activity  shall be implemented for suspicious behavior.",
+      "id": "S-7",
+      "Sid": [
+        "SN-R-2"
       ]
     }
   ],
