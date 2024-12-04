@@ -19,6 +19,11 @@
       "assumption": "The system must have redundancy and failover capabilities to ensure the availability of critical resources and prevent loss of sensitive information in case of any disruptions or failures in the AWS infrastructure",
       "assumption_comment": "Emphasizes the need for redundancy and failover in the system to ensure its continued availability and prevent loss of sensitive information in case of disruptions or failures in the AWS infrastructure",
       "id": "Asm-4"
+    },
+    {
+      "assumption": "The underlying cloud infrastructure supporting ECS is securely configured",
+      "assumption_comment": "Proper security measures implemented to prevent threats and vulnerabilities",
+      "id": "Asm-5"
     }
   ],
   "misuse": [
@@ -31,6 +36,21 @@
       "muc_description": "Manipulate the metadata or locations of the resources within the service.",
       "muc_comment": "Security risk from unauthorised access to sensitive data",
       "id": "MUC-2"
+    },
+    {
+      "muc_description": "An attacker could exploit weak access controls to gain unauthorized access to the ECS environment, potentially leading to escalation of privileges",
+      "muc_comment": "Privilege escalation",
+      "id": "MUC-3"
+    },
+    {
+      "muc_description": "An attacker could intercept exposed data due to improperly secured network interfaces or access exposed secrets to gain unauthorized access",
+      "muc_comment": "Improper secured network interfaces or exposed secrets ",
+      "id": "MUC-4"
+    },
+    {
+      "muc_description": "Attackers can exploit container breakout vulnerabilities to gain unauthorized access to the underlying host operating system or to escape the container isolation boundary. ",
+      "muc_comment": "Container Breakout",
+      "id": "MUC-5"
     }
   ],
   "damageScenario": [
@@ -75,6 +95,20 @@
       "consequence_DS": "Can cause damage due to data loss, operational disruption, and financial loss.",
       "consequence_reasoning": "Attackers may modify data or inject malicious code into existing data to cause it to misbehave or become inaccessible",
       "id": "DS-6"
+    },
+    {
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards is mandatory and this may lead to penalties.",
+      "id": "DS-7"
+    },
+    {
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
+      "id": "DS-8"
     }
   ],
   "SecGoals": [
@@ -113,6 +147,24 @@
       "Objective": "Availability",
       "objective_description": "Ensuring that data and systems are accessible and usable when needed.",
       "id": "A-6"
+    },
+    {
+      "Asset_description": "Amazon Elastic Container Service",
+      "Objective": "Confidentiality",
+      "objective_description": "Confidentiality - Ensure that data and information within ECS remain confidential, preventing unauthorized access or disclosure.",
+      "id": "A-7"
+    },
+    {
+      "Asset_description": "Amazon Elastic Container Service",
+      "Objective": "Integrity",
+      "objective_description": "\nIntegrity -  Containerized applications or services running within the ECS should not be tampered with",
+      "id": "A-8"
+    },
+    {
+      "Asset_description": "Amazon Elastic Container Service",
+      "Objective": "Availability",
+      "objective_description": "Availability -  Containerized services within ECS should be available to minimize the downtime and disruptions caused by security incidents",
+      "id": "A-9"
     }
   ],
   "ThreatDSs": [
@@ -193,80 +245,146 @@
       "Did": [
         "DS-6"
       ]
+    },
+    {
+      "Threat": "Extraction of Amazon Elastic Container Service",
+      "affected_security_goal": "Confidentiality of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
+      "id": "Th-7",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards is mandatory and this may lead to penalties.",
+      "Did": [
+        "DS-7"
+      ]
+    },
+    {
+      "Threat": "Integrity of Amazon Elastic Container Service",
+      "affected_security_goal": "Integrity of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
+      "id": "Th-8",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
+      "Did": [
+        "DS-8"
+      ]
+    },
+    {
+      "Threat": "Blocking Amazon Elastic Container Service",
+      "affected_security_goal": "Availability of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Loss of customer trust",
+      "id": "Th-9",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
+      "Did": [
+        "DS-3"
+      ]
     }
   ],
   "ThreatEvaluation_AP": [
     {
       "id": "Th-1",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "6",
-      "Knowledge": "7",
-      "Time": "2",
-      "Sum": "15",
+      "Access": 3,
+      "Equipment": 0,
+      "Expertise": 2,
+      "Knowledge": 2,
+      "Time": 1,
+      "Sum": "8",
       "Threat": "Extraction of Amazon Athena",
-      "Attack_Potential": "Moderate",
-      "Threat_i": "Extraction of Amazon Athena"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-2",
-      "Access": "0",
-      "Equipment": "4",
-      "Expertise": "6",
-      "Knowledge": "3",
-      "Time": "2",
+      "Access": 0,
+      "Equipment": 4,
+      "Expertise": 6,
+      "Knowledge": 3,
+      "Time": 2,
       "Sum": "15",
       "Threat": "Manipulation of Amazon Athena",
-      "Attack_Potential": "Moderate",
-      "Threat_i": "Manipulation of Amazon Athena"
+      "Attack_Potential": "Moderate"
     },
     {
       "id": "Th-3",
-      "Access": "0",
-      "Equipment": "0",
-      "Expertise": "0",
-      "Knowledge": "3",
-      "Time": "0",
+      "Access": 0,
+      "Equipment": 0,
+      "Expertise": 0,
+      "Knowledge": 3,
+      "Time": 0,
       "Sum": "3",
       "Threat": "Blocking Amazon Athena",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Blocking Amazon Athena"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-4",
-      "Access": "7",
-      "Equipment": "7",
-      "Expertise": "6",
-      "Knowledge": "0",
-      "Time": "2",
+      "Access": 7,
+      "Equipment": 7,
+      "Expertise": 6,
+      "Knowledge": 0,
+      "Time": 2,
       "Sum": "22",
       "Threat": "Extraction of AWS Cloud Map",
-      "Attack_Potential": "Enhanced Basic",
-      "Threat_i": "Extraction of AWS Cloud Map"
+      "Attack_Potential": "Enhanced Basic"
     },
     {
       "id": "Th-5",
-      "Access": "0",
-      "Equipment": "3",
-      "Expertise": "3",
-      "Knowledge": "0",
-      "Time": "3",
+      "Access": 0,
+      "Equipment": 3,
+      "Expertise": 3,
+      "Knowledge": 0,
+      "Time": 3,
       "Sum": "9",
       "Threat": "Manipulation of AWS Cloud Map",
-      "Attack_Potential": "Beyond High",
-      "Threat_i": "Manipulation of AWS Cloud Map"
+      "Attack_Potential": "Beyond High"
     },
     {
       "id": "Th-6",
-      "Access": "8",
-      "Equipment": "7",
-      "Expertise": "8",
-      "Knowledge": "11",
-      "Time": "5",
-      "Sum": "39",
+      "Access": 0,
+      "Equipment": 0,
+      "Expertise": 8,
+      "Knowledge": 3,
+      "Time": 2,
+      "Sum": "13",
       "Threat": "Blocking AWS Cloud Map",
-      "Attack_Potential": "Basic",
-      "Threat_i": "Blocking AWS Cloud Map"
+      "Attack_Potential": "High"
+    },
+    {
+      "id": "Th-7",
+      "Access": "0",
+      "Equipment": "0",
+      "Expertise": "3",
+      "Knowledge": "7",
+      "Time": "0",
+      "Sum": "10",
+      "Threat": "Extraction of Amazon Elastic Container Service",
+      "Attack_Potential": "High"
+    },
+    {
+      "id": "Th-8",
+      "Access": "2",
+      "Equipment": "4",
+      "Expertise": "3",
+      "Knowledge": "7",
+      "Time": "2",
+      "Sum": "18",
+      "Threat": "Integrity of Amazon Elastic Container Service",
+      "Attack_Potential": "Moderate"
+    },
+    {
+      "id": "Th-9",
+      "Access": "0",
+      "Equipment": "0",
+      "Expertise": "3",
+      "Knowledge": "0",
+      "Time": "0",
+      "Sum": "3",
+      "Threat": "Blocking Amazon Elastic Container Service",
+      "Attack_Potential": "Beyond High"
     }
   ],
   "threatDamageAssociations": [
@@ -310,6 +428,27 @@
       "threat": "Blocking AWS Cloud Map",
       "damageScenarioId": "DS-6",
       "damageScenario": "Outages of AWS Cloud Map",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-7",
+      "threat": "Extraction of Amazon Elastic Container Service",
+      "damageScenarioId": "DS-7",
+      "damageScenario": "Disclosure of Personally Identifiable Information",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-8",
+      "threat": "Integrity of Amazon Elastic Container Service",
+      "damageScenarioId": "DS-8",
+      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-9",
+      "threat": "Blocking Amazon Elastic Container Service",
+      "damageScenarioId": "DS-3",
+      "damageScenario": "Loss of customer trust",
       "cons": "Moderate"
     }
   ],
@@ -355,6 +494,27 @@
       "damageScenarioId": "DS-6",
       "damageScenario": "Outages of AWS Cloud Map",
       "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-7",
+      "threat": "Extraction of Amazon Elastic Container Service",
+      "damageScenarioId": "DS-7",
+      "damageScenario": "Disclosure of Personally Identifiable Information",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-8",
+      "threat": "Integrity of Amazon Elastic Container Service",
+      "damageScenarioId": "DS-8",
+      "damageScenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "cons": "Moderate"
+    },
+    {
+      "threatId": "Th-9",
+      "threat": "Blocking Amazon Elastic Container Service",
+      "damageScenarioId": "DS-3",
+      "damageScenario": "Loss of customer trust",
+      "cons": "Moderate"
     }
   ],
   "RiskAssessment": [
@@ -365,8 +525,8 @@
       "consequence": "Serious",
       "Threat": "Extraction of Amazon Athena",
       "risk": "Very High",
-      "attackPotential": "Moderate",
-      "risk_of_d": "High"
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
     },
     {
       "id": "R-2",
@@ -415,8 +575,38 @@
       "consequence": "Moderate",
       "Threat": "Blocking AWS Cloud Map",
       "risk": "Low",
-      "attackPotential": "Basic",
-      "risk_of_d": "High"
+      "attackPotential": "High",
+      "risk_of_d": "Medium"
+    },
+    {
+      "id": "R-7",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
+      "D_id": "DS-7",
+      "consequence": "Moderate",
+      "Threat": "Extraction of Amazon Elastic Container Service",
+      "risk": "Low",
+      "attackPotential": "High",
+      "risk_of_d": "Medium"
+    },
+    {
+      "id": "R-8",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "D_id": "DS-8",
+      "consequence": "Moderate",
+      "Threat": "Integrity of Amazon Elastic Container Service",
+      "risk": "Low",
+      "attackPotential": "Moderate",
+      "risk_of_d": "Medium"
+    },
+    {
+      "id": "R-9",
+      "damage_scenario": "Loss of customer trust",
+      "D_id": "DS-3",
+      "consequence": "Moderate",
+      "Threat": "Blocking Amazon Elastic Container Service",
+      "risk": "Low",
+      "attackPotential": "Beyond High",
+      "risk_of_d": "Low"
     }
   ],
   "SecurityNeeds": [
@@ -531,6 +721,70 @@
       "Did": [
         "DS-6"
       ]
+    },
+    {
+      "Threat_T": "Extraction of Amazon Elastic Container Service",
+      "security_description_threat": "The ECS environment shall implement access controls to prevent unauthorized access and privilege escalation",
+      "id": "SN-R-8",
+      "Threat": "Extraction of Amazon Elastic Container Service",
+      "affected_security_goal": "Confidentiality of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
+      "Threat_id": "Th-7",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards is mandatory and this may lead to penalties.",
+      "Did": [
+        "DS-7"
+      ]
+    },
+    {
+      "Threat_T": "Extraction of Amazon Elastic Container Service",
+      "security_description_threat": "The ECS environment shall enforce system and data integrity by using up-to-date execution environments and by restricting filesystem write access.",
+      "id": "SN-R-9",
+      "Threat": "Extraction of Amazon Elastic Container Service",
+      "affected_security_goal": "Confidentiality of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
+      "Threat_id": "Th-7",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards is mandatory and this may lead to penalties.",
+      "Did": [
+        "DS-7"
+      ]
+    },
+    {
+      "Threat_T": "Integrity of Amazon Elastic Container Service",
+      "security_description_threat": "The ECS environment shall prevent unauthorized disclosure by avoiding exposing network interfaces and by securely managing secrets.",
+      "id": "SN-R-10",
+      "Threat": "Integrity of Amazon Elastic Container Service",
+      "affected_security_goal": "Integrity of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
+      "Threat_id": "Th-8",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
+      "Did": [
+        "DS-8"
+      ]
+    },
+    {
+      "Threat_T": "Blocking Amazon Elastic Container Service",
+      "security_description_threat": "The ECS environment shall establish monitoring and anomaly detection",
+      "id": "SN-R-11",
+      "Threat": "Blocking Amazon Elastic Container Service",
+      "affected_security_goal": "Availability of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Loss of customer trust",
+      "Threat_id": "Th-9",
+      "damage_scenario": "Loss of customer trust",
+      "consequence": "Moderate",
+      "consequence_DS": "Customer trust/confidence is important for future business. For example loss of private information of customer",
+      "consequence_reasoning": "Trust of specific people, partners are violated, which in turn affect the future business with them and impacts the growth of the company.",
+      "Did": [
+        "DS-3"
+      ]
     }
   ],
   "assetaddition": [
@@ -569,6 +823,24 @@
       "Objective": "Availability",
       "objective_description": "Ensuring that data and systems are accessible and usable when needed.",
       "id": "AA-6"
+    },
+    {
+      "Asset_description": "Amazon Elastic Container Service",
+      "Objective": "Confidentiality",
+      "objective_description": "Confidentiality - Ensure that data and information within ECS remain confidential, preventing unauthorized access or disclosure.",
+      "id": "AA-7"
+    },
+    {
+      "Asset_description": "Amazon Elastic Container Service",
+      "Objective": "Integrity",
+      "objective_description": "\nIntegrity -  Containerized applications or services running within the ECS should not be tampered with",
+      "id": "AA-8"
+    },
+    {
+      "Asset_description": "Amazon Elastic Container Service",
+      "Objective": "Availability",
+      "objective_description": "Availability -  Containerized services within ECS should be available to minimize the downtime and disruptions caused by security incidents",
+      "id": "AA-9"
     }
   ],
   "SecControls": [
@@ -592,7 +864,9 @@
       "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
       "Did": [
         "DS-1"
-      ]
+      ],
+      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Assignment of Privileged Access",
+      "isNew": false
     },
     {
       "security_control": "Access control",
@@ -601,7 +875,9 @@
       "id": "S-2",
       "Sid": [
         "SN-R-2"
-      ]
+      ],
+      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Restrictions on the Use of Shared Privileged Accounts",
+      "isNew": false
     },
     {
       "security_control": "Encryption",
@@ -623,7 +899,9 @@
       "consequence_reasoning": "There is a chance of functional or operational degradation due to manipulation of data or application ",
       "Did": [
         "DS-1"
-      ]
+      ],
+      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Restrictions on Reusing Privileged Account Passwords on Different IT Systems",
+      "isNew": false
     },
     {
       "security_control": "Monitoring",
@@ -654,7 +932,9 @@
       "id": "S-5",
       "Sid": [
         "SN-R-3"
-      ]
+      ],
+      "selectedRequirement": "EISA-ACC-202 - Restriction and Control of Privileged Accounts (EISA-PSA-003 - Database Management System) - Deletion of Privileged Roles and Temporary Privileges",
+      "isNew": false
     },
     {
       "security_control": "Authentication",
@@ -671,7 +951,51 @@
       "security_goal": "Continuously monitoring and network activity  shall be implemented for suspicious behavior.",
       "id": "S-7",
       "Sid": [
-        "SN-R-2"
+        "SN-R-5"
+      ]
+    },
+    {
+      "security_control": "Least Privilege",
+      "security_control_description": "Least Privilege is a security control that limits the privileges and permissions granted to users, applications, and systems to only those necessary to perform their intended functions. By limiting privileges, organizations can reduce the risk of unauthorized access to critical resources and mitigate the potential impact of security breaches. The principle of least privilege ensures that users and systems only have the minimum level of access required to fulfill their roles and responsibilities. By implementing this control, organizations can enhance the overall security posture of their systems and applications by minimizing the potential for privilege escalation and malicious activity.",
+      "security_goal": "The ECS environment shall enforce system and data integrity by using up-to-date execution environments and by restricting filesystem write access.",
+      "id": "S-8",
+      "Threat_T": "Extraction of Amazon Elastic Container Service",
+      "security_description_threat": "The ECS environment shall enforce system and data integrity by using up-to-date execution environments and by restricting filesystem write access.",
+      "Sid": [
+        "SN-R-9"
+      ],
+      "Threat": "Extraction of Amazon Elastic Container Service",
+      "affected_security_goal": "Confidentiality of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Disclosure of Personally Identifiable Information",
+      "Threat_id": "Th-7",
+      "damage_scenario": "Disclosure of Personally Identifiable Information",
+      "consequence": "Moderate",
+      "consequence_DS": "Unauthorized reading of database or sniffing of communication may lead to disclosure and abuse of personally identifiable information",
+      "consequence_reasoning": "Compliance to international and national legal privacy requirements and standards is mandatory and this may lead to penalties.",
+      "Did": [
+        "DS-7"
+      ]
+    },
+    {
+      "security_control": "Network hardening",
+      "security_control_description": "Network hardening involves implementing security measures to protect network resources from unauthorized access, damage, or disruption. It encompasses a range of techniques, including:\n\n* **Firewall configuration:** Establishing rules to restrict access to and from the network based on IP addresses, ports, and protocols.\n* **Intrusion detection and prevention systems (IDS/IPS):** Monitoring network traffic for suspicious activity and taking action to block or mitigate threats.\n* **Virtual private networks (VPNs):** Encrypting network traffic for secure communication over public networks.\n* **Network segmentation:** Dividing the network into smaller, isolated segments to limit the spread of threats.\n* **Patch management:** Regularly updating software and systems to address vulnerabilities and security flaws.\n* **Access control lists (ACLs):** Restricting access to network resources based on user identity and role.\n* **Strong password policies:** Enforcing complex and unique passwords to prevent unauthorized access.\n* **Data encryption:** Encrypting sensitive data to protect it from eavesdropping and theft.",
+      "security_goal": "The ECS environment shall prevent unauthorized disclosure by avoiding exposing network interfaces and by securely managing secrets.",
+      "id": "S-9",
+      "Threat_T": "Integrity of Amazon Elastic Container Service",
+      "security_description_threat": "The ECS environment shall prevent unauthorized disclosure by avoiding exposing network interfaces and by securely managing secrets.",
+      "Sid": [
+        "SN-R-10"
+      ],
+      "Threat": "Integrity of Amazon Elastic Container Service",
+      "affected_security_goal": "Integrity of Amazon Elastic Container Service",
+      "damage_scenario_copy": "Degradation or disruption or loss of functionality or unreliable operation",
+      "Threat_id": "Th-8",
+      "damage_scenario": "Degradation or disruption or loss of functionality or unreliable operation",
+      "consequence": "Moderate",
+      "consequence_DS": "There is a chance of functional or operational degradation due to manipulation of data or service itself.",
+      "consequence_reasoning": "Services are affected but can be restored within a tolerable period of time",
+      "Did": [
+        "DS-8"
       ]
     }
   ],
